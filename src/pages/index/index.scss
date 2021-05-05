@@ -1,0 +1,26 @@
+@import '~taro-ui/dist/style/variables/default.scss';
+@import "~taro-ui/dist/style/components/flex.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/button.scss";
+
+.join-platform-button{
+    align-items: center;
+    width:50%;
+    font-size: 40px;
+    border: 0PX none;
+    background-color: #9D826A;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.login-button{
+    align-items: center;
+    width:50%;
+    font-size: 40px;
+    border: 0PX none;
+    background-color: #04BE02;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
