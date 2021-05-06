@@ -1,4 +1,4 @@
 export default {
-  navigationBarTitleText: '首页',
+  navigationBarTitleText: '店铺首页',
   disableScroll: true
 }

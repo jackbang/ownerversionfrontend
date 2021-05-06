@@ -83,8 +83,8 @@ export default class Storemainpage extends Component {
             <View style='display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-left:20rpx;'>
               <text style='height:50rpx;width:360rpx;font-size:36rpx;font-weight:600;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>惊剧馆·剧本杀·狼人杀</text>
               <View style='height:60rpx;'></View>
-              <text style='height:50rpx;width:360rpx;font-size:23rpx;font-weight:500;'>店铺ID：2104130001</text>
-              <text style='height:50rpx;width:360rpx;font-size:23rpx;font-weight:500;'>管理员：Rocklove</text>
+              <text style='height:50rpx;width:360rpx;font-size:23rpx;font-weight:550;'>店铺ID：2104130001</text>
+              <text style='height:50rpx;width:360rpx;font-size:23rpx;font-weight:550;'>管理员：Rocklove</text>
             </View>
           </View>
         </View>
