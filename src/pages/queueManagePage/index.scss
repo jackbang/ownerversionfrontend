@@ -1,0 +1,205 @@
+@import '~taro-ui/dist/style/variables/default.scss';
+@import "~taro-ui/dist/style/components/flex.scss";
+@import "~taro-ui/dist/style/components/nav-bar.scss";
+//nav-bar.scss
+//注释掉:@include hairline-bottom();
+@import "~taro-ui/dist/style/components/icon.scss";
+//input-number.scss
+//注释掉@include border-thin($width: 1PX); 
+//注释掉 @include border-thin($width: 1PX, $directions: left right);
+@import "~taro-ui/dist/style/components/button.scss";
+
+.queue-info-page {
+    size: cover;
+    filter: blur(10px) brightness(50%);
+}
+
+.nav-bar-info {
+    &.at-nav-bar {
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .at-icon {
+        color: #fff;
+    }
+}
+
+.play-pic-position-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.play-pic-label-info {
+    position: absolute;
+    font-size: 20px;
+    color: #fff;
+    top: 0%;
+    left: 75%;
+    box-sizing: content-box;
+    border: 0px none #000;
+    background-color: #32323277;
+    padding: 1.5% 3%;
+    border-radius: 8px;
+}
+
+.play-name-position-info {
+    height: 40px;
+    font-size: 40px;
+    color: #fff;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 8.5%;
+}
+
+.play-score-position-info {
+    height: 65px;
+    font-size: 26px;
+    color: #c0c0c0;
+    padding-left: 8.5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.play-score-pic-info {
+    height: 5vw;
+    width: 5vw;
+}
+
+.play-headcount-position-info {
+    height: 60px;
+    font-size: 26px;
+    color: #c0c0c0;
+    padding-left: 8.5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.play-duration-position-info {
+    height: 60px;
+    font-size: 26px;
+    color: #c0c0c0;
+    padding-left: 8.5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.play-label-position-info {
+    height: 70px;
+    font-size: 26px;
+    color: #c0c0c0;
+    padding-left: 8.5%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.play-label-info {
+    font-size: 26px;
+    color: #c0c0c0;
+    border: 3.5px solid #c0c0c0;
+    border-radius: 20px;
+    padding: 0% 2%;
+    margin-right: 3%;
+}
+
+.queue-time-tab-info {
+    display: flex;
+    height: 120px;
+    width: 92%;
+    margin-left: 4%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    background-color: #F0F0F0;
+    background-size: 100%;
+    box-shadow: 0px 8px 8px #979797;
+    position: relative;
+    top: 10px;
+}
+
+.queue-start-time-info {
+    font-size: 24px;
+    color: #828282;
+    height: 30%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10%;
+    border: 0px solid #828282;
+}
+
+.queue-antigender-info {
+    font-size: 24px;
+    color: #828282;
+    height: 30%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10%;
+    border: 0px solid #828282;
+    border-left-width: 2px;
+}
+
+.queue-player-tab-info {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 92%;
+    margin-left: 4%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    background-color: #F0F0F0;
+    background-size: 100%;
+    box-shadow: 0px 8px 8px #979797;
+    position: relative;
+    top: 10px;
+}
+
+.add-player-but{
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+    border: 0PX none;
+    background-color: #FCA62F;
+    height:30rpx;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.remove-player-but{
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+    border: 0PX none;
+    background-color: #FCA62F;
+    height:40rpx;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.join-queue-button {
+    align-items: center;
+    height: 50%;
+    width: 48%;
+    right: 5%;
+    font-size: 32px;
+    border: 0PX none;
+    background-color: #FCA62F;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.invite-friends-button {
+    align-items: center;
+    height: 50%;
+    width: 23%;
+    left: 5%;
+    color: #FCA62F;
+    font-size: 32px;
+    border: 1PX solid #FCA62F;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}

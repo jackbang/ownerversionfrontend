@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/queueManagePage/index',
     'pages/queueInfoPage/index',
     'pages/playSearchPage/playSearchPage',
     'pages/storeMainPage/storeMainPage',
