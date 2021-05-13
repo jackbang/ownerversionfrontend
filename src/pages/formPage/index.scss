@@ -8,6 +8,7 @@
 //input.scss
 //注释掉:@include hairline-bottom();
 @import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/image-picker.scss";
 
 $at-input-font-size: 28px;
 
@@ -38,5 +39,13 @@ $at-input-font-size: 28px;
     background-color: #FCA62F;
     &.at-button--disabled {
         background-color: #A5A5A5;
+    }
+}
+
+.validate-input-css{
+    &.at-input{
+        padding: 0 0;
+        margin-left: 4%;
+        width:15%;
     }
 }

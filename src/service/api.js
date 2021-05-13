@@ -6,3 +6,8 @@ export const test_wechat_login = (user_data) => {
     let url = '/test/adminLogin'
     return request.post(url, user_data, 'application/json')
 }
+
+export const test_send_sms = (admin_data) => {
+    let url = '/test/adminSendSMS'
+    return request.post(url, admin_data, 'application/json')
+}

@@ -28,7 +28,9 @@ export default class Index extends Component {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () { 
+    console.log('reShow')
+  }
 
   componentDidHide () { }
 
@@ -60,7 +62,21 @@ export default class Index extends Component {
           console.log(adminInfo)
           test_wechat_login(adminInfo).then((result)=>{
             console.log(result.data);
-            
+            this.state.adminInfo = adminInfo.adminInfo
+            this.state.adminInfo['sessionId'] = result.data.data.sessionId
+            this.state.adminInfo['adminId'] = result.data.data.adminId
+            Taro.setStorage({key:`admin_info`, data:this.state.adminInfo,
+              success: 
+                this.setState({
+                  isLogin: true
+                })
+            });
+            if (result.data.data.newAdmin==1) { 
+              console.log('new admin')
+              Taro.navigateTo({url: '../formPage/index?page=0'})
+            } else {
+              console.log('not the new admin')
+            }
           });
         }
 
