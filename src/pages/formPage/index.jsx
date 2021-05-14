@@ -7,9 +7,12 @@ import './index.scss'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 
+import SparkMD5 from 'spark-md5'
+
 import bk from '../../img/image-13.png'
 
 import {test_send_sms} from '../../service/api'
+import { base } from '../../service/config'
 
 export default class Formpage extends Component {
 
@@ -164,8 +167,55 @@ export default class Formpage extends Component {
       }
       if ((this.state.adminStoreInfo.name.length !== 0) & (this.state.adminStoreInfo.idCard.length == 18) & (this.state.adminStoreInfo.phone.length == 11) & (this.state.server_validate_code == input_code)) {
         Taro.setStorage({key:'adminStoreInfo', data:this.state.adminStoreInfo})
-        Taro.navigateTo({url: `index?page=1`})
+        this.setState({
+          pageKind:1
+        })
       }
+    } else if (this.state.pageKind == "1") {
+      console.log(this.state.imgFile);
+      if ( this.state.imgFile[0].file.size < 600000) {
+        var spark = new SparkMD5()
+        var imgMD5;
+        var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
+        spark.appendBinary(imgFile);
+        imgMD5 = spark.end();
+        
+        let _this = this;
+        Taro.uploadFile({
+          url: base+'/test/uploadImg', //仅为示例，非真实的接口地址
+          filePath: this.state.imgFile[0].file.path,
+          name: 'file',
+          formData: {
+            'imgMD5': imgMD5,
+            'adminId': this.state.adminInfo.adminId,
+            'sessionId': this.state.adminInfo.sessionId,
+            'appId': wx.getAccountInfoSync().miniProgram.appId,
+            'token': (dayjs().unix() + 1000 ) * 2
+          },
+          success (res){
+            const receiveData = JSON.parse(res.data);
+            console.log(receiveData)
+            _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+            Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
+          }
+        })
+      } else {
+        console.log("Img size is over 600KB")
+      }
+      /*
+      Taro.uploadFile({
+        url: base+'/test/uploadImg', //仅为示例，非真实的接口地址
+        filePath: this.state.imgFile[0],
+        name: 'file',
+        formData: {
+          'user': 'test'
+        },
+        success (res){
+          const data = res.data
+          //do something
+        }
+      })
+      */
     }
   }
 
@@ -434,6 +484,8 @@ export default class Formpage extends Component {
               />
             </View>
           </View>
+
+          <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.handleNextStep.bind(this)}>下一步</AtButton></View>
         </View>
       )
 
