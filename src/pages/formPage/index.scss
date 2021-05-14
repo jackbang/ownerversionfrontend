@@ -26,6 +26,20 @@ $at-input-font-size: 28px;
         padding: 0 0;
         margin-left: 4%;
     }
+}
+
+.storeInfo-input-css{
+    
+    &.at-input{
+        padding: 0 0;
+        margin-left: 4%;
+        width: 400rpx;
+    }
+
+    .at-input__input{
+        font-size: 24px;
+    }
+
     
 }
 

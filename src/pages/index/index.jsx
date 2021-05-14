@@ -99,6 +99,7 @@ export default class Index extends Component {
     return (
       <View className='index' style={{height:`100vh`,backgroundImage:`url(${bk})`, backgroundSize:`auto 100%`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-end`}}>
         {/* 这里的背景后期需要去掉，用Swiper 来替代*/}
+        <image src={bk} style='width:100vw;height:100vh;position:absolute;'></image>
         <AtButton type='primary' circle='true' className='join-platform-button' onClick={this.handleLogin.bind(this)}>店铺入驻</AtButton> 
         <View style='padding-bottom: 45%;'></View>  
       </View>

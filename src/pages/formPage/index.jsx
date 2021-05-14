@@ -10,9 +10,12 @@ import 'dayjs/locale/zh-cn'
 import SparkMD5 from 'spark-md5'
 
 import bk from '../../img/image-13.png'
+import mapIcon from '../../img/mapIcon.svg'
 
 import {test_send_sms} from '../../service/api'
-import { base } from '../../service/config'
+import { base, map_KEY } from '../../service/config'
+
+const chooseLocation = requirePlugin('chooseLocation');
 
 export default class Formpage extends Component {
 
@@ -24,6 +27,15 @@ export default class Formpage extends Component {
         name:'',
         idCard:'',
         phone:''
+      },
+      storeInfo: {
+        store_name: '',
+        store_position: '',
+        store_address: '',
+        store_longitude: 0,
+        store_latitude: 0,
+        store_tel1: '',
+        store_tel2: ''
       },
       adminInfo:{},
       validate_code: ['','','','','',''],
@@ -72,6 +84,20 @@ export default class Formpage extends Component {
   }
 
   componentDidShow () { 
+    const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
+    if (location) {
+      this.setState({
+        storeInfo: {
+          store_name: this.state.storeInfo.store_name,
+          store_position: location.name,
+          store_address: location.address,
+          store_longitude: location.longitude,
+          store_latitude: location.latitude,
+          store_tel1: this.state.storeInfo.store_tel1,
+          store_tel2: this.state.storeInfo.store_tel2
+        }
+      })
+    }
   }
 
   componentDidHide () { }
@@ -144,6 +170,54 @@ export default class Formpage extends Component {
           idCard: this.state.adminStoreInfo.idCard, 
           phone: value}
       })
+    } else if (type == 'storeInfo_store_name') {
+      this.setState({
+        storeInfo: {
+          store_name: value,
+          store_position: this.state.storeInfo.store_position,
+          store_address: this.state.storeInfo.store_address,
+          store_longitude: this.state.storeInfo.store_longitude,
+          store_latitude: this.state.storeInfo.store_latitude,
+          store_tel1: this.state.storeInfo.store_tel1,
+          store_tel2: this.state.storeInfo.store_tel2
+        }
+      })
+    } else if (type == 'storeInfo_store_address') {
+      this.setState({
+        storeInfo: {
+          store_name: this.state.storeInfo.store_name,
+          store_position: this.state.storeInfo.store_position,
+          store_address: value,
+          store_longitude: this.state.storeInfo.store_longitude,
+          store_latitude: this.state.storeInfo.store_latitude,
+          store_tel1: this.state.storeInfo.store_tel1,
+          store_tel2: this.state.storeInfo.store_tel2
+        }
+      })
+    } else if (type == 'storeInfo_store_tel1') {
+      this.setState({
+        storeInfo: {
+          store_name: this.state.storeInfo.store_name,
+          store_position: this.state.storeInfo.store_position,
+          store_address: this.state.storeInfo.store_address,
+          store_longitude: this.state.storeInfo.store_longitude,
+          store_latitude: this.state.storeInfo.store_latitude,
+          store_tel1: value,
+          store_tel2: this.state.storeInfo.store_tel2
+        }
+      })
+    } else if (type == 'storeInfo_store_tel2') {
+      this.setState({
+        storeInfo: {
+          store_name: this.state.storeInfo.store_name,
+          store_position: this.state.storeInfo.store_position,
+          store_address: this.state.storeInfo.store_address,
+          store_longitude: this.state.storeInfo.store_longitude,
+          store_latitude: this.state.storeInfo.store_latitude,
+          store_tel1: this.state.storeInfo.store_tel1,
+          store_tel2: value
+        }
+      })
     }
   }
 
@@ -173,35 +247,40 @@ export default class Formpage extends Component {
       }
     } else if (this.state.pageKind == "1") {
       console.log(this.state.imgFile);
-      if ( this.state.imgFile[0].file.size < 600000) {
-        var spark = new SparkMD5()
-        var imgMD5;
-        var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
-        spark.appendBinary(imgFile);
-        imgMD5 = spark.end();
-        
-        let _this = this;
-        Taro.uploadFile({
-          url: base+'/test/uploadImg', //仅为示例，非真实的接口地址
-          filePath: this.state.imgFile[0].file.path,
-          name: 'file',
-          formData: {
-            'imgMD5': imgMD5,
-            'adminId': this.state.adminInfo.adminId,
-            'sessionId': this.state.adminInfo.sessionId,
-            'appId': wx.getAccountInfoSync().miniProgram.appId,
-            'token': (dayjs().unix() + 1000 ) * 2
-          },
-          success (res){
-            const receiveData = JSON.parse(res.data);
-            console.log(receiveData)
-            _this.state.adminInfo.sessionId = receiveData.data.sessionId;
-            Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
-          }
-        })
+      if (this.state.imgFile.length == 1) {
+        if ( this.state.imgFile[0].file.size < 600000) {
+          var spark = new SparkMD5()
+          var imgMD5;
+          var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
+          spark.appendBinary(imgFile);
+          imgMD5 = spark.end();
+          
+          let _this = this;
+          Taro.uploadFile({
+            url: base+'/test/uploadImg', //仅为示例，非真实的接口地址
+            filePath: this.state.imgFile[0].file.path,
+            name: 'file',
+            formData: {
+              'imgMD5': imgMD5,
+              'adminId': this.state.adminInfo.adminId,
+              'sessionId': this.state.adminInfo.sessionId,
+              'appId': wx.getAccountInfoSync().miniProgram.appId,
+              'token': (dayjs().unix() + 1000 ) * 2
+            },
+            success (res){
+              const receiveData = JSON.parse(res.data);
+              console.log(receiveData)
+              _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+              Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
+            }
+          })
+        } else {
+          console.log("Img size is over 600KB")
+        }
       } else {
-        console.log("Img size is over 600KB")
+        console.log("this file list is empty")
       }
+      
       /*
       Taro.uploadFile({
         url: base+'/test/uploadImg', //仅为示例，非真实的接口地址
@@ -263,6 +342,57 @@ export default class Formpage extends Component {
         imgUploadIcon: true
       })
     }
+  }
+
+  handleSelectPos () {
+    let _this = this;
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success () {
+              wx.getLocation({
+                type: 'gcj02',
+                success (res) {
+                  console.log(res);
+                  _this.state.storeInfo.latitude = res.latitude;
+                  _this.state.storeInfo.longitude = res.longitude;
+                  const referer = 'ecouOrange';
+                  const location = JSON.stringify({
+                    latitude: _this.state.storeInfo.latitude,
+                    longitude: _this.state.storeInfo.longitude
+                  });
+                  const category = '生活服务,娱乐休闲';
+                  Taro.navigateTo({
+                    url: `plugin://chooseLocation/index?key=${map_KEY}&referer=${referer}&location=${location}&category=${category}`
+                  })
+                }
+              })
+            }
+          })
+        } else {
+          wx.getLocation({
+            type: 'gcj02',
+            success (res) {
+              console.log(res);
+              _this.state.storeInfo.latitude = res.latitude;
+              _this.state.storeInfo.longitude = res.longitude;
+              const referer = 'ecouOrange';
+              const location = JSON.stringify({
+                latitude: _this.state.storeInfo.latitude,
+                longitude: _this.state.storeInfo.longitude
+              });
+              const category = '生活服务,娱乐休闲';
+              Taro.navigateTo({
+                url: `plugin://chooseLocation/index?key=${map_KEY}&referer=${referer}&location=${location}&category=${category}`
+              })
+            }
+          })
+        }
+      }
+    })
+    
   }
 
   render () {
@@ -484,6 +614,86 @@ export default class Formpage extends Component {
               />
             </View>
           </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>店铺名称</text>
+            <AtInput
+              name='value3'
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='需与门店名称一致'
+              value={this.state.storeInfo.store_name}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_name')}
+              className='storeInfo-input-css'
+              required
+            />
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>店铺地区</text>
+            <AtInput
+              editable={false}
+              name='value4'
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='点击图标选择地址'
+              value={this.state.storeInfo.store_position}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_position')}
+              className='storeInfo-input-css'
+            />
+            <image src={mapIcon} style='height:80rpx;width:80rpx;' onClick={this.handleSelectPos.bind(this)}></image>
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>详细门牌号</text>
+            <AtInput
+              name='value5'
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='详细地址，例1层101室'
+              value={this.state.storeInfo.store_address}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_address')}
+              className='storeInfo-input-css'
+              required
+              adjustPosition
+            />
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>客服电话1</text>
+            <AtInput
+              name='value6'
+              title=''
+              type='phone'
+              placeholderStyle='font-size:13px;'
+              placeholder='如有区号，请在区号后加“-”'
+              value={this.state.storeInfo.store_tel1}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_tel1')}
+              className='storeInfo-input-css'
+              required
+              adjustPosition
+            />
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>客服电话2</text>
+            <AtInput
+              name='value7'
+              title=''
+              type='phone'
+              placeholderStyle='font-size:13px;'
+              placeholder='如有区号，请在区号后加“-”'
+              value={this.state.storeInfo.store_tel2}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_tel2')}
+              className='storeInfo-input-css'
+              required
+              adjustPosition
+            />
+          </View>
+
 
           <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.handleNextStep.bind(this)}>下一步</AtButton></View>
         </View>
