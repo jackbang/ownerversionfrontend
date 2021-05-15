@@ -56,6 +56,23 @@ $at-input-font-size: 28px;
     }
 }
 
+.try-button {
+    align-items: center;
+    height: 100%;
+    width: 85%;
+    top: 30%;
+    font-size: 24px;
+    border: 1.5PX solid  #FCA62F;
+    background-color: #FCA62F00;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+
+    &.at-button--secondary{
+        color: #FCA62F;
+    }
+}
+
 .validate-input-css{
     &.at-input{
         padding: 0 0;

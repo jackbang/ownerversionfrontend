@@ -9,11 +9,15 @@ import 'dayjs/locale/zh-cn'
 
 import SparkMD5 from 'spark-md5'
 
+import CryptoJS from 'crypto-js'
+
 import bk from '../../img/image-13.png'
 import mapIcon from '../../img/mapIcon.svg'
+import confirmIcon from '../../img/confirmIcon.svg'
 
 import {test_send_sms} from '../../service/api'
 import { base, map_KEY } from '../../service/config'
+import {encrypt} from '../../utils/aes'
 
 const chooseLocation = requirePlugin('chooseLocation');
 
@@ -43,7 +47,7 @@ export default class Formpage extends Component {
       server_validate_code:'111111',
       countDownStart: 59,
       countDownNum: 0,
-      pageKind:0,
+      pageKind:2,
       imgFile:[],
       imgUploadIcon: true
     }
@@ -223,23 +227,19 @@ export default class Formpage extends Component {
 
   handleNextStep () { 
     if (this.state.pageKind == "0"){
-      if (this.state.adminStoreInfo.name.length == 0) {
-        console.log('name length is 0')
-      }
-      if (this.state.adminStoreInfo.idCard.length !== 18) {
-        console.log('id card length is not 18')
-      }
-      if (this.state.adminStoreInfo.phone.length !== 11) {
-        console.log('phone num length is not 11')
-      }
       var input_code = this.state.validate_code[0]*100000+this.state.validate_code[1]*10000+this.state.validate_code[2]*1000+this.state.validate_code[3]*100+this.state.validate_code[4]*10+this.state.validate_code[5]*1
       console.log(this.state.validate_code)
       console.log(input_code)
       console.log(this.state.server_validate_code)
-      if (this.state.server_validate_code !== input_code) {
+      if (this.state.adminStoreInfo.name.length == 0) {
+        console.log('name length is 0')
+      } else if (this.state.adminStoreInfo.idCard.length !== 18) {
+        console.log('id card length is not 18')
+      } else if (this.state.adminStoreInfo.phone.length !== 11) {
+        console.log('phone num length is not 11')
+      } else if (this.state.server_validate_code != input_code) {
         console.log('valid code is wrong')
-      }
-      if ((this.state.adminStoreInfo.name.length !== 0) & (this.state.adminStoreInfo.idCard.length == 18) & (this.state.adminStoreInfo.phone.length == 11) & (this.state.server_validate_code == input_code)) {
+      } else {
         Taro.setStorage({key:'adminStoreInfo', data:this.state.adminStoreInfo})
         this.setState({
           pageKind:1
@@ -248,7 +248,19 @@ export default class Formpage extends Component {
     } else if (this.state.pageKind == "1") {
       console.log(this.state.imgFile);
       if (this.state.imgFile.length == 1) {
-        if ( this.state.imgFile[0].file.size < 600000) {
+        if (this.state.imgFile[0].file.size > 600000) {
+          console.log("Img size is over 600KB")
+        } else if (this.state.storeInfo.store_name.length == 0) {
+          console.log("Store name length is 0")
+        } else if (this.state.storeInfo.store_latitude == 0 | this.state.storeInfo.store_longitude == 0) {
+          console.log("Store position did not set")
+        } else if (this.state.storeInfo.store_address.length == 0) {
+          console.log("Store position did not set")
+        } else if (this.state.storeInfo.store_position.length == 0) {
+          console.log("Store address did not set")
+        } else if (this.state.storeInfo.store_tel1.length <8) {
+          console.log("telephone number length is wrong")
+        } else {
           var spark = new SparkMD5()
           var imgMD5;
           var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
@@ -256,26 +268,43 @@ export default class Formpage extends Component {
           imgMD5 = spark.end();
           
           let _this = this;
+          var sendTime = dayjs().unix();
+          var key = (this.state.storeInfo.store_latitude+this.state.storeInfo.store_longitude).toString()+sendTime.toString();
+          let name = encrypt(key, this.state.adminStoreInfo.name);
+          let idCard = encrypt(key, this.state.adminStoreInfo.idCard);
           Taro.uploadFile({
             url: base+'/test/uploadImg', //仅为示例，非真实的接口地址
             filePath: this.state.imgFile[0].file.path,
             name: 'file',
             formData: {
+              'phone': this.state.adminStoreInfo.phone,
+              'name': name,
+              'idCard': idCard,
+              'store_name': this.state.storeInfo.store_name,
+              'store_position': this.state.storeInfo.store_position,
+              'store_address': this.state.storeInfo.store_address,
+              'store_latitude': this.state.storeInfo.store_latitude,
+              'store_longitude': this.state.storeInfo.store_longitude,
+              'store_tel': this.state.storeInfo.store_tel1,
+              'store_tel2': this.state.storeInfo.store_tel2,
               'imgMD5': imgMD5,
               'adminId': this.state.adminInfo.adminId,
               'sessionId': this.state.adminInfo.sessionId,
               'appId': wx.getAccountInfoSync().miniProgram.appId,
-              'token': (dayjs().unix() + 1000 ) * 2
+              'token': (sendTime + 1000 ) * 2
             },
             success (res){
               const receiveData = JSON.parse(res.data);
               console.log(receiveData)
               _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+              _this.state.storeInfo = receiveData.data.storeInfo;
+              Taro.setStorage({key:'store_info', data:_this.state.storeInfo});
               Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
+              _this.setState({
+                pageKind:2
+              })
             }
           })
-        } else {
-          console.log("Img size is over 600KB")
         }
       } else {
         console.log("this file list is empty")
@@ -393,6 +422,12 @@ export default class Formpage extends Component {
       }
     })
     
+  }
+
+  handleShowStore () {
+    Taro.setStorage({key:'store_info', data:this.state.storeInfo});
+    Taro.setStorage({key:'admin_info', data:this.state.adminInfo});
+    Taro.navigateTo({url:'../storeMainPage/storeMainPage'})
   }
 
   render () {
@@ -699,6 +734,43 @@ export default class Formpage extends Component {
         </View>
       )
 
+    } else if (this.state.pageKind == "2") {
+      formContent.push(
+        <View style='height:250rpx;width:100%;background:#FEFFFF;border-radius:8px 8px 0px 0px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:100rpx;'>
+          <image src={confirmIcon} style='height:200rpx;width:200rpx;'></image>
+          <text style='font-size:18px;font-weight:520;'>您已完成商家注册</text>
+        </View>
+      )
+
+      formContent.push(
+        <View style='height:70rpx;width:100%;background:#FEFFFF;border-radius:8px 8px 0px 0px;display:flex;align-items:flex-start;justify-content:center;padding-top:50rpx;'> 
+          <View style='width:33%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;'>
+            <View style='height:10rpx;width:10rpx;border-radius:50%;border: 1px solid #FCA62F;margin-bottom:10rpx;background:#FCA62F;'></View>
+            <text style='font-size:12px;'>实名注册</text>
+          </View>
+          
+          <View style='height:7.5rpx;width:28%;position:absolute;left:21%;border: 0px solid #FCA62F;border-bottom-width:1px;'></View>
+
+          <View style='width:33%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;'>
+            <View style='height:10rpx;width:10rpx;border-radius:50%;border: 1px solid #FCA62F;margin-bottom:10rpx;background:#A5A5A500;'></View>
+            <text style='font-size:12px;'>补充店铺信息</text>
+          </View>
+
+          <View style='height:7.5rpx;width:28%;position:absolute;right:21%;border: 0px solid #A5A5A5;border-bottom-width:1px;'></View>
+
+          <View style='width:33%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;'>
+            <View style='height:10rpx;width:10rpx;border-radius:50%;border: 1px solid #A5A5A5;margin-bottom:10rpx;background:#A5A5A500;'></View>
+            <text style='font-size:12px;'>认证店铺</text>
+          </View>
+        </View>
+      )
+
+      formContent.push(
+        <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:30rpx;padding-bottom:30rpx;'>
+          <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' disabled>继续认证</AtButton></View>
+          <View style='width:80%;height:70rpx;margin-left:10%;'><AtButton type='secondary' circle='true' className='try-button' onClick={this.handleShowStore.bind(this)}>先体验，稍后认证</AtButton></View>
+        </View>
+      )
     }
 
     return (
