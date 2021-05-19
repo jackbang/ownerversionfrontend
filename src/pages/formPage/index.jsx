@@ -73,7 +73,9 @@ export default class Formpage extends Component {
         pageKind:pageKind
       })
     } else if (pageKind == "2") {
-
+      this.setState({
+        pageKind:pageKind
+      })
     } else if (pageKind == "3") {
 
     }
@@ -149,7 +151,8 @@ export default class Formpage extends Component {
   
 
   handleNavBack() { 
-    Taro.navigateBack()
+    Taro.removeStorage({key:'adminStoreInfo'});
+    Taro.navigateBack();
   }
 
   handleChange (type, value) {
@@ -223,6 +226,7 @@ export default class Formpage extends Component {
         }
       })
     }
+  return value
   }
 
   handleNextStep () { 
@@ -300,6 +304,7 @@ export default class Formpage extends Component {
               _this.state.storeInfo = receiveData.data.storeInfo;
               Taro.setStorage({key:'store_info', data:_this.state.storeInfo});
               Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
+              Taro.setStorage({key:'permission', data:1});
               _this.setState({
                 pageKind:2
               })
@@ -427,7 +432,9 @@ export default class Formpage extends Component {
   handleShowStore () {
     Taro.setStorage({key:'store_info', data:this.state.storeInfo});
     Taro.setStorage({key:'admin_info', data:this.state.adminInfo});
-    Taro.navigateTo({url:'../storeMainPage/storeMainPage'})
+    Taro.setStorage({key:'permission', data:1});
+    Taro.removeStorage({key:'adminStoreInfo'});
+    Taro.navigateTo({url:'../storeMainPage/storeMainPage'});
   }
 
   render () {

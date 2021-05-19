@@ -3,6 +3,14 @@
 @import "~taro-ui/dist/style/components/icon.scss";
 @import "~taro-ui/dist/style/components/tabs.scss";
 @import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/activity-indicator.scss";
+@import '~taro-ui/dist/style/components/loading.scss';
+
+.load {
+    .at-loading__ring{
+        border-width: 2PX;
+    }
+}
 
 .tabs-info {
     width: 750rpx;

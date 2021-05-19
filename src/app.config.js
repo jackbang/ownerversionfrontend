@@ -1,12 +1,14 @@
 export default {
   pages: [
-    
-    'pages/index/index',
-    'pages/formPage/index',
-    'pages/queueManagePage/index',
-    'pages/queueInfoPage/index',
     'pages/playSearchPage/playSearchPage',
     'pages/storeMainPage/storeMainPage',
+    'pages/index/index',
+    'pages/formPage/index',
+    
+    'pages/queueManagePage/index',
+    'pages/queueInfoPage/index',
+    
+    
     
   ],
   window: {

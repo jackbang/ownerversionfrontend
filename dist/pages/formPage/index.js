@@ -1977,10 +1977,10 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Formpage; });
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createSuper.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createSuper.js");
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/_@tarojs_taro@3.2.1@@tarojs/taro/index.js");
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/_react@17.0.2@react/cjs/react.production.min.js");
@@ -2032,14 +2032,14 @@ PEMEncoder.prototype.encode = function encode(data, options) {
 var chooseLocation = requirePlugin('chooseLocation');
 
 var Formpage = /*#__PURE__*/function (_Component) {
-  Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Formpage, _Component);
+  Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Formpage, _Component);
 
-  var _super = Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Formpage);
+  var _super = Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Formpage);
 
   function Formpage() {
     var _this2;
 
-    Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Formpage);
+    Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Formpage);
 
     _this2 = _super.apply(this, arguments);
     _this2.state = {
@@ -2071,7 +2071,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
     return _this2;
   }
 
-  Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Formpage, [{
+  Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Formpage, [{
     key: "componentWillMount",
     value: function componentWillMount() {
       var pages = getCurrentPages();
@@ -2095,7 +2095,11 @@ var Formpage = /*#__PURE__*/function (_Component) {
         this.setState({
           pageKind: pageKind
         });
-      } else if (pageKind == "2") {} else if (pageKind == "3") {}
+      } else if (pageKind == "2") {
+        this.setState({
+          pageKind: pageKind
+        });
+      } else if (pageKind == "3") {}
     }
   }, {
     key: "componentDidMount",
@@ -2165,7 +2169,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
       } else {
         var _this = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_16__[/* test_send_sms */ "a"])(admin_data).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_16__[/* test_send_sms */ "b"])(admin_data).then(function (res) {
           var validCode = res.data.data.token - 1000 >> 1;
           _this.state.server_validate_code = validCode;
           _this.state.adminInfo.sessionId = res.data.data.sessionId;
@@ -2180,6 +2184,9 @@ var Formpage = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleNavBack",
     value: function handleNavBack() {
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.removeStorage({
+        key: 'adminStoreInfo'
+      });
       _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.navigateBack();
     }
   }, {
@@ -2258,6 +2265,8 @@ var Formpage = /*#__PURE__*/function (_Component) {
           }
         });
       }
+
+      return value;
     }
   }, {
     key: "handleNextStep",
@@ -2348,6 +2357,10 @@ var Formpage = /*#__PURE__*/function (_Component) {
                 _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.setStorage({
                   key: 'admin_info',
                   data: _this.state.adminInfo
+                });
+                _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.setStorage({
+                  key: 'permission',
+                  data: 1
                 });
 
                 _this.setState({
@@ -2489,6 +2502,13 @@ var Formpage = /*#__PURE__*/function (_Component) {
         key: 'admin_info',
         data: this.state.adminInfo
       });
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.setStorage({
+        key: 'permission',
+        data: 1
+      });
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.removeStorage({
+        key: 'adminStoreInfo'
+      });
       _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.navigateTo({
         url: '../storeMainPage/storeMainPage'
       });
@@ -2552,7 +2572,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             children: "\u586B\u5199\u4EE5\u4E0B\u4FE1\u606F\uFF0C\u4E00\u5206\u949F\u5FEB\u901F\u6CE8\u518C"
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value0",
               title: "\u59D3\u540D",
               type: "text",
@@ -2563,7 +2583,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             })
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value1",
               title: "\u8EAB\u4EFD\u8BC1\u53F7",
               type: "idcard",
@@ -2574,7 +2594,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             })
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value2",
               title: "\u624B\u673A\u53F7",
               type: "phone",
@@ -2682,7 +2702,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             })]
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "width:80%;height:130rpx;margin-left:10%;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "a"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
               type: "primary",
               circle: "true",
               className: "confirm-button",
@@ -2738,7 +2758,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
               children: "\u5E97\u94FA\u5934\u50CF"
             }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
               style: "height:100%;width:150rpx;",
-              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtImagePicker */ "b"], {
+              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtImagePicker */ "d"], {
                 length: 1,
                 files: this.state.imgFile,
                 onChange: this.onImgChange.bind(this),
@@ -2752,7 +2772,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
               style: "font-size:15px;width:150rpx;",
               children: "\u5E97\u94FA\u540D\u79F0"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value3",
               title: "",
               type: "text",
@@ -2768,7 +2788,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
               style: "font-size:15px;width:150rpx;",
               children: "\u5E97\u94FA\u5730\u533A"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               editable: false,
               name: "value4",
               title: "",
@@ -2788,7 +2808,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
               style: "font-size:15px;width:150rpx;",
               children: "\u8BE6\u7EC6\u95E8\u724C\u53F7"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value5",
               title: "",
               type: "text",
@@ -2805,7 +2825,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
               style: "font-size:15px;width:150rpx;",
               children: "\u5BA2\u670D\u7535\u8BDD1"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value6",
               title: "",
               type: "phone",
@@ -2822,7 +2842,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
               style: "font-size:15px;width:150rpx;",
               children: "\u5BA2\u670D\u7535\u8BDD2"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
               name: "value7",
               title: "",
               type: "phone",
@@ -2836,7 +2856,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             })]
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "width:80%;height:130rpx;margin-left:10%;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "a"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
               type: "primary",
               circle: "true",
               className: "confirm-button",
@@ -2892,7 +2912,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
           style: "height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:30rpx;padding-bottom:30rpx;",
           children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "width:80%;height:130rpx;margin-left:10%;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "a"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
               type: "primary",
               circle: "true",
               className: "confirm-button",
@@ -2901,7 +2921,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             })
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             style: "width:80%;height:70rpx;margin-left:10%;",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "a"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
               type: "secondary",
               circle: "true",
               className: "try-button",
@@ -2934,7 +2954,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
             alignItems: 'center',
             justifyContent: 'flex-start'
           },
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtNavBar */ "d"], {
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtNavBar */ "f"], {
             className: "nav-bar-info",
             onClickLeftIcon: this.handleNavBack.bind(this),
             color: "#ffff",
@@ -26411,7 +26431,7 @@ utils.intFromLE = intFromLE;
 /*! all exports used */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"elliptic\",\"version\":\"6.5.4\",\"description\":\"EC cryptography\",\"main\":\"lib/elliptic.js\",\"files\":[\"lib\"],\"scripts\":{\"lint\":\"eslint lib test\",\"lint:fix\":\"npm run lint -- --fix\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"test\":\"npm run lint && npm run unit\",\"version\":\"grunt dist && git add dist/\"},\"repository\":{\"type\":\"git\",\"url\":\"git@github.com:indutny/elliptic\"},\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"author\":\"Fedor Indutny <fedor@indutny.com>\",\"license\":\"MIT\",\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"homepage\":\"https://github.com/indutny/elliptic\",\"devDependencies\":{\"brfs\":\"^2.0.2\",\"coveralls\":\"^3.1.0\",\"eslint\":\"^7.6.0\",\"grunt\":\"^1.2.1\",\"grunt-browserify\":\"^5.3.0\",\"grunt-cli\":\"^1.3.2\",\"grunt-contrib-connect\":\"^3.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^5.0.0\",\"grunt-mocha-istanbul\":\"^5.0.2\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.5\",\"mocha\":\"^8.0.1\"},\"dependencies\":{\"bn.js\":\"^4.11.9\",\"brorand\":\"^1.1.0\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.1\",\"inherits\":\"^2.0.4\",\"minimalistic-assert\":\"^1.0.1\",\"minimalistic-crypto-utils\":\"^1.0.1\"},\"__npminstall_done\":\"Wed May 12 2021 14:07:44 GMT+0800 (中国标准时间)\",\"_from\":\"elliptic@6.5.4\",\"_resolved\":\"https://registry.nlark.com/elliptic/download/elliptic-6.5.4.tgz\"}");
+module.exports = JSON.parse("{\"name\":\"elliptic\",\"version\":\"6.5.4\",\"description\":\"EC cryptography\",\"main\":\"lib/elliptic.js\",\"files\":[\"lib\"],\"scripts\":{\"lint\":\"eslint lib test\",\"lint:fix\":\"npm run lint -- --fix\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"test\":\"npm run lint && npm run unit\",\"version\":\"grunt dist && git add dist/\"},\"repository\":{\"type\":\"git\",\"url\":\"git@github.com:indutny/elliptic\"},\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"author\":\"Fedor Indutny <fedor@indutny.com>\",\"license\":\"MIT\",\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"homepage\":\"https://github.com/indutny/elliptic\",\"devDependencies\":{\"brfs\":\"^2.0.2\",\"coveralls\":\"^3.1.0\",\"eslint\":\"^7.6.0\",\"grunt\":\"^1.2.1\",\"grunt-browserify\":\"^5.3.0\",\"grunt-cli\":\"^1.3.2\",\"grunt-contrib-connect\":\"^3.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^5.0.0\",\"grunt-mocha-istanbul\":\"^5.0.2\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.5\",\"mocha\":\"^8.0.1\"},\"dependencies\":{\"bn.js\":\"^4.11.9\",\"brorand\":\"^1.1.0\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.1\",\"inherits\":\"^2.0.4\",\"minimalistic-assert\":\"^1.0.1\",\"minimalistic-crypto-utils\":\"^1.0.1\"},\"__npminstall_done\":\"Wed May 05 2021 10:52:23 GMT+0800 (中国标准时间)\",\"_from\":\"elliptic@6.5.4\",\"_resolved\":\"https://registry.npm.taobao.org/elliptic/download/elliptic-6.5.4.tgz\"}");
 
 /***/ }),
 

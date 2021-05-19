@@ -10,10 +10,10 @@
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Storemainpage; });
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createSuper.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createSuper.js");
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/_@tarojs_taro@3.2.1@@tarojs/taro/index.js");
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/_react@17.0.2@react/cjs/react.production.min.js");
@@ -22,8 +22,8 @@
 /* harmony import */ var taro_ui__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! taro-ui */ "./node_modules/_taro-ui@3.0.0-alpha.10@taro-ui/dist/index.esm.js");
 /* harmony import */ var _storeMainPage_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./storeMainPage.scss */ "./src/pages/storeMainPage/storeMainPage.scss");
 /* harmony import */ var _storeMainPage_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_storeMainPage_scss__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _img_image_6_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/image-6.png */ "./src/img/image-6.png");
-/* harmony import */ var _img_image_6_png__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_img_image_6_png__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _img_image_13_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/image-13.png */ "./src/img/image-13.png");
+/* harmony import */ var _img_image_13_png__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_img_image_13_png__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _img_storeinfobk_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/storeinfobk.png */ "./src/img/storeinfobk.png");
 /* harmony import */ var _img_storeinfobk_png__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_img_storeinfobk_png__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _img_image_1_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/image-1.png */ "./src/img/image-1.png");
@@ -48,8 +48,18 @@
 /* harmony import */ var _img_male_png__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_img_male_png__WEBPACK_IMPORTED_MODULE_20__);
 /* harmony import */ var _img_image_8_png__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../img/image-8.png */ "./src/img/image-8.png");
 /* harmony import */ var _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_img_image_8_png__WEBPACK_IMPORTED_MODULE_21__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/_react@17.0.2@react/cjs/react-jsx-runtime.production.min.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _img_empty_svg__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../img/empty.svg */ "./src/img/empty.svg");
+/* harmony import */ var _img_empty_svg__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(_img_empty_svg__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var _img_certification_svg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../img/certification.svg */ "./src/img/certification.svg");
+/* harmony import */ var _img_certification_svg__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(_img_certification_svg__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _service_api__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../../service/api */ "./src/service/api.js");
+/* harmony import */ var _service_config__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../service/config */ "./src/service/config.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/_react@17.0.2@react/cjs/react-jsx-runtime.production.min.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__);
+
+
+
+
 
 
 
@@ -76,25 +86,54 @@
 
 
 var Storemainpage = /*#__PURE__*/function (_Component) {
-  Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Storemainpage, _Component);
+  Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Storemainpage, _Component);
 
-  var _super = Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Storemainpage);
+  var _super = Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Storemainpage);
 
   function Storemainpage() {
-    var _this;
+    var _this2;
 
-    Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Storemainpage);
+    Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Storemainpage);
 
-    _this = _super.apply(this, arguments);
-    _this.state = {
-      current: 0
+    _this2 = _super.apply(this, arguments);
+    _this2.state = {
+      current: 0,
+      adminInfo: {},
+      storeInfo: {},
+      permission: 0,
+      queueList: [],
+      queueListIdx: [],
+      infoLoading: true
     };
-    return _this;
+    return _this2;
   }
 
-  Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Storemainpage, [{
+  Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Storemainpage, [{
+    key: "isInStorage",
+    value: function isInStorage(key_name) {
+      var info = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageInfoSync();
+      var key_list = info.keys;
+      var res = key_list.find(function (elem) {
+        return elem == key_name;
+      });
+      return res;
+    }
+  }, {
     key: "componentWillMount",
-    value: function componentWillMount() {}
+    value: function componentWillMount() {
+      this.state.adminInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync("admin_info");
+      this.state.storeInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync("store_info");
+      this.state.permission = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync("permission");
+      /*
+      if (JSON.stringify(this.state.storeInfo) !== '{}' & JSON.stringify(this.state.adminInfo) !== '{}') {
+        this.setState({
+          infoLoading: false
+        })
+      } else {
+        console.log('false')
+      }
+      */
+    }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {}
@@ -103,7 +142,31 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
     value: function componentWillUnmount() {}
   }, {
     key: "componentDidShow",
-    value: function componentDidShow() {}
+    value: function componentDidShow() {
+      var _this3 = this;
+
+      var _this = this;
+
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_24__[/* test_get_queues */ "a"])(this.state.storeInfo.store_id).then(function (res) {
+        console.log(res.data.data.play_data);
+        res.data.data.play_data.map(function (item, itemIdx) {
+          if (_this3.isInStorage("play_id_".concat(item.play_id))) {
+            console.log('the play is in cache');
+          } else {
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.setStorage({
+              key: "play_id_".concat(item.play_id),
+              data: item
+            });
+          }
+        });
+
+        _this.setState({
+          queueList: res.data.data.queue_data,
+          queueListIdx: res.data.data.queue_num,
+          infoLoading: false
+        });
+      });
+    }
   }, {
     key: "componentDidHide",
     value: function componentDidHide() {}
@@ -139,625 +202,508 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
       var scrollStyle = {
         height: "".concat(windowHeight_rpx - top_height_rpx - 20 - 170 - 50 - 20 - 170 - 80 - 180 - 80, "rpx")
       };
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-        className: "storeMainPage",
-        style: {
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start"
-        },
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-          src: _img_image_6_png__WEBPACK_IMPORTED_MODULE_9___default.a,
-          style: "width:100vw;position:absolute;size:100%;z-index:-1;"
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-          style: {
-            paddingTop: "".concat(top_height_rpx + 20, "rpx"),
-            height: "50rpx"
-          },
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-            style: "color:#FEFFFF;font-size:18px;",
-            children: "\u9996\u9875"
-          })
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-          style: "padding-top:20rpx;height:150rpx;width:100vw;",
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-            mode: "heightFix",
-            src: _img_storeinfobk_png__WEBPACK_IMPORTED_MODULE_10___default.a,
-            style: "height:300rpx;width:660rpx;position:relative;left:45rpx;"
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-            style: "height:200rpx;width:600rpx;position:relative;top:-260rpx;left:75rpx;display:flex;align-items:flex-start;justify-content:flex-start",
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-              src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-              style: "height:200rpx;width:200rpx;"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-left:20rpx;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "height:50rpx;width:360rpx;font-size:36rpx;font-weight:600;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;",
-                children: "\u60CA\u5267\u9986\xB7\u5267\u672C\u6740\xB7\u72FC\u4EBA\u6740"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                style: "height:60rpx;"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "height:50rpx;width:360rpx;font-size:23rpx;font-weight:550;",
-                children: "\u5E97\u94FAID\uFF1A2104130001"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "height:50rpx;width:360rpx;font-size:23rpx;font-weight:550;",
-                children: "\u7BA1\u7406\u5458\uFF1ARocklove"
+      var queuesInfo = [];
+      var lockedQueueInfo = [];
+
+      if (this.state.queueList.length == 0) {
+        queuesInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+          src: _img_empty_svg__WEBPACK_IMPORTED_MODULE_22___default.a,
+          style: "width:675rpx;"
+        }));
+        lockedQueueInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+          src: _img_empty_svg__WEBPACK_IMPORTED_MODULE_22___default.a,
+          style: "width:675rpx;"
+        }));
+      } else {
+        this.state.queueList.map(function (item, itemIdx) {
+          var temp_play_info = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync("play_id_".concat(item.play_id)); // male famale display
+
+          var male_female_display = [];
+
+          if (temp_play_info.play_male_num == 999 | temp_play_info.play_female_num == 999) {
+            male_female_display = [];
+          } else {
+            male_female_display.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              className: "play-male-position-info",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                className: "gender-icon-info",
+                src: _img_male_png__WEBPACK_IMPORTED_MODULE_20___default.a
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])("text", {
+                children: [item.queue_current_male_num, "/", temp_play_info.play_male_num]
               })]
-            })]
-          })]
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            }));
+            male_female_display.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              className: "play-female-position-info",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                className: "gender-icon-info",
+                src: _img_female_png__WEBPACK_IMPORTED_MODULE_19___default.a
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])("text", {
+                children: [item.queue_current_female_num, "/", temp_play_info.play_female_num]
+              })]
+            }));
+          }
+
+          if (item.queue_status == 1) {
+            // 将item加入锁局中
+            lockedQueueInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              className: "at-row queue-tab-info",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
+                mode: "widthFix",
+                style: "width:675rpx;z-index:-1;position:absolute;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                className: "at-row play-pic-position-info",
+                style: "width:21vw",
+                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                  className: "play-pic-info",
+                  src: _service_config__WEBPACK_IMPORTED_MODULE_25__[/* base */ "a"] + temp_play_info.play_pic,
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                    className: "play-pic-label-info",
+                    children: temp_play_info.play_labels[0]
+                  })
+                })
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                className: "at-col play-intro-info",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-col play-name-position-info",
+                  children: temp_play_info.play_name
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-row",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-col",
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                      className: "at-row",
+                      style: "font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;",
+                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                        decode: "{{true}}",
+                        children: item.queue_end_time
+                      })
+                    })
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-col",
+                  style: "margin-top:10%;",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                    style: "font-size:24rpx;font-weight:550;",
+                    children: "\u623F\u95F4\uFF1A\u9ED8\u8BA4"
+                  })
+                })]
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                className: "at-row",
+                style: "width:20vw;display:flex;align-items:center;",
+                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                  src: _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default.a,
+                  style: "height:160rpx;width:160rpx;"
+                })
+              })]
+            }));
+          } else {
+            if (temp_play_info.play_headcount == item.queue_current_num) {
+              queuesInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                className: "at-row queue-tab-info",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                  src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
+                  mode: "widthFix",
+                  style: "width:675rpx;z-index:-1;position:absolute;"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "background-color:rgba(252, 95, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;",
+                  children: "\u5DF2\u62FC\u6EE1"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-row play-pic-position-info",
+                  style: "width:21vw",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    className: "play-pic-info",
+                    src: _service_config__WEBPACK_IMPORTED_MODULE_25__[/* base */ "a"] + temp_play_info.play_pic,
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                      className: "play-pic-label-info",
+                      children: temp_play_info.play_labels[0]
+                    })
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-col play-intro-info",
+                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-col play-name-position-info",
+                    children: temp_play_info.play_name
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-row",
+                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                      className: "at-col",
+                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                        className: "at-row play-time-position-info",
+                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                          decode: "{{true}}",
+                          children: item.queue_end_time
+                        })
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                        className: "at-row play-headcount-position-info",
+                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                          className: "play-headcount-info",
+                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])("text", {
+                            decode: "{{true}}",
+                            children: ["\u4EBA\u6570\uFF1A", item.queue_current_num, "/", temp_play_info.play_headcount]
+                          })
+                        }), male_female_display]
+                      })]
+                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                      className: "at-row",
+                      style: "width:20vw;margin-right:20rpx;",
+                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
+                        type: "primary",
+                        circle: "true",
+                        className: "confirm-button",
+                        onClick: console.log("邀请好友"),
+                        children: "\u786E\u8BA4\u9501\u5C40"
+                      })
+                    })]
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-col",
+                    style: "margin-top:2%;",
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                      style: "font-size:24rpx;font-weight:550;",
+                      children: "\u623F\u95F4\uFF1A\u9ED8\u8BA4"
+                    })
+                  })]
+                })]
+              }));
+            } else {
+              queuesInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                className: "at-row queue-tab-info",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                  src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
+                  mode: "widthFix",
+                  style: "width:675rpx;z-index:-1;position:absolute;"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "background-color:rgba(252, 166, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;",
+                  children: "\u672A\u62FC\u6EE1"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-row play-pic-position-info",
+                  style: "width:21vw",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    className: "play-pic-info",
+                    src: _service_config__WEBPACK_IMPORTED_MODULE_25__[/* base */ "a"] + temp_play_info.play_pic,
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                      className: "play-pic-label-info",
+                      children: temp_play_info.play_labels[0]
+                    })
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  className: "at-col play-intro-info",
+                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-col play-name-position-info",
+                    children: temp_play_info.play_name
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-row",
+                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                      className: "at-col",
+                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                        className: "at-row play-time-position-info",
+                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                          decode: "{{true}}",
+                          children: item.queue_end_time
+                        })
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                        className: "at-row play-headcount-position-info",
+                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                          className: "play-headcount-info",
+                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])("text", {
+                            decode: "{{true}}",
+                            children: ["\u4EBA\u6570\uFF1A", item.queue_current_num, "/", temp_play_info.play_headcount]
+                          })
+                        }), male_female_display]
+                      })]
+                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                      className: "at-row",
+                      style: "width:20vw;margin-right:20rpx;",
+                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
+                        type: "primary",
+                        circle: "true",
+                        className: "confirm-button",
+                        onClick: console.log("邀请好友"),
+                        children: "\u786E\u8BA4\u9501\u5C40"
+                      })
+                    })]
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                    className: "at-col",
+                    style: "margin-top:2%;",
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                      style: "font-size:24rpx;font-weight:550;",
+                      children: "\u623F\u95F4\uFF1A\u9ED8\u8BA4"
+                    })
+                  })]
+                })]
+              }));
+            }
+          }
+        });
+
+        if (lockedQueueInfo.length == 0) {
+          lockedQueueInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+            src: _img_empty_svg__WEBPACK_IMPORTED_MODULE_22___default.a,
+            style: "width:675rpx;"
+          }));
+        }
+
+        if (queuesInfo.length == 0) {
+          queuesInfo.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+            src: _img_empty_svg__WEBPACK_IMPORTED_MODULE_22___default.a,
+            style: "width:675rpx;"
+          }));
+        }
+      }
+
+      if (this.state.infoLoading == true) {
+        //这里处理加载，主要是从storage读取store admin info
+        return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+          className: "storeMainPage",
           style: {
-            width: '100vw',
-            height: "".concat(windowHeight_rpx - top_height_rpx - 20 - 170 - 50, "rpx"),
-            backgroundColor: '#F9F9F9',
-            borderRadius: '10px 10px 0 0',
+            height: "100vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "flex-start"
           },
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-            style: {
-              height: "80rpx",
-              width: "660rpx",
-              marginTop: "170rpx"
-            },
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-              src: _img_image_1_png__WEBPACK_IMPORTED_MODULE_11___default.a,
-              mode: "widthFix",
-              style: "width:660rpx;z-index:-1;"
-            })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-            style: {
-              height: "180rpx",
-              width: "660rpx",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              marginTop: "20rpx"
-            },
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                  src: _img_image_png__WEBPACK_IMPORTED_MODULE_12___default.a,
-                  style: "height:30px;width:30px;"
-                })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "font-size:12px;font-weight:400;margin-top:10%;",
-                children: "\u5E97\u94FA\u7BA1\u7406"
-              })]
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "width:40rpx;"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                  src: _img_image_2_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                  style: "height:30px;width:30px;"
-                })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "font-size:12px;font-weight:400;margin-top:10%;",
-                children: "\u5267\u672C\u7BA1\u7406"
-              })]
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "width:40rpx;"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                  src: _img_image_3_png__WEBPACK_IMPORTED_MODULE_14___default.a,
-                  style: "height:30px;width:30px;"
-                })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "font-size:12px;font-weight:400;margin-top:10%;",
-                children: "\u652F\u4ED8\u7BA1\u7406"
-              })]
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "width:40rpx;"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                  src: _img_image_4_png__WEBPACK_IMPORTED_MODULE_15___default.a,
-                  style: "height:30px;width:30px;"
-                })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "font-size:12px;font-weight:400;margin-top:10%;",
-                children: "\u8F66\u961F\u7BA1\u7406"
-              })]
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "width:40rpx;"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-              style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                  src: _img_image_5_png__WEBPACK_IMPORTED_MODULE_16___default.a,
-                  style: "height:30px;width:30px;"
-                })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                style: "font-size:12px;font-weight:400;margin-top:10%;",
-                children: "\u5E97\u94FA\u5206\u4EAB"
-              })]
-            })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTabs */ "f"]
-            /* TODO: 这部分需要重构，红点没实现，列表不同日期显示不同灰度也没实现 */
-            , {
-              className: "tabs-info",
-              current: this.state.current,
-              scroll: true,
-              tabList: [{
-                title: '待确认',
-                queueNum: 0
-              }, {
-                title: '已结束',
-                queueNum: 0
-              }],
-              onClick: this.handleClick.bind(this),
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTabsPane */ "g"], {
-                current: this.state.current,
-                index: 0,
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* ScrollView */ "j"], {
-                  className: "scrollview",
-                  scrollY: true,
-                  scrollWithAnimation: true,
-                  "show-scrollbar": "false",
-                  scrollTop: scrollTop,
-                  style: scrollStyle,
-                  lowerThreshold: Threshold,
-                  upperThreshold: Threshold,
-                  onScrollToUpper: this.onScrollToUpper.bind(this) // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
-                  ,
-                  onScroll: this.onScroll,
-                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                      style: "background-color:rgba(252, 166, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;",
-                      children: "\u672A\u62FC\u6EE1"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row play-time-position-info",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row play-headcount-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                              className: "play-headcount-info",
-                              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                                decode: "{{true}}",
-                                children: "\u4EBA\u6570\uFF1A0/7"
-                              })
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                              className: "play-male-position-info",
-                              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                                className: "gender-icon-info",
-                                src: _img_male_png__WEBPACK_IMPORTED_MODULE_20___default.a
-                              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                                children: "0/7"
-                              })]
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                              className: "play-female-position-info",
-                              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                                className: "gender-icon-info",
-                                src: _img_female_png__WEBPACK_IMPORTED_MODULE_19___default.a
-                              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                                children: "0/4"
-                              })]
-                            })]
-                          })]
-                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-row",
-                          style: "width:20vw;margin-right:20rpx;",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "a"], {
-                            type: "primary",
-                            circle: "true",
-                            className: "confirm-button",
-                            onClick: console.log("邀请好友"),
-                            children: "\u786E\u8BA4\u9501\u5C40"
-                          })
-                        })]
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:2%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    })]
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                      style: "background-color:rgba(252, 95, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;",
-                      children: "\u5DF2\u62FC\u6EE1"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row play-time-position-info",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row play-headcount-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                              className: "play-headcount-info",
-                              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                                decode: "{{true}}",
-                                children: "\u4EBA\u6570\uFF1A0/7"
-                              })
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                              className: "play-male-position-info",
-                              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                                className: "gender-icon-info",
-                                src: _img_male_png__WEBPACK_IMPORTED_MODULE_20___default.a
-                              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                                children: "0/7"
-                              })]
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                              className: "play-female-position-info",
-                              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                                className: "gender-icon-info",
-                                src: _img_female_png__WEBPACK_IMPORTED_MODULE_19___default.a
-                              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                                children: "0/4"
-                              })]
-                            })]
-                          })]
-                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-row",
-                          style: "width:20vw;margin-right:20rpx;",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "a"], {
-                            type: "primary",
-                            circle: "true",
-                            className: "confirm-button",
-                            onClick: console.log("邀请好友"),
-                            children: "\u786E\u8BA4\u9501\u5C40"
-                          })
-                        })]
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:2%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    })]
-                  })]
-                })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTabsPane */ "g"], {
-                current: this.state.current,
-                index: 1,
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* ScrollView */ "j"], {
-                  className: "scrollview",
-                  scrollY: true,
-                  scrollWithAnimation: true,
-                  "show-scrollbar": "false",
-                  scrollTop: scrollTop,
-                  style: scrollStyle,
-                  lowerThreshold: Threshold,
-                  upperThreshold: Threshold,
-                  onScrollToUpper: this.onScrollToUpper.bind(this) // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
-                  ,
-                  onScroll: this.onScroll,
-                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row",
-                            style: "font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          })
-                        })
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:10%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row",
-                      style: "width:20vw;display:flex;align-items:center;",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        src: _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default.a,
-                        style: "height:160rpx;width:160rpx;"
-                      })
-                    })]
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row",
-                            style: "font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          })
-                        })
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:10%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row",
-                      style: "width:20vw;display:flex;align-items:center;",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        src: _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default.a,
-                        style: "height:160rpx;width:160rpx;"
-                      })
-                    })]
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row",
-                            style: "font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          })
-                        })
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:10%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row",
-                      style: "width:20vw;display:flex;align-items:center;",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        src: _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default.a,
-                        style: "height:160rpx;width:160rpx;"
-                      })
-                    })]
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row",
-                            style: "font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          })
-                        })
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:10%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row",
-                      style: "width:20vw;display:flex;align-items:center;",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        src: _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default.a,
-                        style: "height:160rpx;width:160rpx;"
-                      })
-                    })]
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                    className: "at-row queue-tab-info",
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                      src: _img_queueinfobk_png__WEBPACK_IMPORTED_MODULE_18___default.a,
-                      mode: "widthFix",
-                      style: "width:675rpx;z-index:-1;position:absolute;"
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row play-pic-position-info",
-                      style: "width:21vw",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        className: "play-pic-info",
-                        src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_17___default.a,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          className: "play-pic-label-info",
-                          children: "\u672C\u683C"
-                        })
-                      })
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-col play-intro-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col play-name-position-info",
-                        children: "\u6728\u516E\u50E7\u4E4B\u620F"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-row",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                          className: "at-col",
-                          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                            className: "at-row",
-                            style: "font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                              decode: "{{true}}",
-                              children: "04\u670803\u65E5 15:00"
-                            })
-                          })
-                        })
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                        className: "at-col",
-                        style: "margin-top:10%;",
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("text", {
-                          style: "font-size:24rpx;font-weight:550;",
-                          children: "\u623F\u95F4\uFF1A\u65E5\u5F0F\u69BB\u69BB\u7C73"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
-                      className: "at-row",
-                      style: "width:20vw;display:flex;align-items:center;",
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__["jsx"])("image", {
-                        src: _img_image_8_png__WEBPACK_IMPORTED_MODULE_21___default.a,
-                        style: "height:160rpx;width:160rpx;"
-                      })
-                    })]
-                  })]
-                })
-              })]
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+            src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_9___default.a,
+            style: "width:100vw;height:100vh;position:absolute;size:100%;z-index:-1;"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtActivityIndicator */ "a"], {
+              mode: "center",
+              size: 64,
+              content: "Loading...",
+              className: "load"
             })
           })]
-        })]
-      });
+        });
+      } else {
+        return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+          className: "storeMainPage",
+          style: {
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-start"
+          },
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+            src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_9___default.a,
+            style: "width:100vw;height:100vh;position:absolute;size:100%;z-index:-1;"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            style: {
+              paddingTop: "".concat(top_height_rpx + 20, "rpx"),
+              height: "50rpx"
+            },
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+              style: "color:#FEFFFF;font-size:18px;",
+              children: "\u9996\u9875"
+            })
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            style: "padding-top:20rpx;height:150rpx;width:100vw;",
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+              mode: "heightFix",
+              src: _img_storeinfobk_png__WEBPACK_IMPORTED_MODULE_10___default.a,
+              style: "height:300rpx;width:660rpx;position:relative;left:45rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:200rpx;width:600rpx;position:relative;top:-260rpx;left:75rpx;display:flex;align-items:flex-start;justify-content:flex-start",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                src: _service_config__WEBPACK_IMPORTED_MODULE_25__[/* base */ "a"] + this.state.storeInfo.store_logo,
+                style: "height:200rpx;width:200rpx;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-left:20rpx;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "height:50rpx;width:360rpx;font-size:36rpx;font-weight:600;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;",
+                  children: this.state.storeInfo.store_name
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "height:60rpx;display:flex;align-items:center;justify-content:flex-start;",
+                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    src: _img_certification_svg__WEBPACK_IMPORTED_MODULE_23___default.a,
+                    style: "height:30rpx;width:30rpx;"
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                    style: "font-size:20rpx;margin-left:5rpx;background:rgba(139, 111, 73, 1);color: rgba(255, 255, 255, 1);padding: 3rpx 5rpx;",
+                    children: "\u5F85\u8BA4\u8BC1"
+                  })]
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])("text", {
+                  style: "height:50rpx;width:360rpx;font-size:24rpx;font-weight:530;",
+                  children: ["\u5E97\u94FAID\uFF1A", this.state.storeInfo.store_id]
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])("text", {
+                  style: "height:50rpx;width:360rpx;font-size:24rpx;font-weight:530;",
+                  children: ["\u7BA1\u7406\u5458\uFF1A", this.state.adminInfo.nickName]
+                })]
+              })]
+            })]
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            style: {
+              width: '100vw',
+              height: "".concat(windowHeight_rpx - top_height_rpx - 20 - 170 - 50, "rpx"),
+              backgroundColor: '#F9F9F9',
+              borderRadius: '10px 10px 0 0',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "flex-start"
+            },
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: {
+                height: "80rpx",
+                width: "660rpx",
+                marginTop: "170rpx"
+              },
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                src: _img_image_1_png__WEBPACK_IMPORTED_MODULE_11___default.a,
+                mode: "widthFix",
+                style: "width:660rpx;position:absolute;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "height:80rpx;width:660rpx;position:relative;display:flex;align-items:center;justify-content:flex-start;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                  src: _img_certification_svg__WEBPACK_IMPORTED_MODULE_23___default.a,
+                  style: "margin-left:20rpx;height:40rpx;width:40rpx;"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "font-size:16px;font-weight:530;color:#FCA62F;margin-left:10rpx;",
+                  children: "\u672A\u8BA4\u8BC1\u95E8\u5E97"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "position:absolute;right:0;",
+                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                    style: "font-size:16px;font-weight:530;color:#FCA62F;margin-left:10rpx;",
+                    children: "\u53BB\u8BA4\u8BC1"
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtIcon */ "c"], {
+                    value: "chevron-right",
+                    size: "24",
+                    color: "#FCA62F"
+                  })]
+                })]
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: {
+                height: "180rpx",
+                width: "660rpx",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                marginTop: "20rpx"
+              },
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    src: _img_image_png__WEBPACK_IMPORTED_MODULE_12___default.a,
+                    style: "height:30px;width:30px;"
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "font-size:12px;font-weight:400;margin-top:10%;",
+                  children: "\u5E97\u94FA\u7BA1\u7406"
+                })]
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "width:40rpx;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    src: _img_image_2_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+                    style: "height:30px;width:30px;"
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "font-size:12px;font-weight:400;margin-top:10%;",
+                  children: "\u5267\u672C\u7BA1\u7406"
+                })]
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "width:40rpx;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    src: _img_image_3_png__WEBPACK_IMPORTED_MODULE_14___default.a,
+                    style: "height:30px;width:30px;"
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "font-size:12px;font-weight:400;margin-top:10%;",
+                  children: "\u652F\u4ED8\u7BA1\u7406"
+                })]
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "width:40rpx;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    src: _img_image_4_png__WEBPACK_IMPORTED_MODULE_15___default.a,
+                    style: "height:30px;width:30px;"
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "font-size:12px;font-weight:400;margin-top:10%;",
+                  children: "\u8F66\u961F\u7BA1\u7406"
+                })]
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "width:40rpx;"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                  style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {
+                    src: _img_image_5_png__WEBPACK_IMPORTED_MODULE_16___default.a,
+                    style: "height:30px;width:30px;"
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("text", {
+                  style: "font-size:12px;font-weight:400;margin-top:10%;",
+                  children: "\u5E97\u94FA\u5206\u4EAB"
+                })]
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTabs */ "h"]
+              /* TODO: 这部分需要重构，红点没实现，列表不同日期显示不同灰度也没实现 */
+              , {
+                className: "tabs-info",
+                current: this.state.current,
+                scroll: true,
+                tabList: [{
+                  title: '待确认',
+                  queueNum: 0
+                }, {
+                  title: '已结束',
+                  queueNum: 0
+                }],
+                onClick: this.handleClick.bind(this),
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTabsPane */ "i"], {
+                  current: this.state.current,
+                  index: 0,
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* ScrollView */ "j"], {
+                    className: "scrollview",
+                    scrollY: true,
+                    scrollWithAnimation: true,
+                    "show-scrollbar": "false",
+                    scrollTop: scrollTop,
+                    style: scrollStyle,
+                    lowerThreshold: Threshold,
+                    upperThreshold: Threshold,
+                    onScrollToUpper: this.onScrollToUpper.bind(this) // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
+                    ,
+                    onScroll: this.onScroll,
+                    children: queuesInfo
+                  })
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTabsPane */ "i"], {
+                  current: this.state.current,
+                  index: 1,
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* ScrollView */ "j"], {
+                    className: "scrollview",
+                    scrollY: true,
+                    scrollWithAnimation: true,
+                    "show-scrollbar": "false",
+                    scrollTop: scrollTop,
+                    style: scrollStyle,
+                    lowerThreshold: Threshold,
+                    upperThreshold: Threshold,
+                    onScrollToUpper: this.onScrollToUpper.bind(this) // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
+                    ,
+                    onScroll: this.onScroll,
+                    children: lockedQueueInfo
+                  })
+                })]
+              })
+            })]
+          })]
+        });
+      }
     }
   }]);
 
@@ -765,6 +711,30 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
 
 
+
+/***/ }),
+
+/***/ "./src/img/certification.svg":
+/*!***********************************!*\
+  !*** ./src/img/certification.svg ***!
+  \***********************************/
+/*! no static exports found */
+/*! exports used: default */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/certification.svg";
+
+/***/ }),
+
+/***/ "./src/img/empty.svg":
+/*!***************************!*\
+  !*** ./src/img/empty.svg ***!
+  \***************************/
+/*! no static exports found */
+/*! exports used: default */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/empty.svg";
 
 /***/ }),
 
@@ -825,18 +795,6 @@ module.exports = __webpack_require__.p + "img/image-4.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/image-5.png";
-
-/***/ }),
-
-/***/ "./src/img/image-6.png":
-/*!*****************************!*\
-  !*** ./src/img/image-6.png ***!
-  \*****************************/
-/*! no static exports found */
-/*! exports used: default */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/image-6.png";
 
 /***/ }),
 

@@ -10,11 +10,11 @@
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Playsearchpage; });
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createSuper.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/createSuper.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/_react@17.0.2@react/cjs/react.production.min.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/_@tarojs_taro@3.2.1@@tarojs/taro/index.js");
@@ -23,18 +23,28 @@
 /* harmony import */ var taro_ui__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! taro-ui */ "./node_modules/_taro-ui@3.0.0-alpha.10@taro-ui/dist/index.esm.js");
 /* harmony import */ var _playSearchPage_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./playSearchPage.scss */ "./src/pages/playSearchPage/playSearchPage.scss");
 /* harmony import */ var _playSearchPage_scss__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_playSearchPage_scss__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _img_image_10_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/image-10.png */ "./src/img/image-10.png");
-/* harmony import */ var _img_image_10_png__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_img_image_10_png__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _img_male_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/male.png */ "./src/img/male.png");
-/* harmony import */ var _img_male_png__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_img_male_png__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _img_female_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/female.png */ "./src/img/female.png");
-/* harmony import */ var _img_female_png__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_img_female_png__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/scoreActive.png */ "./src/img/scoreActive.png");
-/* harmony import */ var _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _img_background2_jpg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/background2.jpg */ "./src/img/background2.jpg");
-/* harmony import */ var _img_background2_jpg__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_img_background2_jpg__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/_react@17.0.2@react/cjs/react-jsx-runtime.production.min.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! dayjs */ "./node_modules/_dayjs@1.10.4@dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var dayjs_locale_zh_cn__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! dayjs/locale/zh-cn */ "./node_modules/_dayjs@1.10.4@dayjs/locale/zh-cn.js");
+/* harmony import */ var dayjs_locale_zh_cn__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(dayjs_locale_zh_cn__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _img_image_10_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/image-10.png */ "./src/img/image-10.png");
+/* harmony import */ var _img_image_10_png__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_img_image_10_png__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _img_male_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/male.png */ "./src/img/male.png");
+/* harmony import */ var _img_male_png__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_img_male_png__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _img_female_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/female.png */ "./src/img/female.png");
+/* harmony import */ var _img_female_png__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_img_female_png__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../img/scoreActive.png */ "./src/img/scoreActive.png");
+/* harmony import */ var _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _img_background2_jpg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../img/background2.jpg */ "./src/img/background2.jpg");
+/* harmony import */ var _img_background2_jpg__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_img_background2_jpg__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _service_config__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../service/config */ "./src/service/config.js");
+/* harmony import */ var _service_api__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../service/api */ "./src/service/api.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/_react@17.0.2@react/cjs/react-jsx-runtime.production.min.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__);
+
+
+
+
 
 
 
@@ -54,21 +64,38 @@
 
 
 var Playsearchpage = /*#__PURE__*/function (_Component) {
-  Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Playsearchpage, _Component);
+  Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Playsearchpage, _Component);
 
-  var _super = Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(Playsearchpage);
+  var _super = Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(Playsearchpage);
 
   function Playsearchpage() {
-    var _this;
+    var _this2;
 
-    Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(this, Playsearchpage);
+    Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(this, Playsearchpage);
 
-    _this = _super.apply(this, arguments);
-    _this.state = {
+    _this2 = _super.apply(this, arguments);
+    _this2.state = {
       value: '',
-      tagActiveNum: 0,
-      plays_num: 0,
-      plays_list: [],
+      totalStatus: {
+        tagActiveNum: 0,
+        type1: '',
+        type2: '',
+        type3: '',
+        page: 1
+      },
+      storeStatus: {
+        tagActiveNum: 0,
+        type1: '',
+        type2: '',
+        type3: '',
+        page: 1
+      },
+      adminInfo: {},
+      storeInfo: {},
+      permission: 0,
+      listLoading: true,
+      totalPlays: [],
+      storePlays: [],
       current: 0,
       playInfo: {
         play_name: "木兮僧之戏",
@@ -77,10 +104,27 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
         play_female_num: 3
       }
     };
-    return _this;
+    return _this2;
   }
 
-  Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Playsearchpage, [{
+  Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Playsearchpage, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.state.adminInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.getStorageSync("admin_info");
+      this.state.storeInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.getStorageSync("store_info");
+      this.state.permission = _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.getStorageSync("permission");
+    }
+  }, {
+    key: "componentDidShow",
+    value: function componentDidShow() {
+      this.state.totalStatus.page = 1;
+      this.setState({
+        listLoading: true,
+        totalPlays: []
+      });
+      this.searchTotalPlays();
+    }
+  }, {
     key: "handleCreateQueue",
     value: function handleCreateQueue() {}
   }, {
@@ -94,7 +138,15 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "onScrollToUpperY",
-    value: function onScrollToUpperY() {} // or 使用箭头函数
+    value: function onScrollToUpperY() {
+      console.log('top');
+    }
+  }, {
+    key: "onScrollToLowerYTotal",
+    value: function onScrollToLowerYTotal() {
+      this.state.totalStatus.page = this.state.totalStatus.page + 1;
+      this.searchTotalPlays();
+    } // or 使用箭头函数
     // onScrollToUpper = () => {}
 
   }, {
@@ -112,15 +164,78 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
     key: "handleNavBack",
     value: function handleNavBack() {}
   }, {
+    key: "searchTotalPlays",
+    value: function searchTotalPlays() {
+      console.log('--------start search-----------');
+      var cert_data = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs__WEBPACK_IMPORTED_MODULE_10___default()().unix() + 1000) * 2
+      };
+      var title, hd, type1, type2, type3, page;
+
+      if (this.state.current == 0) {
+        title = this.state.value;
+        hd = this.state.totalStatus.tagActiveNum;
+        type1 = this.state.totalStatus.type1;
+        type2 = this.state.totalStatus.type1;
+        type3 = this.state.totalStatus.type1;
+        page = this.state.totalStatus.page;
+
+        var _this = this;
+
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_18__[/* test_total_plays_search */ "c"])(cert_data, "title=".concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
+          console.log(res.data);
+
+          _this.setState({
+            listLoading: false,
+            totalPlays: _this.state.totalPlays.concat(res.data)
+          });
+        });
+      } else {
+        title = this.state.value;
+        hd = this.state.storeStatus.tagActiveNum;
+        type1 = this.state.storeStatus.type1;
+        type2 = this.state.storeStatus.type1;
+        type3 = this.state.storeStatus.type1;
+        page = this.state.storeStatus.page;
+      }
+    }
+  }, {
     key: "onActionClick",
-    value: function onActionClick() {}
+    value: function onActionClick() {
+      if (this.state.current == 0) {
+        this.state.totalStatus.page = 1;
+        this.setState({
+          listLoading: true,
+          totalPlays: []
+        });
+        this.searchTotalPlays();
+      }
+    }
   }, {
     key: "onTagClick",
     value: function onTagClick(active) {
       console.log(active);
-      this.setState({
-        tagActiveNum: active
-      });
+
+      if (this.state.current == 0) {
+        this.state.totalStatus.tagActiveNum = active;
+        this.setState({
+          'totalStatus.tagActiveNum': active
+        });
+        this.state.totalStatus.page = 1;
+        this.setState({
+          listLoading: true,
+          totalPlays: []
+        });
+        this.searchTotalPlays();
+      } else {
+        this.state.storeStatus.tagActiveNum = active;
+        this.setState({
+          'storeStatus.tagActiveNum': active
+        });
+      }
     }
   }, {
     key: "handleClick",
@@ -132,7 +247,8 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _jsxs2; //Taro.hideTabBar();
+      var _this3 = this,
+          _jsxs2; //Taro.hideTabBar();
 
 
       var top_height = wx.getSystemInfoSync().statusBarHeight;
@@ -150,23 +266,157 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
       var scrollStyleY = {
         height: "".concat(screenHeight_rpx - top_height_rpx - 320, "rpx")
       };
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+      var totalPlayTabs = [];
+      var storePlayTabs = [];
+
+      if (this.state.listLoading == false) {
+        if (this.state.current == 0) {
+          this.state.totalPlays.map(function (item, itemIdx) {
+            var male_female_display = [];
+
+            if (item.play_male_num == 999 | item.play_female_num == 999) {
+              male_female_display = [];
+            } else {
+              male_female_display.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                className: "play-male-position-info",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                  className: "gender-icon-info",
+                  src: _img_male_png__WEBPACK_IMPORTED_MODULE_13___default.a
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                  children: item.play_male_num
+                })]
+              }));
+              male_female_display.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                className: "play-female-position-info",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                  className: "gender-icon-info",
+                  src: _img_female_png__WEBPACK_IMPORTED_MODULE_14___default.a
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                  children: item.play_female_num
+                })]
+              }));
+            }
+
+            var play_label_display = [];
+
+            for (var index = 0; index < item.play_labels.length; index++) {
+              play_label_display.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                className: "play-label-info",
+                children: item.play_labels[index]
+              }));
+            }
+
+            totalPlayTabs.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+              className: "at-row queue-tab-info",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                className: "at-row play-pic-position-info",
+                style: "width:21vw"
+                /* 这里写的是 每个tab上剧本图片的位置*/
+                ,
+                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                  className: "play-pic-info",
+                  src: _service_config__WEBPACK_IMPORTED_MODULE_17__[/* base */ "a"] + item.play_img,
+                  children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                    className: "play-pic-label-info",
+                    children: item.play_labels[0]
+                  })
+                })
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                className: "at-col play-intro-info"
+                /*这里的信息是每个tab上 剧本的一些文字信息 */
+                ,
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                  className: "at-col play-name-position-info",
+                  children: item.play_name
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                  className: "at-row"
+                  /* =- 这一部分是这样，两列，第一列有两行文字，第二列用来放按钮 */
+                  ,
+                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                    className: "at-col"
+                    /* 第一列 有两行*/
+                    ,
+                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                      className: "play-score-position-info",
+                      children: ["\u96BE\u5EA6", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                        style: "display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%",
+                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                          src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default.a,
+                          className: "play-score-pic-info",
+                          style: "position:relative;left:-0px;"
+                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                          src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default.a,
+                          className: "play-score-pic-info",
+                          style: "position:relative;left:-3px;"
+                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                          src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default.a,
+                          className: "play-score-pic-info",
+                          style: "position:relative;left:-6px;"
+                        })]
+                      })]
+                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                      className: "at-row play-headcount-position-info"
+                      /* 这一部分有三列 */
+                      ,
+                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                        className: "play-headcount-info",
+                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])("text", {
+                          decode: "{{true}}",
+                          children: [item.play_headcount, "\u4EBA\u672C"]
+                        })
+                      }), male_female_display]
+                    })]
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                    className: "at-row",
+                    style: "width:20vw"
+                    /*第二列是用来放按钮 */
+                    ,
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtButton */ "b"], {
+                      type: "primary",
+                      circle: "true",
+                      className: "join-button",
+                      onClick: _this3.handleCreateQueue.bind(_this3),
+                      children: "\u6DFB\u52A0"
+                    })
+                  })]
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                  className: "at-col play-label-position-info",
+                  children: play_label_display
+                })]
+              })]
+            }));
+          });
+        } else {}
+      } else {
+        if (this.state.current == 0) {
+          totalPlayTabs.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtActivityIndicator */ "a"], {
+              mode: "center",
+              size: 64,
+              content: "Loading...",
+              className: "load"
+            })
+          }));
+        } else {}
+      }
+
+      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
         className: "JoinQueueSelectInfo",
-        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
           className: "at-col",
           style: {
             padding: "".concat(top_height, "px 0px 0px 0px")
           },
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtNavBar */ "d"], {
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtNavBar */ "f"], {
             className: "nav-bar-info",
             onClickLeftIcon: this.handleNavBack,
             color: "#ffff",
             leftIconType: "chevron-left",
-            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
               style: "color:#fff;font-size:18px",
               children: "\u5267\u672C\u5217\u8868"
             })
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTabs */ "f"]
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTabs */ "h"]
           /* TODO: 这部分需要重构，红点没实现，列表不同日期显示不同灰度也没实现 */
           , {
             className: "tabs-info",
@@ -178,18 +428,18 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
               title: '门店库'
             }],
             onClick: this.handleClick.bind(this),
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTabsPane */ "g"], {
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTabsPane */ "i"], {
               current: this.state.current,
               index: 0,
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                src: _img_background2_jpg__WEBPACK_IMPORTED_MODULE_14___default.a,
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                src: _img_background2_jpg__WEBPACK_IMPORTED_MODULE_16___default.a,
                 style: "width:100vw;height:100vh;position:absolute;"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                 className: "at-col",
                 style: "height:150rpx;background-color:#FFFEFFFF;"
                 /* 这里是*/
 
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* ScrollView */ "j"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* ScrollView */ "j"], {
                 className: "scrollviewY",
                 scrollY: true,
                 scrollWithAnimation: true,
@@ -200,241 +450,24 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
                 upperThreshold: Threshold,
                 onScrollToUpper: this.onScrollToUpperY.bind(this) // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
                 ,
+                onScrollToLower: this.onScrollToLowerYTotal.bind(this),
                 onScroll: this.onScrollY,
-                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                  className: "at-row queue-tab-info",
-                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                    className: "at-row play-pic-position-info",
-                    style: "width:21vw"
-                    /* 这里写的是 每个tab上剧本图片的位置*/
-                    ,
-                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                      className: "play-pic-info",
-                      src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_10___default.a,
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-pic-label-info",
-                        children: "\u672C\u683C"
-                      })
-                    })
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                    className: "at-col play-intro-info"
-                    /*这里的信息是每个tab上 剧本的一些文字信息 */
-                    ,
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                      className: "at-col play-name-position-info",
-                      children: this.state.playInfo.play_name
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                      className: "at-row"
-                      /* =- 这一部分是这样，两列，第一列有两行文字，第二列用来放按钮 */
-                      ,
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                        className: "at-col"
-                        /* 第一列 有两行*/
-                        ,
-                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                          className: "play-score-position-info",
-                          children: ["\u96BE\u5EA6", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            style: "display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                              className: "play-score-pic-info",
-                              style: "position:relative;left:-0px;"
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                              className: "play-score-pic-info",
-                              style: "position:relative;left:-3px;"
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                              className: "play-score-pic-info",
-                              style: "position:relative;left:-6px;"
-                            })]
-                          })]
-                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                          className: "at-row play-headcount-position-info"
-                          /* 这一部分有三列 */
-                          ,
-                          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            className: "play-headcount-info",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])("text", {
-                              decode: "{{true}}",
-                              children: [this.state.playInfo.play_headcount, "\u4EBA\u672C"]
-                            })
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            className: "play-male-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              className: "gender-icon-info",
-                              src: _img_male_png__WEBPACK_IMPORTED_MODULE_11___default.a
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                              children: this.state.playInfo.play_male_num
-                            })]
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            className: "play-female-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              className: "gender-icon-info",
-                              src: _img_female_png__WEBPACK_IMPORTED_MODULE_12___default.a
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                              children: this.state.playInfo.play_female_num
-                            })]
-                          })]
-                        })]
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                        className: "at-row",
-                        style: "width:20vw"
-                        /*第二列是用来放按钮 */
-                        ,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtButton */ "a"], {
-                          type: "primary",
-                          circle: "true",
-                          className: "join-button",
-                          onClick: this.handleCreateQueue.bind(this),
-                          children: "\u6DFB\u52A0"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                      className: "at-col play-label-position-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      })]
-                    })]
-                  })]
-                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                  className: "at-row queue-tab-info",
-                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                    className: "at-row play-pic-position-info",
-                    style: "width:21vw"
-                    /* 这里写的是 每个tab上剧本图片的位置*/
-                    ,
-                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                      className: "play-pic-info",
-                      src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_10___default.a,
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-pic-label-info",
-                        children: "\u672C\u683C"
-                      })
-                    })
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                    className: "at-col play-intro-info"
-                    /*这里的信息是每个tab上 剧本的一些文字信息 */
-                    ,
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                      className: "at-col play-name-position-info",
-                      children: this.state.playInfo.play_name
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                      className: "at-row"
-                      /* =- 这一部分是这样，两列，第一列有两行文字，第二列用来放按钮 */
-                      ,
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                        className: "at-col"
-                        /* 第一列 有两行*/
-                        ,
-                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                          className: "play-score-position-info",
-                          children: ["\u96BE\u5EA6", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            style: "display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                              className: "play-score-pic-info",
-                              style: "position:relative;left:-0px;"
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                              className: "play-score-pic-info",
-                              style: "position:relative;left:-3px;"
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-                              className: "play-score-pic-info",
-                              style: "position:relative;left:-6px;"
-                            })]
-                          })]
-                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                          className: "at-row play-headcount-position-info"
-                          /* 这一部分有三列 */
-                          ,
-                          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            className: "play-headcount-info",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])("text", {
-                              decode: "{{true}}",
-                              children: [this.state.playInfo.play_headcount, "\u4EBA\u672C"]
-                            })
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            className: "play-male-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              className: "gender-icon-info",
-                              src: _img_male_png__WEBPACK_IMPORTED_MODULE_11___default.a
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                              children: this.state.playInfo.play_male_num
-                            })]
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                            className: "play-female-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              className: "gender-icon-info",
-                              src: _img_female_png__WEBPACK_IMPORTED_MODULE_12___default.a
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                              children: this.state.playInfo.play_female_num
-                            })]
-                          })]
-                        })]
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                        className: "at-row",
-                        style: "width:20vw"
-                        /*第二列是用来放按钮 */
-                        ,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtButton */ "a"], {
-                          type: "primary",
-                          circle: "true",
-                          className: "join-button",
-                          onClick: this.handleCreateQueue.bind(this),
-                          children: "\u6DFB\u52A0"
-                        })
-                      })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
-                      className: "at-col play-label-position-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
-                        className: "play-label-info",
-                        children: "\u672C\u683C"
-                      })]
-                    })]
-                  })]
-                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                children: [totalPlayTabs, /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                   className: "at-row tab-blank"
                 }), " "]
               })]
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTabsPane */ "g"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTabsPane */ "i"], {
               current: this.state.current,
               index: 1,
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                src: _img_background2_jpg__WEBPACK_IMPORTED_MODULE_14___default.a,
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                src: _img_background2_jpg__WEBPACK_IMPORTED_MODULE_16___default.a,
                 style: "width:100vw;height:100vh;position:absolute;"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                 className: "at-col",
                 style: "height:150rpx;background-color:#FFFEFFFF;"
                 /* 这里是*/
 
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* ScrollView */ "j"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* ScrollView */ "j"], {
                 className: "scrollviewY",
                 scrollY: true,
                 scrollWithAnimation: true,
@@ -446,88 +479,88 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
                 onScrollToUpper: this.onScrollToUpperY.bind(this) // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
                 ,
                 onScroll: this.onScrollY,
-                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                   className: "at-row queue-tab-info",
-                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                  children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                     className: "at-row play-pic-position-info",
                     style: "width:21vw"
                     /* 这里写的是 每个tab上剧本图片的位置*/
                     ,
-                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
+                    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
                       className: "play-pic-info",
-                      src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_10___default.a,
-                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                      src: _img_image_10_png__WEBPACK_IMPORTED_MODULE_12___default.a,
+                      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                         className: "play-pic-label-info",
                         children: "\u672C\u683C"
                       })
                     })
-                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                  }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                     className: "at-col play-intro-info"
                     /*这里的信息是每个tab上 剧本的一些文字信息 */
                     ,
-                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                       className: "at-col play-name-position-info",
                       children: this.state.playInfo.play_name
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                       className: "at-row"
                       /* =- 这一部分是这样，两列，第一列有两行文字，第二列用来放按钮 */
                       ,
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                         className: "at-col"
                         /* 第一列 有两行*/
                         ,
-                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                           className: "play-score-position-info",
-                          children: ["\u96BE\u5EA6", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                          children: ["\u96BE\u5EA6", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                             style: "display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default.a,
                               className: "play-score-pic-info",
                               style: "position:relative;left:-0px;"
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default.a,
                               className: "play-score-pic-info",
                               style: "position:relative;left:-3px;"
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+                              src: _img_scoreActive_png__WEBPACK_IMPORTED_MODULE_15___default.a,
                               className: "play-score-pic-info",
                               style: "position:relative;left:-6px;"
                             })]
                           })]
-                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                           className: "at-row play-headcount-position-info"
                           /* 这一部分有三列 */
                           ,
-                          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                             className: "play-headcount-info",
-                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])("text", {
+                            children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])("text", {
                               decode: "{{true}}",
                               children: [this.state.playInfo.play_headcount, "\u4EBA\u672C"]
                             })
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                             className: "play-male-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
+                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
                               className: "gender-icon-info",
-                              src: _img_male_png__WEBPACK_IMPORTED_MODULE_11___default.a
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                              src: _img_male_png__WEBPACK_IMPORTED_MODULE_13___default.a
+                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                               children: this.state.playInfo.play_male_num
                             })]
-                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                             className: "play-female-position-info",
-                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
+                            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
                               className: "gender-icon-info",
-                              src: _img_female_png__WEBPACK_IMPORTED_MODULE_12___default.a
-                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                              src: _img_female_png__WEBPACK_IMPORTED_MODULE_14___default.a
+                            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                               children: this.state.playInfo.play_female_num
                             })]
                           })]
                         })]
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                         className: "at-row",
                         style: "width:20vw"
                         /*第二列是用来放按钮 */
                         ,
-                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtButton */ "a"], {
+                        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtButton */ "b"], {
                           type: "primary",
                           circle: "true",
                           className: "join-button",
@@ -535,32 +568,32 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
                           children: "\u6DFB\u52A0"
                         })
                       })]
-                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                    }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                       className: "at-col play-label-position-info",
-                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                         className: "play-label-info",
                         children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                         className: "play-label-info",
                         children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                         className: "play-label-info",
                         children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                         className: "play-label-info",
                         children: "\u672C\u683C"
-                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("text", {
+                      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
                         className: "play-label-info",
                         children: "\u672C\u683C"
                       })]
                     })]
                   })]
-                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                   className: "at-row tab-blank"
                 }), " "]
               })]
             })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
             className: "at-col",
             style: {
               height: "150rpx",
@@ -570,107 +603,107 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
             }
             /* 这里是*/
             ,
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtSearchBar */ "e"], {
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtSearchBar */ "g"], {
               className: "search-bar-info",
               showActionButton: true,
               value: this.state.value,
               onChange: this.onChange.bind(this),
               onActionClick: this.onActionClick.bind(this)
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
               className: "at-row",
               style: "margin-top: 2%;margin-bottom: 2%;",
-              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                 className: "",
                 style: "width:15vw;align-items:flex-end;display:flex;justify-content:flex-end;",
-                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                   className: "tag-button-info",
                   name: "ALL",
                   type: "primary",
-                  active: this.state.tagActiveNum == 0 ? true : false,
+                  active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 0 ? true : false : this.state.storeStatus.tagActiveNum == 0 ? true : false,
                   circle: true,
                   onClick: this.onTagClick.bind(this, 0),
                   children: "\u5168\u90E8"
                 })
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* ScrollView */ "j"], (_jsxs2 = {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* ScrollView */ "j"], (_jsxs2 = {
                 className: "scrollview",
                 style: "",
                 scrollX: true,
                 scrollWithAnimation: true,
                 "show-scrollbar": "false",
                 scrollTop: scrollTop
-              }, Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "style", scrollStyle), Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "lowerThreshold", Threshold), Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "upperThreshold", Threshold), Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "onScrollToUpper", this.onScrollToUpper.bind(this)), Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "onScroll", this.onScroll), Object(C_Users_JackBang_Desktop_PZZ_project_ownerversionfrontend_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "children", [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }, Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "style", scrollStyle), Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "lowerThreshold", Threshold), Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "upperThreshold", Threshold), Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "onScrollToUpper", this.onScrollToUpper.bind(this)), Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "onScroll", this.onScroll), Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(_jsxs2, "children", [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "4p",
                 type: "primary",
-                active: this.state.tagActiveNum == 4 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 4 ? true : false : this.state.storeStatus.tagActiveNum == 4 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 4),
                 children: "4\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "5p",
                 type: "primary",
-                active: this.state.tagActiveNum == 5 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 5 ? true : false : this.state.storeStatus.tagActiveNum == 5 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 5),
                 children: "5\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "6p",
                 type: "primary",
-                active: this.state.tagActiveNum == 6 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 6 ? true : false : this.state.storeStatus.tagActiveNum == 6 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 6),
                 children: "6\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "7p",
                 type: "primary",
-                active: this.state.tagActiveNum == 7 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 7 ? true : false : this.state.storeStatus.tagActiveNum == 7 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 7),
                 children: "7\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "8p",
                 type: "primary",
-                active: this.state.tagActiveNum == 8 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 8 ? true : false : this.state.storeStatus.tagActiveNum == 8 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 8),
                 children: "8\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "9p",
                 type: "primary",
-                active: this.state.tagActiveNum == 9 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 9 ? true : false : this.state.storeStatus.tagActiveNum == 9 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 9),
                 children: "9\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "10p",
                 type: "primary",
-                active: this.state.tagActiveNum == 10 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 10 ? true : false : this.state.storeStatus.tagActiveNum == 10 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 10),
                 children: "10\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "11p",
                 type: "primary",
-                active: this.state.tagActiveNum == 11 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 11 ? true : false : this.state.storeStatus.tagActiveNum == 11 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 11),
                 children: "11\u4EBA"
-              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "h"], {
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtTag */ "j"], {
                 className: "tag-num-button-info",
                 name: "12p",
                 type: "primary",
-                active: this.state.tagActiveNum == 12 ? true : false,
+                active: this.state.current == 0 ? this.state.totalStatus.tagActiveNum == 12 ? true : false : this.state.storeStatus.tagActiveNum == 12 ? true : false,
                 circle: true,
                 onClick: this.onTagClick.bind(this, 12),
                 children: "12\u4EBA"
-              })]), _jsxs2)), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
+              })]), _jsxs2)), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
                 className: "",
                 style: "width:10vw;align-items:flex-end;display:flex;justify-content:center;",
                 children: "o"

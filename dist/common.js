@@ -137,13 +137,15 @@ module.exports = __webpack_require__.p + "img/scoreActive.png";
 /*!****************************!*\
   !*** ./src/service/api.js ***!
   \****************************/
-/*! exports provided: test_wechat_login, test_send_sms */
-/*! exports used: test_send_sms, test_wechat_login */
+/*! exports provided: test_wechat_login, test_send_sms, test_get_queues, test_total_plays_search */
+/*! exports used: test_get_queues, test_send_sms, test_total_plays_search, test_wechat_login */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return test_wechat_login; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test_send_sms; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return test_wechat_login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return test_send_sms; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test_get_queues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return test_total_plays_search; });
 /* harmony import */ var _tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! _@tarojs_taro@3.2.1@@tarojs/taro */ "./node_modules/_@tarojs_taro@3.2.1@@tarojs/taro/index.js");
 /* harmony import */ var _tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request */ "./src/service/request.js");
@@ -157,6 +159,14 @@ var test_wechat_login = function test_wechat_login(user_data) {
 var test_send_sms = function test_send_sms(admin_data) {
   var url = '/test/adminSendSMS';
   return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].post(url, admin_data, 'application/json');
+};
+var test_get_queues = function test_get_queues(store_id) {
+  var url = "/test/stores/".concat(store_id, "/queues/");
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, '');
+};
+var test_total_plays_search = function test_total_plays_search(body, params) {
+  var url = "/test/total/search?" + params;
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
 };
 
 /***/ }),

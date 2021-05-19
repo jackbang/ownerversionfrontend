@@ -11,3 +11,13 @@ export const test_send_sms = (admin_data) => {
     let url = '/test/adminSendSMS'
     return request.post(url, admin_data, 'application/json')
 }
+
+export const test_get_queues = (store_id) => {
+    let url = `/test/stores/${store_id}/queues/`
+    return request.get(url, '')
+}
+
+export const test_total_plays_search = (body, params) => {
+    let url = `/test/total/search?`+params
+    return request.get(url, body)
+}
