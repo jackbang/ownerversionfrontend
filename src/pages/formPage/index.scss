@@ -9,6 +9,10 @@
 //注释掉:@include hairline-bottom();
 @import "~taro-ui/dist/style/components/button.scss";
 @import "~taro-ui/dist/style/components/image-picker.scss";
+@import "~taro-ui/dist/style/components/activity-indicator.scss";
+@import '~taro-ui/dist/style/components/loading.scss';
+@import "~taro-ui/dist/style/components/switch.scss";
+@import "~taro-ui/dist/style/components/textarea.scss";
 
 $at-input-font-size: 28px;
 
@@ -39,8 +43,36 @@ $at-input-font-size: 28px;
     .at-input__input{
         font-size: 24px;
     }
+}
 
+.playInfo-num-input-css{
     
+    &.at-input{
+        padding: 0 0;
+        margin-left: 4%;
+        width: 400rpx;
+
+        input {
+            height: 30rpx;
+        }
+    }
+
+    .at-input__input{
+        font-size: 20px;
+    }
+}
+
+.playIntro-css{
+    &.at-textarea{
+        font-size: 24px;
+        background-color:#FEECD3;
+    }
+
+    .at-textarea__textarea{
+        font-size: 24px;
+        height: 200rpx;
+        white-space:pre-wrap;
+    }
 }
 
 .confirm-button {
@@ -79,4 +111,11 @@ $at-input-font-size: 28px;
         margin-left: 4%;
         width:15%;
     }
+}
+
+.switch-info{
+    zoom: 0.7;
+    align-items: center;
+    display:flex;
+    margin-left: 150rpx;
 }

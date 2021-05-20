@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { Component } from 'react'
-import { View, Input} from '@tarojs/components'
-import { AtButton, AtNavBar, AtInput, AtImagePicker } from 'taro-ui'
+import { View, Input, Switch} from '@tarojs/components'
+import { AtButton, AtNavBar, AtInput, AtImagePicker, AtActivityIndicator, AtTextarea } from 'taro-ui'
 import './index.scss'
 
 import dayjs from 'dayjs'
@@ -42,14 +42,17 @@ export default class Formpage extends Component {
         store_tel2: ''
       },
       adminInfo:{},
+      playInfo:{},
+      playPrice:0,
       validate_code: ['','','','','',''],
       validate_code_focus:9,
       server_validate_code:'111111',
       countDownStart: 59,
       countDownNum: 0,
-      pageKind:2,
+      pageKind:99,
       imgFile:[],
-      imgUploadIcon: true
+      imgUploadIcon: true,
+      infoLoading: true
     }
   }
 
@@ -59,6 +62,7 @@ export default class Formpage extends Component {
     let pages_option = currentPage.options;
     let pageKind = pages_option.page;
     if (pageKind == "0"){
+      // 姓名 身份证号 手机号
       this.state.adminInfo = Taro.getStorageSync('admin_info');
       let tempAdminStoreInfo = Taro.getStorageSync('adminStoreInfo');
       if(tempAdminStoreInfo){
@@ -69,15 +73,27 @@ export default class Formpage extends Component {
         pageKind:pageKind
       })
     } else if (pageKind == "1") {
+      // 店铺信息
       this.setState({
         pageKind:pageKind
       })
     } else if (pageKind == "2") {
+      // 注册完成页
       this.setState({
         pageKind:pageKind
       })
     } else if (pageKind == "3") {
-
+      // 编辑剧本
+      let playId = pages_option.play_id;
+      this.state.playInfo = Taro.getStorageSync(`play_id_${playId}`);
+      this.setState({
+        pageKind:pageKind,
+        storeInfo: Taro.getStorageSync('store_info'),
+        adminInfo: Taro.getStorageSync('admin_info'),
+        imgFile: [{url: base+this.state.playInfo.play_img}],
+        imgUploadIcon: false,
+        infoLoading: false
+      })
     }
   }
 
@@ -225,6 +241,11 @@ export default class Formpage extends Component {
           store_tel2: value
         }
       })
+    } else if (type == 'playInfo_play_intro') {
+      var temp = value;
+      //temp = temp.split('/n').join('\n');
+      console.log(temp)
+      console.log('1\n2')
     }
   return value
   }
@@ -778,6 +799,135 @@ export default class Formpage extends Component {
           <View style='width:80%;height:70rpx;margin-left:10%;'><AtButton type='secondary' circle='true' className='try-button' onClick={this.handleShowStore.bind(this)}>先体验，稍后认证</AtButton></View>
         </View>
       )
+    } else if (this.state.pageKind == "3") {
+      if (this.state.infoLoading == false){
+        formContent.push(
+          <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+            <View style='height:20rpx;'></View>
+            <text style='font-size:20px;font-weight:530;margin-left:5%;'>剧本信息</text>
+            <View style='height:150rpx;width:90%;margin-left:5.5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:70%;'>剧本封面</text>
+              <View style='height:100%;width:150rpx;'>
+                <AtImagePicker
+                  length={1}
+                  files={this.state.imgFile}
+                  onChange={this.onImgChange.bind(this)}
+                  mode='scaleToFill'
+                  count={1}
+                  showAddBtn={this.state.imgUploadIcon}
+                />
+              </View>
+            </View>
+  
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>剧本名称</text>
+              <AtInput
+                name='play_name'
+                title=''
+                type='text'
+                placeholderStyle='font-size:13px;'
+                placeholder='请填写剧本名称'
+                value={this.state.playInfo.play_name}
+                onChange={this.handleChange.bind(this, 'playInfo_play_name')}
+                className='storeInfo-input-css'
+                required
+              />
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>剧本人数</text>
+              <AtInput
+                name='play_headcount'
+                title=''
+                type='number'
+                placeholderStyle='font-size:13px;'
+                placeholder='请填写剧本名称'
+                value={this.state.playInfo.play_headcount}
+                onChange={this.handleChange.bind(this, 'playInfo_play_headcount')}
+                className='storeInfo-input-css'
+                required
+              />
+            </View>
+
+            <View style='height:30rpx;width:90%;margin-left:5%;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:13px;width:140rpx;margin-left:10rpx;'>男性角色</text>
+              <AtInput
+                name='play_male_num'
+                title=''
+                type='number'
+                placeholderStyle='font-size:11px;'
+                placeholder='男性角色人数'
+                value={this.state.playInfo.play_male_num}
+                onChange={this.handleChange.bind(this, 'playInfo_play_male_num')}
+                className='playInfo-num-input-css'
+                required
+              />
+            </View>
+
+            <View style='height:30rpx;width:90%;margin-left:5%;margin-top:5rpx;padding-bottom:20rpx;display:flex;align-items:center;justify-content:flex-start;border: 0px solid #97979755;border-bottom-width:1.5px;'>
+              <text style='font-size:13px;width:140rpx;margin-left:10rpx;'>女性角色</text>
+              <AtInput
+                name='play_female_num'
+                title=''
+                type='number'
+                placeholderStyle='font-size:11px;'
+                placeholder='女性角色人数'
+                value={this.state.playInfo.play_female_num}
+                onChange={this.handleChange.bind(this, 'playInfo_play_female_num')}
+                className='playInfo-num-input-css'
+                required
+              />
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>剧本价格</text>
+              <AtInput
+                name='play_price'
+                title=''
+                type='number'
+                placeholderStyle='font-size:13px;'
+                placeholder='请填写剧本价格'
+                value={this.state.playPrice}
+                onChange={this.handleChange.bind(this, 'playPrice')}
+                className='storeInfo-input-css'
+                required
+              />
+            </View>
+
+            <View style='height:90rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <View style='width:400rpx;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;'>
+                <text style='font-size:15px;width:400rpx;'>建议不可反串</text>
+                <text style='font-size:11px;width:400rpx;color:#777777;'>开启后玩家收到"不建议反串"提醒</text>
+              </View>
+              <Switch id='antigender' className='switch-info' color='#FCA62FFF' />
+            </View>
+
+            <View style='height:300rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;margin-bottom:10rpx;'>剧本简介</text>
+              <AtTextarea
+                count={false}
+                value={this.state.playInfo.play_intro.split('/n').join('\n')}
+                onChange={this.handleChange.bind(this, 'playInfo_play_intro')}
+                maxLength={1000}
+                placeholder='请输入剧本简介'
+                className='playIntro-css'
+              />
+            </View>
+  
+            
+  
+  
+            <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.handleNextStep.bind(this)}>下一步</AtButton></View>
+          </View>
+        )
+      } else {
+        formContent.push(
+          <View style={{height:`100vh`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-start`}}>
+            <image src={bk} style='width:100vw;height:100vh;position:absolute;size:100%;z-index:-1;'></image>
+            <View><AtActivityIndicator mode='center' size={64} content='Loading...' className='load'></AtActivityIndicator></View>
+          </View>
+        )
+      }
     }
 
     return (

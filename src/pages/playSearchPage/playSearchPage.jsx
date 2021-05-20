@@ -13,15 +13,17 @@ import male_icon from '../../img/male.png'
 import female_icon from '../../img/female.png'
 import scoreActive from '../../img/scoreActive.png'
 import bk from '../../img/background2.jpg'
+import moreIcon from '../../img/moreIcon.svg'
 
 import {base} from '../../service/config'
-import {test_total_plays_search} from '../../service/api'
+import {test_total_plays_search, test_store_plays_search, test_delete_plays_search} from '../../service/api'
 
 export default class Playsearchpage extends Component {
 
   constructor () {
     super(...arguments)
     this.state = {
+      showPop:0,
       value: '',
       totalStatus:{
         tagActiveNum: 0,
@@ -44,6 +46,8 @@ export default class Playsearchpage extends Component {
       totalPlays: [],
       storePlays: [],
       current: 0,
+      totalScrollTop:0,
+      storeScrollTop:0,
       playInfo:{
         play_name:"木兮僧之戏",
         play_headcount:7,
@@ -60,11 +64,20 @@ export default class Playsearchpage extends Component {
   }
 
   componentDidShow() {
+    console.log('show')
     this.state.totalStatus.page = 1;
+    this.state.storeStatus.page = 1;
     this.setState({
+      showPop:0,
       listLoading: true,
-      totalPlays:[]
+      totalPlays:[],
+      storePlays:[],
+      totalScrollTop:0,
+      storeScrollTop:0,
     })
+    this.state.current=1;
+    this.searchTotalPlays();
+    this.state.current=0;
     this.searchTotalPlays();
   }
 
@@ -90,11 +103,21 @@ export default class Playsearchpage extends Component {
     this.searchTotalPlays();
   }
 
+  onScrollToLowerYStore() {
+    this.state.storeStatus.page = this.state.storeStatus.page+1;
+    this.searchTotalPlays();
+  }
+
   // or 使用箭头函数
   // onScrollToUpper = () => {}
 
   onScrollY(e){
-    //console.log(e.detail)
+    console.log(e.detail.scrollTop)
+    if (this.state.current == 0) {
+      this.state.totalScrollTop = e.detail.scrollTop
+    } else {
+      this.state.storeScrollTop = e.detail.scrollTop
+    }
   }
 
   onChange (value) {
@@ -139,12 +162,26 @@ export default class Playsearchpage extends Component {
         }
       )
     } else {
+      let store_id = this.state.storeInfo.store_id;
       title = this.state.value;
       hd = this.state.storeStatus.tagActiveNum;
       type1 = this.state.storeStatus.type1;
       type2 = this.state.storeStatus.type1;
       type3 = this.state.storeStatus.type1;
       page = this.state.storeStatus.page;
+
+      let _this = this;
+
+      test_store_plays_search(cert_data, 
+        `store_id=${store_id}&title=${title}&hd=${hd}&type1=${type1}&type2=${type2}&type3=${type3}&page=${page}`).then(
+        function(res){
+          console.log(res.data)
+          _this.setState({
+            listLoading: false,
+            storePlays: _this.state.storePlays.concat(res.data)
+          })
+        }
+      )
     }
   }
 
@@ -154,6 +191,13 @@ export default class Playsearchpage extends Component {
       this.setState({
         listLoading: true,
         totalPlays:[]
+      })
+      this.searchTotalPlays();
+    } else {
+      this.state.storeStatus.page = 1;
+      this.setState({
+        listLoading: true,
+        storePlays:[]
       })
       this.searchTotalPlays();
     }
@@ -177,14 +221,77 @@ export default class Playsearchpage extends Component {
       this.setState({
         'storeStatus.tagActiveNum': active
       })
+      this.state.storeStatus.page = 1;
+      this.setState({
+        listLoading: true,
+        storePlays:[]
+      })
+      this.searchTotalPlays();
     }
     
   }
 
   handleClick (value) {
+    console.log(this.state.totalScrollTop)
+    console.log(this.state.storeScrollTop)
     this.setState({
-      current: value
+      current: value,
+      storeScrollTop: this.state.storeScrollTop+0.000000001,
+      totalScrollTop: this.state.totalScrollTop+0.000000001
     })
+  }
+
+  handleClickCover () {
+    this.setState({
+      showPop:0
+    })
+  }
+
+  handleMoreOptions (id) {
+    this.setState({
+      showPop:id
+    })
+  }
+
+  handleDeletePlay (id, Idx) {
+    console.log(`delete play_id_${id} in ${Idx}`)
+    let tempPlay = Taro.getStorageSync(`play_id_${id}`)
+    let _this = this;
+    wx.showModal({
+      title: '删除剧本',
+      content: `确定删除 ${tempPlay.play_name} (${tempPlay.play_headcount}人本) 吗？`,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let uploadData = {
+            adminId: _this.state.adminInfo.adminId,
+            sessionId: _this.state.adminInfo.sessionId,
+            play_id: id,
+            store_id: _this.state.storeInfo.store_id,
+            appId: wx.getAccountInfoSync().miniProgram.appId,
+            token: (dayjs().unix() + 1000)*2
+          }
+          test_delete_plays_search(uploadData).then(function(res){
+            console.log(res.data)
+            if (res.data.code == 1){
+              _this.state.storePlays.splice(Idx,1);
+              _this.setState({
+                storePlays:_this.state.storePlays
+              })
+            } else {
+              console.log(`${res.data.data}`)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
+
+  handleModifyPlay (id) {
+    console.log(`modify play_id_${id}`)
+    Taro.navigateTo({url: `../formPage/index?page=3&play_id=${id}`})
   }
 
   render () {
@@ -277,7 +384,79 @@ export default class Playsearchpage extends Component {
           )
         })
       }else{
+        this.state.storePlays.map((item, itemIdx)=>{
 
+          Taro.setStorage({
+            key:`play_id_${item.play_id}`,
+            data:item
+          })
+
+          let male_female_display = [];
+          if (item.play_male_num == 999 | item.play_female_num == 999) {
+            male_female_display = [];
+          } else {
+            male_female_display.push(
+              <View className='play-male-position-info'>
+                <image className='gender-icon-info' src={male_icon}></image>
+                <text>{item.play_male_num}</text>
+              </View>
+            )
+            male_female_display.push(
+              <View className='play-female-position-info'>
+                <image className='gender-icon-info' src={female_icon}></image>
+                <text>{item.play_female_num}</text>
+              </View>
+            )
+          }
+
+          let play_label_display = [];
+          for (let index = 0; index < item.play_labels.length; index++) {
+            play_label_display.push(
+              <text className='play-label-info'>{item.play_labels[index]}</text>
+            )
+          }
+
+          storePlayTabs.push(
+            <View className='at-row queue-tab-info' >
+              <View className='at-row play-pic-position-info' style='width:21vw' /* 这里写的是 每个tab上剧本图片的位置*/>
+                <image className='play-pic-info' src={base+item.play_img}>
+                <text className='play-pic-label-info'>本格</text>
+                </image>
+              </View>
+              <View className='at-col play-intro-info' /*这里的信息是每个tab上 剧本的一些文字信息 */>
+                <View className='at-col play-name-position-info'>{item.play_name}</View>
+                <View className='at-row' /* =- 这一部分是这样，两列，第一列有两行文字，第二列用来放按钮 */>
+                  <View className='at-col' /* 第一列 有两行*/>
+                    <View className='play-score-position-info'>难度
+                      <View style='display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%'>
+                        <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-0px;'></image>
+                        <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-3px;'></image>
+                        <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-6px;'></image>
+                      </View>
+                    </View>
+                    <View className='at-row play-headcount-position-info' /* 这一部分有三列 */>
+                      <View className='play-headcount-info'><text decode="{{true}}">{item.play_headcount}人本</text></View>
+                        {male_female_display}
+                    </View>
+                  </View>
+                </View>
+                <View className='at-col play-label-position-info'>
+                  {play_label_display}
+                </View>
+              </View>
+              {/*这里实现一个气泡组件*/}
+              <View style='position:absolute;right:50rpx;margin-top:20rpx;display:flex;flex-direction:column;align-items:flex-end;'>
+                <image src={moreIcon} style='height:40rpx;width:40rpx;transform:rotate(90deg);' onClick={this.handleMoreOptions.bind(this, item.play_id)}></image>
+                <View className='popover' style={{visibility:`${this.state.showPop==item.play_id? 'visible':'hidden'}`, zIndex:99}}>
+                  <View style='color:#000000;font-size:12px;' onClick={this.handleModifyPlay.bind(this, item.play_id)}>编辑 </View>
+                  <View style='height:1rpx;width:80%;border:0px solid #00000050;border-bottom-width:1rpx;'></View>
+                  <View style='color:#000000;font-size:12px;' onClick={this.handleDeletePlay.bind(this, item.play_id, itemIdx)}>删除 </View>
+                </View>
+              </View>
+
+            </View>
+          )
+        })
       }
     } else {
       if(this.state.current==0){
@@ -287,7 +466,11 @@ export default class Playsearchpage extends Component {
           </View>
         )
       }else{
-
+        storePlayTabs.push(
+          <View>
+            <AtActivityIndicator mode='center' size={64} content='Loading...' className='load'></AtActivityIndicator>
+          </View>
+        )
       }
     }
 
@@ -319,13 +502,13 @@ export default class Playsearchpage extends Component {
                 scrollY
                 scrollWithAnimation
                 show-scrollbar='false'
-                scrollTop={scrollTop}
+                scrollTop={this.state.totalScrollTop}
                 style={scrollStyleY}
                 lowerThreshold={Threshold}
                 upperThreshold={Threshold}
                 onScrollToUpper={this.onScrollToUpperY.bind(this)} // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
                 onScrollToLower={this.onScrollToLowerYTotal.bind(this)}
-                onScroll={this.onScrollY}
+                onScroll={this.onScrollY.bind(this)}
                 >
                 {totalPlayTabs}
 
@@ -335,6 +518,16 @@ export default class Playsearchpage extends Component {
             </AtTabsPane>
 
             <AtTabsPane current={this.state.current} index={1}>
+              <View style={{
+                position:`absolute`,
+                height:`100vh`,
+                width:`100vw`,
+                background:`#00000000`,
+                zIndex:`98`,
+                visibility:`${this.state.showPop==0? 'hidden':'visible'}`
+                }} 
+                onClick={this.handleClickCover.bind(this)}>
+              </View>
               <image src={bk} style='width:100vw;height:100vh;position:absolute;'></image>
               <View className='at-col' style='height:150rpx;background-color:#FFFEFFFF;' /* 这里是*/></View>
               <ScrollView
@@ -342,57 +535,15 @@ export default class Playsearchpage extends Component {
               scrollY
               scrollWithAnimation
               show-scrollbar='false'
-              scrollTop={scrollTop}
+              scrollTop={this.state.storeScrollTop}
               style={scrollStyleY}
               lowerThreshold={Threshold}
               upperThreshold={Threshold}
               onScrollToUpper={this.onScrollToUpperY.bind(this)} // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
-              onScroll={this.onScrollY}
+              onScrollToLower={this.onScrollToLowerYStore.bind(this)}
+              onScroll={this.onScrollY.bind(this)}
               >
-                <View className='at-row queue-tab-info'>
-                  <View className='at-row play-pic-position-info' style='width:21vw' /* 这里写的是 每个tab上剧本图片的位置*/>
-                    <image className='play-pic-info' src={emptyPic}>
-                    <text className='play-pic-label-info'>本格</text>
-                    </image>
-                  </View>
-                  <View className='at-col play-intro-info' /*这里的信息是每个tab上 剧本的一些文字信息 */>
-                    <View className='at-col play-name-position-info'>{this.state.playInfo.play_name}</View>
-                    <View className='at-row' /* =- 这一部分是这样，两列，第一列有两行文字，第二列用来放按钮 */>
-                      <View className='at-col' /* 第一列 有两行*/>
-                        <View className='play-score-position-info'>难度
-                          <View style='display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%'>
-                            <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-0px;'></image>
-                            <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-3px;'></image>
-                            <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-6px;'></image>
-                          </View>
-                        </View>
-                        <View className='at-row play-headcount-position-info' /* 这一部分有三列 */>
-                          <View className='play-headcount-info'><text decode="{{true}}">{this.state.playInfo.play_headcount}人本</text></View>
-                            <View className='play-male-position-info'>
-                              <image className='gender-icon-info' src={male_icon}></image>
-                              <text>{this.state.playInfo.play_male_num}</text>
-                            </View>
-
-                            <View className='play-female-position-info'>
-                              <image className='gender-icon-info' src={female_icon}></image>
-                              <text>{this.state.playInfo.play_female_num}</text>
-                            </View>
-                        </View>
-                      </View>
-                      <View className='at-row' style='width:20vw' /*第二列是用来放按钮 */>
-                        {/* Button  激活与不激活 具体看taroui中的文档*/}
-                        <AtButton type='primary' circle='true' className='join-button' onClick={this.handleCreateQueue.bind(this)}>添加</AtButton>
-                      </View>
-                    </View>
-                    <View className='at-col play-label-position-info'>
-                      <text className='play-label-info'>本格</text>
-                      <text className='play-label-info'>本格</text>
-                      <text className='play-label-info'>本格</text>
-                      <text className='play-label-info'>本格</text>
-                      <text className='play-label-info'>本格</text>
-                    </View>
-                  </View>
-                </View>
+                {storePlayTabs}
 
                 <View className='at-row tab-blank'></View> {/*切记，每个AtTabsPane最下面要加一小条空白，否则阴影部分显示不全，会很难看 */}
 

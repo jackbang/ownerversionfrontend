@@ -21,3 +21,13 @@ export const test_total_plays_search = (body, params) => {
     let url = `/test/total/search?`+params
     return request.get(url, body)
 }
+
+export const test_store_plays_search = (body, params) => {
+    let url = `/test/store/search?`+params
+    return request.get(url, body)
+}
+
+export const test_delete_plays_search = (body) => {
+    let url = `/test/store/delete`
+    return request.get(url, body)
+}

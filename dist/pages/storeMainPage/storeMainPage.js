@@ -147,7 +147,7 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
 
       var _this = this;
 
-      Object(_service_api__WEBPACK_IMPORTED_MODULE_24__[/* test_get_queues */ "a"])(this.state.storeInfo.store_id).then(function (res) {
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_24__[/* test_get_queues */ "b"])(this.state.storeInfo.store_id).then(function (res) {
         console.log(res.data.data.play_data);
         res.data.data.play_data.map(function (item, itemIdx) {
           if (_this3.isInStorage("play_id_".concat(item.play_id))) {

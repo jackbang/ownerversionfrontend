@@ -967,7 +967,7 @@ exports.useLayoutEffect=function(a,b){return S().useLayoutEffect(a,b)};exports.u
   !*** ./node_modules/_taro-ui@3.0.0-alpha.10@taro-ui/dist/index.esm.js ***!
   \************************************************************************/
 /*! exports provided: AtAccordion, AtActionSheet, AtActionSheetItem, AtActivityIndicator, AtAvatar, AtBadge, AtButton, AtCalendar, AtCard, AtCheckbox, AtComponent, AtCountdown, AtCurtain, AtDivider, AtDrawer, AtFab, AtFloatLayout, AtForm, AtGrid, AtIcon, AtImagePicker, AtIndexes, AtInput, AtInputNumber, AtList, AtListItem, AtLoadMore, AtLoading, AtMessage, AtModal, AtModalAction, AtModalContent, AtModalHeader, AtNavBar, AtNoticebar, AtPagination, AtProgress, AtRadio, AtRange, AtRate, AtSearchBar, AtSegmentedControl, AtSlider, AtSteps, AtSwipeAction, AtSwitch, AtTabBar, AtTabs, AtTabsPane, AtTag, AtTextarea, AtTimeline, AtToast */
-/*! exports used: AtActivityIndicator, AtButton, AtIcon, AtImagePicker, AtInput, AtNavBar, AtSearchBar, AtTabs, AtTabsPane, AtTag */
+/*! exports used: AtActivityIndicator, AtButton, AtIcon, AtImagePicker, AtInput, AtNavBar, AtSearchBar, AtTabs, AtTabsPane, AtTag, AtTextarea */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1021,7 +1021,7 @@ exports.useLayoutEffect=function(a,b){return S().useLayoutEffect(a,b)};exports.u
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return AtTabs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return AtTabsPane; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return AtTag; });
-/* unused harmony export AtTextarea */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return AtTextarea; });
 /* unused harmony export AtTimeline */
 /* unused harmony export AtToast */
 /* harmony import */ var C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof */ "./node_modules/_@babel_runtime@7.14.0@@babel/runtime/helpers/esm/typeof.js");

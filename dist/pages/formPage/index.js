@@ -2059,14 +2059,17 @@ var Formpage = /*#__PURE__*/function (_Component) {
         store_tel2: ''
       },
       adminInfo: {},
+      playInfo: {},
+      playPrice: 0,
       validate_code: ['', '', '', '', '', ''],
       validate_code_focus: 9,
       server_validate_code: '111111',
       countDownStart: 59,
       countDownNum: 0,
-      pageKind: 2,
+      pageKind: 99,
       imgFile: [],
-      imgUploadIcon: true
+      imgUploadIcon: true,
+      infoLoading: true
     };
     return _this2;
   }
@@ -2080,6 +2083,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
       var pageKind = pages_option.page;
 
       if (pageKind == "0") {
+        // 姓名 身份证号 手机号
         this.state.adminInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync('admin_info');
         var tempAdminStoreInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync('adminStoreInfo');
 
@@ -2092,14 +2096,30 @@ var Formpage = /*#__PURE__*/function (_Component) {
           pageKind: pageKind
         });
       } else if (pageKind == "1") {
+        // 店铺信息
         this.setState({
           pageKind: pageKind
         });
       } else if (pageKind == "2") {
+        // 注册完成页
         this.setState({
           pageKind: pageKind
         });
-      } else if (pageKind == "3") {}
+      } else if (pageKind == "3") {
+        // 编辑剧本
+        var playId = pages_option.play_id;
+        this.state.playInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync("play_id_".concat(playId));
+        this.setState({
+          pageKind: pageKind,
+          storeInfo: _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync('store_info'),
+          adminInfo: _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync('admin_info'),
+          imgFile: [{
+            url: _service_config__WEBPACK_IMPORTED_MODULE_17__[/* base */ "a"] + this.state.playInfo.play_img
+          }],
+          imgUploadIcon: false,
+          infoLoading: false
+        });
+      }
     }
   }, {
     key: "componentDidMount",
@@ -2169,7 +2189,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
       } else {
         var _this = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_16__[/* test_send_sms */ "b"])(admin_data).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_16__[/* test_send_sms */ "c"])(admin_data).then(function (res) {
           var validCode = res.data.data.token - 1000 >> 1;
           _this.state.server_validate_code = validCode;
           _this.state.adminInfo.sessionId = res.data.data.sessionId;
@@ -2264,6 +2284,11 @@ var Formpage = /*#__PURE__*/function (_Component) {
             store_tel2: value
           }
         });
+      } else if (type == 'playInfo_play_intro') {
+        var temp = value; //temp = temp.split('/n').join('\n');
+
+        console.log(temp);
+        console.log('1\n2');
       }
 
       return value;
@@ -2930,6 +2955,173 @@ var Formpage = /*#__PURE__*/function (_Component) {
             })
           })]
         }));
+      } else if (this.state.pageKind == "3") {
+        if (this.state.infoLoading == false) {
+          formContent.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            style: "height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;",
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:20rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+              style: "font-size:20px;font-weight:530;margin-left:5%;",
+              children: "\u5267\u672C\u4FE1\u606F"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:150rpx;width:90%;margin-left:5.5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:15px;width:70%;",
+                children: "\u5267\u672C\u5C01\u9762"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "height:100%;width:150rpx;",
+                children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtImagePicker */ "d"], {
+                  length: 1,
+                  files: this.state.imgFile,
+                  onChange: this.onImgChange.bind(this),
+                  mode: "scaleToFill",
+                  count: 1,
+                  showAddBtn: this.state.imgUploadIcon
+                })
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:15px;width:150rpx;",
+                children: "\u5267\u672C\u540D\u79F0"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
+                name: "play_name",
+                title: "",
+                type: "text",
+                placeholderStyle: "font-size:13px;",
+                placeholder: "\u8BF7\u586B\u5199\u5267\u672C\u540D\u79F0",
+                value: this.state.playInfo.play_name,
+                onChange: this.handleChange.bind(this, 'playInfo_play_name'),
+                className: "storeInfo-input-css",
+                required: true
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;display:flex;align-items:center;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:15px;width:150rpx;",
+                children: "\u5267\u672C\u4EBA\u6570"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
+                name: "play_headcount",
+                title: "",
+                type: "number",
+                placeholderStyle: "font-size:13px;",
+                placeholder: "\u8BF7\u586B\u5199\u5267\u672C\u540D\u79F0",
+                value: this.state.playInfo.play_headcount,
+                onChange: this.handleChange.bind(this, 'playInfo_play_headcount'),
+                className: "storeInfo-input-css",
+                required: true
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:30rpx;width:90%;margin-left:5%;display:flex;align-items:center;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:13px;width:140rpx;margin-left:10rpx;",
+                children: "\u7537\u6027\u89D2\u8272"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
+                name: "play_male_num",
+                title: "",
+                type: "number",
+                placeholderStyle: "font-size:11px;",
+                placeholder: "\u7537\u6027\u89D2\u8272\u4EBA\u6570",
+                value: this.state.playInfo.play_male_num,
+                onChange: this.handleChange.bind(this, 'playInfo_play_male_num'),
+                className: "playInfo-num-input-css",
+                required: true
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:30rpx;width:90%;margin-left:5%;margin-top:5rpx;padding-bottom:20rpx;display:flex;align-items:center;justify-content:flex-start;border: 0px solid #97979755;border-bottom-width:1.5px;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:13px;width:140rpx;margin-left:10rpx;",
+                children: "\u5973\u6027\u89D2\u8272"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
+                name: "play_female_num",
+                title: "",
+                type: "number",
+                placeholderStyle: "font-size:11px;",
+                placeholder: "\u5973\u6027\u89D2\u8272\u4EBA\u6570",
+                value: this.state.playInfo.play_female_num,
+                onChange: this.handleChange.bind(this, 'playInfo_play_female_num'),
+                className: "playInfo-num-input-css",
+                required: true
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:15px;width:150rpx;",
+                children: "\u5267\u672C\u4EF7\u683C"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtInput */ "e"], {
+                name: "play_price",
+                title: "",
+                type: "number",
+                placeholderStyle: "font-size:13px;",
+                placeholder: "\u8BF7\u586B\u5199\u5267\u672C\u4EF7\u683C",
+                value: this.state.playPrice,
+                onChange: this.handleChange.bind(this, 'playPrice'),
+                className: "storeInfo-input-css",
+                required: true
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:90rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+                style: "width:400rpx;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;",
+                children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                  style: "font-size:15px;width:400rpx;",
+                  children: "\u5EFA\u8BAE\u4E0D\u53EF\u53CD\u4E32"
+                }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                  style: "font-size:11px;width:400rpx;color:#777777;",
+                  children: "\u5F00\u542F\u540E\u73A9\u5BB6\u6536\u5230\"\u4E0D\u5EFA\u8BAE\u53CD\u4E32\"\u63D0\u9192"
+                })]
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* Switch */ "n"], {
+                id: "antigender",
+                className: "switch-info",
+                color: "#FCA62FFF"
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "height:300rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("text", {
+                style: "font-size:15px;width:150rpx;margin-bottom:10rpx;",
+                children: "\u5267\u672C\u7B80\u4ECB"
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtTextarea */ "k"], {
+                count: false,
+                value: this.state.playInfo.play_intro.split('/n').join('\n'),
+                onChange: this.handleChange.bind(this, 'playInfo_play_intro'),
+                maxLength: 1000,
+                placeholder: "\u8BF7\u8F93\u5165\u5267\u672C\u7B80\u4ECB",
+                className: "playIntro-css"
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              style: "width:80%;height:130rpx;margin-left:10%;",
+              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtButton */ "b"], {
+                type: "primary",
+                circle: "true",
+                className: "confirm-button",
+                onClick: this.handleNextStep.bind(this),
+                children: "\u4E0B\u4E00\u6B65"
+              })
+            })]
+          }));
+        } else {
+          formContent.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+            style: {
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "flex-start"
+            },
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])("image", {
+              src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+              style: "width:100vw;height:100vh;position:absolute;size:100%;z-index:-1;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtActivityIndicator */ "a"], {
+                mode: "center",
+                size: 64,
+                content: "Loading...",
+                className: "load"
+              })
+            })]
+          }));
+        }
       }
 
       return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
