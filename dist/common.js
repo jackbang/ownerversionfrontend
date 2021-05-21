@@ -137,17 +137,18 @@ module.exports = __webpack_require__.p + "img/scoreActive.png";
 /*!****************************!*\
   !*** ./src/service/api.js ***!
   \****************************/
-/*! exports provided: test_wechat_login, test_send_sms, test_get_queues, test_total_plays_search, test_store_plays_search, test_delete_plays_search */
-/*! exports used: test_delete_plays_search, test_get_queues, test_send_sms, test_store_plays_search, test_total_plays_search, test_wechat_login */
+/*! exports provided: test_wechat_login, test_send_sms, test_get_queues, test_total_plays_search, test_store_plays_search, test_delete_plays_search, test_upload_play */
+/*! exports used: test_delete_plays_search, test_get_queues, test_send_sms, test_store_plays_search, test_total_plays_search, test_upload_play, test_wechat_login */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return test_wechat_login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return test_wechat_login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return test_send_sms; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return test_get_queues; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return test_total_plays_search; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return test_store_plays_search; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test_delete_plays_search; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return test_upload_play; });
 /* harmony import */ var _tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! _@tarojs_taro@3.2.1@@tarojs/taro */ "./node_modules/_@tarojs_taro@3.2.1@@tarojs/taro/index.js");
 /* harmony import */ var _tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request */ "./src/service/request.js");
@@ -177,6 +178,10 @@ var test_store_plays_search = function test_store_plays_search(body, params) {
 var test_delete_plays_search = function test_delete_plays_search(body) {
   var url = "/test/store/delete";
   return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
+};
+var test_upload_play = function test_upload_play(play_data) {
+  var url = '/test/uploadPlay';
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].post(url, play_data, 'application/json');
 };
 
 /***/ }),

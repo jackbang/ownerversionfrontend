@@ -182,7 +182,7 @@ var Index = /*#__PURE__*/function (_Component) {
                         }
                       };
                       console.log(adminInfo);
-                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_wechat_login */ "f"])(adminInfo).then(function (result) {
+                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_wechat_login */ "g"])(adminInfo).then(function (result) {
                         console.log(result.data);
                         _this2.state.adminInfo = adminInfo.adminInfo;
                         _this2.state.adminInfo['sessionId'] = result.data.data.sessionId;

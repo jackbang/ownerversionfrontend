@@ -2285,10 +2285,21 @@ var Formpage = /*#__PURE__*/function (_Component) {
           }
         });
       } else if (type == 'playInfo_play_intro') {
-        var temp = value; //temp = temp.split('/n').join('\n');
-
-        console.log(temp);
-        console.log('1\n2');
+        var temp = value;
+        temp = temp.split('/n').join('\n');
+        this.state.playInfo.play_intro = temp;
+      } else if (type == 'playInfo_play_name') {
+        this.state.playInfo.play_name = value;
+      } else if (type == 'playInfo_play_headcount') {
+        this.state.playInfo.play_headcount = Number(value);
+      } else if (type == 'playInfo_play_male_num') {
+        this.state.playInfo.play_male_num = Number(value);
+      } else if (type == 'playInfo_play_female_num') {
+        this.state.playInfo.play_female_num = Number(value);
+      } else if (type == 'playPrice') {
+        this.state.playPrice = Number(value);
+      } else if (type == 'playInfo_play_antigender') {
+        this.state.playInfo.play_antigender = value.detail.value;
       }
 
       return value;
@@ -2537,6 +2548,91 @@ var Formpage = /*#__PURE__*/function (_Component) {
       _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.navigateTo({
         url: '../storeMainPage/storeMainPage'
       });
+    }
+  }, {
+    key: "handleUploadPlay",
+    value: function handleUploadPlay() {
+      console.log('upload play');
+      /*
+      var spark = new SparkMD5()
+      var ClientImgMD5, ServerImgMD5;
+      var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].url, 'binary');
+      spark.appendBinary(imgFile);
+      ClientImgMD5 = spark.end();
+        spark = new SparkMD5()
+      imgFile = wx.getFileSystemManager().readFileSync(base+this.state.playInfo.play_img, 'binary');
+      spark.appendBinary(imgFile);
+      ServerImgMD5 = spark.end();
+      */
+
+      if (this.state.imgFile[0].url == _service_config__WEBPACK_IMPORTED_MODULE_17__[/* base */ "a"] + this.state.playInfo.play_img) {
+        console.log('the imgs are same');
+        var temp_play = _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.getStorageSync("play_id_".concat(this.state.playInfo.play_id));
+        console.log(temp_play);
+        console.log(this.state.playInfo);
+        var ClientPlayMD5 = spark_md5__WEBPACK_IMPORTED_MODULE_11___default.a.hash(JSON.stringify(this.state.playInfo));
+        var ServerPlayMD5 = spark_md5__WEBPACK_IMPORTED_MODULE_11___default.a.hash(JSON.stringify(temp_play));
+
+        if (ClientPlayMD5 == ServerPlayMD5) {
+          console.log('nothing modified');
+        } else {
+          console.log(ClientPlayMD5);
+          console.log(ServerPlayMD5);
+          var upload_data = {
+            adminId: this.state.adminInfo.adminId,
+            sessionId: this.state.adminInfo.sessionId,
+            store_id: this.state.storeInfo.store_id,
+            play_info: this.state.playInfo,
+            price: this.state.playPrice,
+            appId: wx.getAccountInfoSync().miniProgram.appId,
+            token: (dayjs__WEBPACK_IMPORTED_MODULE_9___default()().unix() + 1000) * 2
+          };
+
+          var _this = this;
+
+          Object(_service_api__WEBPACK_IMPORTED_MODULE_16__[/* test_upload_play */ "f"])(upload_data).then(function (res) {
+            console.log(res.data);
+
+            if (res.data.code == 1) {
+              _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.removeStorage({
+                key: "play_id_".concat(_this.state.playInfo.play_id)
+              });
+
+              _this.setState({
+                playInfo: res.data.data
+              });
+            }
+          });
+        }
+      } else {
+        console.log('the imgs are not same');
+      }
+      /*
+      Taro.uploadFile({
+        url: base+'/test/uploadPlay', //仅为示例，非真实的接口地址
+        filePath: this.state.imgFile[0].file.path,
+        name: 'file',
+        formData: {
+          'imgMD5': imgMD5,
+          'adminId': this.state.adminInfo.adminId,
+          'sessionId': this.state.adminInfo.sessionId,
+          'appId': wx.getAccountInfoSync().miniProgram.appId,
+          'token': (sendTime + 1000 ) * 2
+        },
+        success (res){
+          const receiveData = JSON.parse(res.data);
+          console.log(receiveData)
+          _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+          _this.state.storeInfo = receiveData.data.storeInfo;
+          Taro.setStorage({key:'store_info', data:_this.state.storeInfo});
+          Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
+          Taro.setStorage({key:'permission', data:1});
+          _this.setState({
+            pageKind:2
+          })
+        }
+      })*/
+
     }
   }, {
     key: "render",
@@ -3006,7 +3102,7 @@ var Formpage = /*#__PURE__*/function (_Component) {
                 title: "",
                 type: "number",
                 placeholderStyle: "font-size:13px;",
-                placeholder: "\u8BF7\u586B\u5199\u5267\u672C\u540D\u79F0",
+                placeholder: "\u8BF7\u8F93\u5165\u5267\u672C\u603B\u4EBA\u6570",
                 value: this.state.playInfo.play_headcount,
                 onChange: this.handleChange.bind(this, 'playInfo_play_headcount'),
                 className: "storeInfo-input-css",
@@ -3074,7 +3170,9 @@ var Formpage = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* Switch */ "n"], {
                 id: "antigender",
                 className: "switch-info",
-                color: "#FCA62FFF"
+                color: "#FCA62FFF",
+                checked: this.state.playInfo.play_antigender,
+                onChange: this.handleChange.bind(this, 'playInfo_play_antigender')
               })]
             }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_19__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
               style: "height:300rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;",
@@ -3095,8 +3193,8 @@ var Formpage = /*#__PURE__*/function (_Component) {
                 type: "primary",
                 circle: "true",
                 className: "confirm-button",
-                onClick: this.handleNextStep.bind(this),
-                children: "\u4E0B\u4E00\u6B65"
+                onClick: this.handleUploadPlay.bind(this),
+                children: "\u4E0A\u4F20\u5267\u672C"
               })
             })]
           }));

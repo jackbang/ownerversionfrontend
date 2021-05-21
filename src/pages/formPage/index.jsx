@@ -15,7 +15,7 @@ import bk from '../../img/image-13.png'
 import mapIcon from '../../img/mapIcon.svg'
 import confirmIcon from '../../img/confirmIcon.svg'
 
-import {test_send_sms} from '../../service/api'
+import {test_send_sms, test_upload_play} from '../../service/api'
 import { base, map_KEY } from '../../service/config'
 import {encrypt} from '../../utils/aes'
 
@@ -243,9 +243,20 @@ export default class Formpage extends Component {
       })
     } else if (type == 'playInfo_play_intro') {
       var temp = value;
-      //temp = temp.split('/n').join('\n');
-      console.log(temp)
-      console.log('1\n2')
+      temp = temp.split('/n').join('\n');
+      this.state.playInfo.play_intro = temp;
+    } else if (type == 'playInfo_play_name') {
+      this.state.playInfo.play_name = value;
+    } else if (type == 'playInfo_play_headcount') {
+      this.state.playInfo.play_headcount = Number(value);
+    } else if (type == 'playInfo_play_male_num') {
+      this.state.playInfo.play_male_num = Number(value);
+    } else if (type == 'playInfo_play_female_num') {
+      this.state.playInfo.play_female_num = Number(value);
+    } else if (type == 'playPrice') {
+      this.state.playPrice = Number(value);
+    } else if (type == 'playInfo_play_antigender') {
+      this.state.playInfo.play_antigender = value.detail.value;
     }
   return value
   }
@@ -381,7 +392,7 @@ export default class Formpage extends Component {
     
     
     console.log('focus: '+this.state.validate_code_focus)
-   }
+  }
 
   handleEmpty() { }
 
@@ -456,6 +467,85 @@ export default class Formpage extends Component {
     Taro.setStorage({key:'permission', data:1});
     Taro.removeStorage({key:'adminStoreInfo'});
     Taro.navigateTo({url:'../storeMainPage/storeMainPage'});
+  }
+
+  handleUploadPlay () {
+    console.log('upload play')
+    
+    /*
+    var spark = new SparkMD5()
+    var ClientImgMD5, ServerImgMD5;
+    var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].url, 'binary');
+    spark.appendBinary(imgFile);
+    ClientImgMD5 = spark.end();
+
+    spark = new SparkMD5()
+    imgFile = wx.getFileSystemManager().readFileSync(base+this.state.playInfo.play_img, 'binary');
+    spark.appendBinary(imgFile);
+    ServerImgMD5 = spark.end();
+    */
+    if (this.state.imgFile[0].url == base+this.state.playInfo.play_img){
+      console.log('the imgs are same')
+      let temp_play = Taro.getStorageSync(`play_id_${this.state.playInfo.play_id}`)
+      console.log(temp_play)
+      console.log(this.state.playInfo)
+      var ClientPlayMD5 = SparkMD5.hash(JSON.stringify(this.state.playInfo));
+      var ServerPlayMD5 = SparkMD5.hash(JSON.stringify(temp_play));
+      if (ClientPlayMD5 == ServerPlayMD5) {
+        console.log('nothing modified')
+      } else {
+        console.log(ClientPlayMD5)
+        console.log(ServerPlayMD5)
+        let upload_data = {
+          adminId: this.state.adminInfo.adminId,
+          sessionId: this.state.adminInfo.sessionId,
+          store_id: this.state.storeInfo.store_id,
+          play_info: this.state.playInfo,
+          price: this.state.playPrice,
+          appId: wx.getAccountInfoSync().miniProgram.appId,
+          token: (dayjs().unix() + 1000 ) * 2
+        }
+
+        let _this = this;
+        test_upload_play(upload_data).then(function(res){
+          console.log(res.data)
+          if (res.data.code == 1) {
+            Taro.removeStorage({key:`play_id_${_this.state.playInfo.play_id}`})
+            _this.setState({
+              playInfo:res.data.data
+            })
+          }
+        })
+      }
+    } else {
+      console.log('the imgs are not same')
+    }
+    
+    /*
+    Taro.uploadFile({
+      url: base+'/test/uploadPlay', //仅为示例，非真实的接口地址
+      filePath: this.state.imgFile[0].file.path,
+      name: 'file',
+      formData: {
+        'imgMD5': imgMD5,
+        'adminId': this.state.adminInfo.adminId,
+        'sessionId': this.state.adminInfo.sessionId,
+        'appId': wx.getAccountInfoSync().miniProgram.appId,
+        'token': (sendTime + 1000 ) * 2
+      },
+      success (res){
+        const receiveData = JSON.parse(res.data);
+        console.log(receiveData)
+        _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+        _this.state.storeInfo = receiveData.data.storeInfo;
+        Taro.setStorage({key:'store_info', data:_this.state.storeInfo});
+        Taro.setStorage({key:'admin_info', data:_this.state.adminInfo});
+        Taro.setStorage({key:'permission', data:1});
+        _this.setState({
+          pageKind:2
+        })
+      }
+    })*/
   }
 
   render () {
@@ -841,7 +931,7 @@ export default class Formpage extends Component {
                 title=''
                 type='number'
                 placeholderStyle='font-size:13px;'
-                placeholder='请填写剧本名称'
+                placeholder='请输入剧本总人数'
                 value={this.state.playInfo.play_headcount}
                 onChange={this.handleChange.bind(this, 'playInfo_play_headcount')}
                 className='storeInfo-input-css'
@@ -899,7 +989,13 @@ export default class Formpage extends Component {
                 <text style='font-size:15px;width:400rpx;'>建议不可反串</text>
                 <text style='font-size:11px;width:400rpx;color:#777777;'>开启后玩家收到"不建议反串"提醒</text>
               </View>
-              <Switch id='antigender' className='switch-info' color='#FCA62FFF' />
+              <Switch 
+                id='antigender' 
+                className='switch-info' 
+                color='#FCA62FFF' 
+                checked={this.state.playInfo.play_antigender} 
+                onChange={this.handleChange.bind(this, 'playInfo_play_antigender')} 
+              />
             </View>
 
             <View style='height:300rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
@@ -917,7 +1013,7 @@ export default class Formpage extends Component {
             
   
   
-            <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.handleNextStep.bind(this)}>下一步</AtButton></View>
+            <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.handleUploadPlay.bind(this)}>上传剧本</AtButton></View>
           </View>
         )
       } else {

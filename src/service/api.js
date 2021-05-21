@@ -31,3 +31,8 @@ export const test_delete_plays_search = (body) => {
     let url = `/test/store/delete`
     return request.get(url, body)
 }
+
+export const test_upload_play = (play_data) => {
+    let url = '/test/uploadPlay'
+    return request.post(url, play_data, 'application/json')
+}
