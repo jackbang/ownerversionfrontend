@@ -140,8 +140,29 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
       this.searchTotalPlays();
     }
   }, {
-    key: "handleCreateQueue",
-    value: function handleCreateQueue() {}
+    key: "handleAddPlayToStore",
+    value: function handleAddPlayToStore(id) {
+      console.log("Add ".concat(id, " to store"));
+      var uploadData = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        play_id: id,
+        store_id: this.state.storeInfo.store_id,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs__WEBPACK_IMPORTED_MODULE_10___default()().unix() + 1000) * 2
+      };
+
+      var _this = this;
+
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_add_play */ "a"])(uploadData).then(function (res) {
+        console.log(res.data);
+        _this.state.adminInfo.sessionId = res.data.data.sessionId;
+        _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+          key: "admin_info",
+          data: _this.state.adminInfo
+        });
+      });
+    }
   }, {
     key: "onScrollToUpper",
     value: function onScrollToUpper() {} // or 使用箭头函数
@@ -213,7 +234,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
 
         var _this = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_total_plays_search */ "e"])(cert_data, "title=".concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_total_plays_search */ "j"])(cert_data, "title=".concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
           console.log(res.data);
 
           _this.setState({
@@ -232,7 +253,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
 
         var _this3 = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_store_plays_search */ "d"])(cert_data, "store_id=".concat(store_id, "&title=").concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_store_plays_search */ "i"])(cert_data, "store_id=".concat(store_id, "&title=").concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
           console.log(res.data);
 
           _this3.setState({
@@ -248,6 +269,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
       if (this.state.current == 0) {
         this.state.totalStatus.page = 1;
         this.setState({
+          showPop: 0,
           listLoading: true,
           totalPlays: []
         });
@@ -255,6 +277,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
       } else {
         this.state.storeStatus.page = 1;
         this.setState({
+          showPop: 0,
           listLoading: true,
           storePlays: []
         });
@@ -337,7 +360,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
               appId: wx.getAccountInfoSync().miniProgram.appId,
               token: (dayjs__WEBPACK_IMPORTED_MODULE_10___default()().unix() + 1000) * 2
             };
-            Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_delete_plays_search */ "a"])(uploadData).then(function (res) {
+            Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_delete_plays_search */ "b"])(uploadData).then(function (res) {
               console.log(res.data);
 
               if (res.data.code == 1) {
@@ -495,7 +518,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
                       type: "primary",
                       circle: "true",
                       className: "join-button",
-                      onClick: _this4.handleCreateQueue.bind(_this4),
+                      onClick: _this4.handleAddPlayToStore.bind(_this4, item.play_id),
                       children: "\u6DFB\u52A0"
                     })
                   })]

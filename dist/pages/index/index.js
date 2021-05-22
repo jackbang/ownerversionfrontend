@@ -93,8 +93,10 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 /* harmony import */ var _img_image_13_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/image-13.png */ "./src/img/image-13.png");
 /* harmony import */ var _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_img_image_13_png__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _service_api__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../service/api */ "./src/service/api.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/_react@17.0.2@react/cjs/react-jsx-runtime.production.min.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _service_config__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../service/config */ "./src/service/config.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/_react@17.0.2@react/cjs/react-jsx-runtime.production.min.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__);
+
 
 
 
@@ -119,25 +121,32 @@ var Index = /*#__PURE__*/function (_Component) {
   var _super = Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Index);
 
   function Index() {
-    var _this;
+    var _this2;
 
     Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(this, Index);
 
-    _this = _super.apply(this, arguments);
-    _this.state = {
+    _this2 = _super.apply(this, arguments);
+    _this2.state = {
       adminInfo: {},
+      pageKind: 0,
+      //0 login, 1 phone number input, 2 phone number valid, 3 select store
+      validate_code: ['', '', '', '', '', ''],
+      validate_code_focus: 9,
+      server_validate_code: '111111',
+      countDownStart: 59,
+      countDownNum: 0,
+      storeList: [],
+      selectStoreId: 0,
+      showInput: false,
       isLogin: false,
       infoLoading: true
     };
-    return _this;
+    return _this2;
   }
 
   Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Index, [{
     key: "componentWillMount",
     value: function componentWillMount() {}
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {}
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {}
@@ -150,10 +159,35 @@ var Index = /*#__PURE__*/function (_Component) {
     key: "componentDidHide",
     value: function componentDidHide() {}
   }, {
+    key: "getStoreList",
+    value: function getStoreList(that) {
+      var upload_data = {
+        adminId: that.state.adminInfo.adminId,
+        sessionId: that.state.adminInfo.sessionId,
+        phone: that.state.adminInfo.phoneNumber,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() + 1000) * 2
+      };
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_get_store_list */ "f"])(upload_data).then(function (res) {
+        console.log(res.data.data);
+        that.state.storeList = res.data.data;
+
+        if (that.state.storeList.length == 0) {
+          _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
+            url: '../formPage/index?page=0'
+          });
+        } else {
+          that.setState({
+            pageKind: 3
+          });
+        }
+      });
+    }
+  }, {
     key: "handleLogin",
     value: function () {
       var _handleLogin = Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this2 = this;
+        var _this3 = this;
 
         var code, adminInfo;
         return C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -182,27 +216,30 @@ var Index = /*#__PURE__*/function (_Component) {
                         }
                       };
                       console.log(adminInfo);
-                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_wechat_login */ "g"])(adminInfo).then(function (result) {
+                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_wechat_login */ "l"])(adminInfo).then(function (result) {
                         console.log(result.data);
-                        _this2.state.adminInfo = adminInfo.adminInfo;
-                        _this2.state.adminInfo['sessionId'] = result.data.data.sessionId;
-                        _this2.state.adminInfo['adminId'] = result.data.data.adminId;
+                        _this3.state.adminInfo = adminInfo.adminInfo;
+                        _this3.state.adminInfo['sessionId'] = result.data.data.sessionId;
+                        _this3.state.adminInfo['adminId'] = result.data.data.adminId;
                         _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
                           key: "admin_info",
-                          data: _this2.state.adminInfo,
-                          success: _this2.setState({
-                            isLogin: true
+                          data: _this3.state.adminInfo,
+                          success: _this3.setState({
+                            isLogin: true,
+                            pageKind: 1
                           })
                         });
-
-                        if (result.data.data.newAdmin == 1) {
-                          console.log('new admin');
-                          _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
-                            url: '../formPage/index?page=0'
-                          });
+                        /*
+                        if (result.data.data.newAdmin==1) { 
+                          console.log('new admin')
+                          Taro.navigateTo({url: '../formPage/index?page=0'})
                         } else {
-                          console.log('not the new admin');
+                          console.log('not the new admin')
+                          this.setState({
+                            pageKind: 1
+                          })
                         }
+                        */
                       });
                     }
                   }
@@ -233,32 +270,443 @@ var Index = /*#__PURE__*/function (_Component) {
       return handleLogin;
     }()
   }, {
+    key: "showPhoneInput",
+    value: function showPhoneInput() {}
+  }, {
+    key: "getPhoneNumber",
+    value: function () {
+      var _getPhoneNumber = Object(C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
+        var _this;
+
+        return C_Users_JackBang_Desktop_WeChatProject_FrontEnd_adminFrontEnd_adminVersion_node_modules_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (e.detail.iv) {
+                  // 同意获取手机号
+                  _this = this;
+                  wx.checkSession({
+                    success: function success() {
+                      console.log("登录未过期");
+                      var phoneNumInfo = {
+                        encryptedData: e.detail.encryptedData,
+                        iv: e.detail.iv,
+                        user_id: _this.state.adminInfo.adminId,
+                        sessionId: _this.state.adminInfo.sessionId,
+                        watermark: {
+                          appId: wx.getAccountInfoSync().miniProgram.appId,
+                          token: (dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() + 1000) * 2
+                        }
+                      };
+                      console.log(phoneNumInfo);
+                      var temp_storeList;
+                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_get_phonenum_info */ "c"])(phoneNumInfo).then(function (res) {
+                        console.log(res.data.data);
+                        _this.state.adminInfo['phoneNumber'] = res.data.data.phoneNumber;
+                        _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+                          key: 'admin_info',
+                          data: _this.state.adminInfo
+                        });
+                        console.log(_this.state);
+
+                        _this.getStoreList(_this);
+                      });
+                    },
+                    fail: function fail() {
+                      console.log('验证过期，请重新登录');
+
+                      _this.setState({
+                        pageKind: 0
+                      }); //请重新登录
+
+                    }
+                  });
+                } else {
+                  this.state.adminInfo['phoneNumber'] = '';
+                  this.setState({
+                    pageKind: 2
+                  });
+                }
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getPhoneNumber(_x) {
+        return _getPhoneNumber.apply(this, arguments);
+      }
+
+      return getPhoneNumber;
+    }()
+  }, {
+    key: "handleCountDoun",
+    value: function handleCountDoun(end) {
+      var _this4 = this;
+
+      this.timer = setInterval(function () {
+        if (end - dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() >= 0) {
+          _this4.setState({
+            countDownNum: end - dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix()
+          });
+        } else {
+          clearInterval(_this4.timer);
+        }
+      }, 500);
+    }
+  }, {
+    key: "handleSendSMS",
+    value: function handleSendSMS() {
+      this.setState({
+        countDownNum: 60
+      });
+      this.handleCountDoun(dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() + 60);
+      var admin_data = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        phone: this.state.adminInfo.phoneNumber,
+        watermark: {
+          appId: wx.getAccountInfoSync().miniProgram.appId,
+          token: (dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() + 1000) * 2
+        }
+      };
+      console.log(admin_data);
+
+      if (admin_data.phone.length !== 11) {
+        console.log('phone num length is not 11');
+      } else {
+        var _this = this;
+
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_send_sms */ "h"])(admin_data).then(function (res) {
+          var validCode = res.data.data.token - 1000 >> 1;
+          _this.state.server_validate_code = validCode;
+          _this.state.adminInfo.sessionId = res.data.data.sessionId;
+          _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+            key: 'admin_info',
+            data: _this.state.adminInfo
+          });
+
+          _this.setState({
+            pageKind: 3
+          });
+        });
+        console.log(this.state.server_validate_code);
+      }
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(idx, value) {
+      console.log(value.detail.value);
+      console.log('state: ' + this.state.validate_code);
+
+      if (idx == 0 & value.detail.value.length == 6) {
+        this.state.validate_code[0] = value.detail.value[0];
+        this.state.validate_code[1] = value.detail.value[1];
+        this.state.validate_code[2] = value.detail.value[2];
+        this.state.validate_code[3] = value.detail.value[3];
+        this.state.validate_code[4] = value.detail.value[4];
+        this.state.validate_code[5] = value.detail.value[5];
+        this.setState({
+          validate_code_focus: idx + 5
+        });
+      } else {
+        this.state.validate_code[idx] = value.detail.value[0];
+
+        if (value.detail.value.length == 1) {
+          this.setState({
+            validate_code_focus: idx + 1
+          });
+        } else {
+          this.setState({
+            validate_code_focus: idx - 1
+          });
+        }
+      }
+
+      var input_code = this.state.validate_code[0] * 100000 + this.state.validate_code[1] * 10000 + this.state.validate_code[2] * 1000 + this.state.validate_code[3] * 100 + this.state.validate_code[4] * 10 + this.state.validate_code[5] * 1;
+
+      if (input_code == this.state.server_validate_code) {
+        console.log(this.state);
+        _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+          key: 'admin_info',
+          data: this.state.adminInfo
+        });
+        this.getStoreList(this);
+      }
+
+      console.log('focus: ' + this.state.validate_code_focus);
+    }
+  }, {
+    key: "handleInputPhone",
+    value: function handleInputPhone(value) {
+      this.state.adminInfo.phoneNumber = value.detail.value;
+    }
+  }, {
+    key: "handleEmpty",
+    value: function handleEmpty() {}
+  }, {
+    key: "handleClickStoreTab",
+    value: function handleClickStoreTab(id) {
+      this.setState({
+        selectStoreId: id
+      });
+    }
+  }, {
+    key: "openStore",
+    value: function openStore() {
+      console.log('open the store');
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
-        className: "index",
-        style: {
-          height: "100vh",
-          backgroundImage: "url(".concat(_img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a, ")"),
-          backgroundSize: "auto 100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-end"
-        },
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])("image", {
-          src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a,
-          style: "width:100vw;height:100vh;position:absolute;"
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_9__[/* AtButton */ "b"], {
-          type: "primary",
-          circle: "true",
-          className: "join-platform-button",
-          onClick: this.handleLogin.bind(this),
-          children: "\u5E97\u94FA\u5165\u9A7B"
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
-          style: "padding-bottom: 45%;"
-        })]
-      });
+      var _this5 = this;
+
+      var formContent = [];
+
+      if (this.state.pageKind == 0) {
+        return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+          className: "index",
+          style: {
+            height: "100vh",
+            backgroundSize: "auto 100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end"
+          },
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("image", {
+            src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+            style: "width:100vw;height:100vh;position:absolute;"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_9__[/* AtButton */ "b"], {
+            type: "primary",
+            circle: "true",
+            className: "join-platform-button",
+            onClick: this.handleLogin.bind(this),
+            children: "\u767B\u5F55"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "padding-bottom: 45%;"
+          })]
+        });
+      } else if (this.state.pageKind == 1) {
+        return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+          className: "index",
+          style: {
+            height: "100vh",
+            backgroundSize: "auto 100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end"
+          },
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("image", {
+            src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+            style: "width:100vw;height:100vh;position:absolute;"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_9__[/* AtButton */ "b"], {
+            type: "primary",
+            circle: "true",
+            className: "join-platform-button",
+            onClick: this.showPhoneInput.bind(this),
+            openType: "getPhoneNumber",
+            onGetPhoneNumber: this.getPhoneNumber.bind(this),
+            children: "\u83B7\u53D6\u624B\u673A\u53F7"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "padding-bottom: 45%;"
+          })]
+        });
+      } else if (this.state.pageKind == 2) {
+        var reSendSMS = [];
+        console.log(this.state.countDownNum);
+        reSendSMS.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
+          style: {
+            fontSize: "16px",
+            color: this.state.countDownNum <= 0 ? '#5394ff' : '#A5A5A5',
+            marginTop: "5rpx",
+            position: "absolute",
+            right: "60rpx"
+          },
+          onClick: this.state.countDownNum <= 0 ? this.handleSendSMS.bind(this) : this.handleEmpty,
+          children: this.state.countDownNum <= 0 ? '发送验证码' : this.state.countDownNum + 's'
+        }));
+        formContent.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+          style: "height:auto;width:100%;background:#FEFFFF80;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;border-radius:20px;",
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "height:20rpx;"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
+            style: "font-size:20px;font-weight:530;margin-left:5%;margin-bottom:10rpx;",
+            children: "\u77ED\u4FE1\u9A8C\u8BC1"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "width:100%;margin-left:5%;display:flex;align-items:center;justify-content:flex-start;",
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.adminInfo.phoneNumber,
+              onInput: this.handleInputPhone.bind(this),
+              type: "number",
+              placeholder: "\u8BF7\u8F93\u5165\u624B\u673A\u53F7",
+              maxlength: "11",
+              style: "width:400rpx;height:80rpx;border:1px solid #979797;border-radius:40px;display:flex;justify-content:center;align-items:center;text-align:flex-start;",
+              focus: this.state.validate_code_focus == 0 ? true : false
+            }), reSendSMS]
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "height:75rpx;width:90%;margin-left:5%;margin-top:30rpx;border: 0px solid #97979755;display:flex;align-items:center;justify-content:flex-start;padding-bottom:30rpx",
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.validate_code[0],
+              onInput: this.handleInput.bind(this, 0),
+              type: "number",
+              placeholder: "",
+              maxlength: "6",
+              style: "width:80rpx;height:80rpx;border:1px solid #979797;border-radius:3px;display:flex;justify-content:center;align-items:center;text-align:center;",
+              focus: this.state.validate_code_focus == 0 ? true : false
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:1px;width:40rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.validate_code[1],
+              onInput: this.handleInput.bind(this, 1),
+              type: "number",
+              placeholder: "",
+              maxlength: "1",
+              style: "width:80rpx;height:80rpx;border:1px solid #979797;border-radius:3px;display:flex;justify-content:center;align-items:center;text-align:center;",
+              focus: this.state.validate_code_focus == 1 ? true : false
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:1px;width:40rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.validate_code[2],
+              onInput: this.handleInput.bind(this, 2),
+              type: "number",
+              placeholder: "",
+              maxlength: "1",
+              style: "width:80rpx;height:80rpx;border:1px solid #979797;border-radius:3px;display:flex;justify-content:center;align-items:center;text-align:center;",
+              focus: this.state.validate_code_focus == 2 ? true : false
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:1px;width:40rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.validate_code[3],
+              onInput: this.handleInput.bind(this, 3),
+              type: "number",
+              placeholder: "",
+              maxlength: "1",
+              style: "width:80rpx;height:80rpx;border:1px solid #979797;border-radius:3px;display:flex;justify-content:center;align-items:center;text-align:center;",
+              focus: this.state.validate_code_focus == 3 ? true : false
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:1px;width:40rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.validate_code[4],
+              onInput: this.handleInput.bind(this, 4),
+              type: "number",
+              placeholder: "",
+              maxlength: "1",
+              style: "width:80rpx;height:80rpx;border:1px solid #979797;border-radius:3px;display:flex;justify-content:center;align-items:center;text-align:center;",
+              focus: this.state.validate_code_focus == 4 ? true : false
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:1px;width:40rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Input */ "d"], {
+              value: this.state.validate_code[5],
+              onInput: this.handleInput.bind(this, 5),
+              type: "number",
+              placeholder: "",
+              maxlength: "1",
+              style: "width:80rpx;height:80rpx;border:1px solid #979797;border-radius:3px;display:flex;justify-content:center;align-items:center;text-align:center;",
+              focus: this.state.validate_code_focus == 5 ? true : false
+            })]
+          })]
+        }));
+        return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+          className: "index",
+          style: {
+            height: "100vh",
+            backgroundSize: "auto 100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end"
+          },
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("image", {
+            src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+            style: "width:100vw;height:100vh;position:absolute;z-index:-1;"
+          }), formContent, /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "padding-bottom: 45%;"
+          })]
+        });
+      } else if (this.state.pageKind == 3) {
+        var storeTabs = [];
+        this.state.storeList.map(function (item) {
+          storeTabs.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: {
+              height: "100rpx",
+              width: "500rpx",
+              marginLeft: "50rpx",
+              border: "1px solid ".concat(_this5.state.selectStoreId == item.adminStore_id ? '#FCA62F' : '#A5A5A5'),
+              borderRadius: "10rpx",
+              marginTop: "20rpx",
+              display: "flex"
+            },
+            onClick: _this5.handleClickStoreTab.bind(_this5, item.adminStore_id),
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("image", {
+              src: _service_config__WEBPACK_IMPORTED_MODULE_15__[/* base */ "a"] + item.store_logo,
+              style: "height:80rpx;width:80rpx;margin-left:10rpx;margin-top:10rpx;"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:100rpx;width:280rpx;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;margin-left:20rpx;",
+              children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
+                style: "font-size:14px;font-weight:530;overflow:hidden;textOverflow:ellipsis;whiteSpace:nowrap;width:280rpx;",
+                children: item.store_name
+              }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
+                style: {
+                  fontSize: "12px",
+                  color: "".concat(item.adminStore_verify == 1 ? '#A5A5A5' : '#FF0101'),
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  width: "280rpx"
+                },
+                children: item.adminStore_verify == 1 ? item.store_position : '未验证'
+              })]
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "margin-left:50rpx;margin-top:25rpx;",
+              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_9__[/* AtIcon */ "c"], {
+                value: "check-circle",
+                size: "20",
+                color: _this5.state.selectStoreId == item.adminStore_id ? '#FCA62F' : '#A5A5A5'
+              })
+            })]
+          }));
+        });
+        return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+          className: "index",
+          style: {
+            height: "100vh",
+            backgroundSize: "auto 100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end"
+          },
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("image", {
+            src: _img_image_13_png__WEBPACK_IMPORTED_MODULE_13___default.a,
+            style: "width:100vw;height:100vh;position:absolute;filter:brightness(50%);z-index:-1;"
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "height:60vh;width:80%;border-radius:20px;background:#FEFFFF;display:flex;flex-direction:column;",
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
+              style: "font-size:20px;font-weight:550;margin-left:50rpx;margin-top:50rpx;margin-bottom:30rpx;",
+              children: "\u60A8\u7684\u5E97\u94FA"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+              style: "height:44vh;",
+              children: storeTabs
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_9__[/* AtButton */ "b"], {
+              type: "primary",
+              circle: "true",
+              className: "open-store-button",
+              onClick: this.openStore.bind(this),
+              children: "\u8FDB\u5165\u5E97\u94FA"
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
+              style: "font-size:14px;color:#FCA62F;width:100%;text-align:center;text-decoration:underline;",
+              children: "\u5165\u9A7B\u5206\u5E97"
+            })]
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
+            style: "height:20vh;"
+          })]
+        });
+      }
     }
   }]);
 

@@ -97,6 +97,10 @@ export default class Storemainpage extends Component {
     })
   }
 
+  handleClickStore() {
+    Taro.navigateTo({url: '../formPage/index?page=4'})
+  }
+
   onScrollToUpper() {}
 
   // or 使用箭头函数
@@ -321,7 +325,7 @@ export default class Storemainpage extends Component {
             </View>
   
             <View style={{height:`180rpx`, width:`660rpx`, display:`flex`, alignItems:`center`, justifyContent:`flex-start`, marginTop:`20rpx`}}>
-              <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;'>
+              <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;' onClick={this.handleClickStore.bind(this)}>
                 <View style='background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;'>
                   <image src={storeIcon} style='height:30px;width:30px;'></image>
                 </View>

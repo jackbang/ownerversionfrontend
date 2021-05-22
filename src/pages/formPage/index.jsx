@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { Component } from 'react'
 import { View, Input, Switch} from '@tarojs/components'
-import { AtButton, AtNavBar, AtInput, AtImagePicker, AtActivityIndicator, AtTextarea } from 'taro-ui'
+import { AtButton, AtNavBar, AtInput, AtImagePicker, AtActivityIndicator, AtTextarea, AtIcon } from 'taro-ui'
 import './index.scss'
 
 import dayjs from 'dayjs'
@@ -14,8 +14,9 @@ import CryptoJS from 'crypto-js'
 import bk from '../../img/image-13.png'
 import mapIcon from '../../img/mapIcon.svg'
 import confirmIcon from '../../img/confirmIcon.svg'
+import editorIcon from '../../img/editorIcon.svg'
 
-import {test_send_sms, test_upload_play} from '../../service/api'
+import {test_send_sms, test_upload_play, test_get_storeAdmin, test_save_storeInfo} from '../../service/api'
 import { base, map_KEY } from '../../service/config'
 import {encrypt} from '../../utils/aes'
 
@@ -33,7 +34,12 @@ export default class Formpage extends Component {
         phone:''
       },
       storeInfo: {
+        store_id: 0,
         store_name: '',
+        store_logo: '',
+        store_status: '',
+        store_info: '',
+        store_deposit: '',
         store_position: '',
         store_address: '',
         store_longitude: 0,
@@ -42,6 +48,7 @@ export default class Formpage extends Component {
         store_tel2: ''
       },
       adminInfo:{},
+      adminList:[],
       playInfo:{},
       playPrice:0,
       validate_code: ['','','','','',''],
@@ -49,8 +56,9 @@ export default class Formpage extends Component {
       server_validate_code:'111111',
       countDownStart: 59,
       countDownNum: 0,
-      pageKind:99,
+      pageKind:4,
       imgFile:[],
+      useLocation: false,
       imgUploadIcon: true,
       infoLoading: true
     }
@@ -61,6 +69,7 @@ export default class Formpage extends Component {
     let currentPage = pages[pages.length-1];
     let pages_option = currentPage.options;
     let pageKind = pages_option.page;
+    console.log(pageKind)
     if (pageKind == "0"){
       // 姓名 身份证号 手机号
       this.state.adminInfo = Taro.getStorageSync('admin_info');
@@ -94,11 +103,54 @@ export default class Formpage extends Component {
         imgUploadIcon: false,
         infoLoading: false
       })
+    } else if (pageKind == "4") {
+      // 店铺管理
+      console.log("店铺管理页面")
+      this.state.adminInfo = Taro.getStorageSync(`admin_info`);
+      this.state.storeInfo = Taro.getStorageSync(`store_info`);
+      this.state.permission = Taro.getStorageSync(`permission`);
+      this.setState({
+        pageKind:pageKind,
+        imgFile: [{url: base+this.state.storeInfo.store_logo}],
+        imgUploadIcon: false
+      })
+      let uploadData = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        store_id: this.state.storeInfo.store_id,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs().unix() + 1000)*2
+      }
+      let _this = this;
+      test_get_storeAdmin(uploadData).then(function(res) {
+        console.log(res.data)
+        Taro.setStorage({
+          key: "store_info",
+          data: res.data.data.storeInfo
+        })
+        _this.setState({
+          adminList: res.data.data.adminList,
+          storeInfo: res.data.data.storeInfo,
+          imgFile: [{url: base+res.data.data.storeInfo.store_logo}],
+          infoLoading: false
+        })
+      })
+    } else if (pageKind == "5") {
+      // 编辑店铺信息页面
+      console.log("编辑店铺信息页面")
+      this.state.storeInfo = Taro.getStorageSync(`store_info`);
+      this.setState({
+        pageKind:pageKind,
+        imgFile: [{url: base+this.state.storeInfo.store_logo}],
+        adminInfo:Taro.getStorageSync(`admin_info`),
+        permission:Taro.getStorageSync(`permission`),
+        imgUploadIcon: false
+      })
+    } else if (pageKind == "6") {
+      // 添加管理员页面
+    } else if (pageKind == "7") {
+      // 编辑管理员信息页面
     }
-  }
-
-  componentDidMount () {
-    
   }
 
   componentWillUnmount () {
@@ -106,18 +158,56 @@ export default class Formpage extends Component {
   }
 
   componentDidShow () { 
-    const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
-    if (location) {
+    if (this.state.useLocation == true) {
+      console.log('use location')
+      const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
+      if (location) {
+        this.setState({
+          storeInfo: {
+            store_name: this.state.storeInfo.store_name,
+            store_position: location.name,
+            store_address: location.address,
+            store_longitude: location.longitude,
+            store_latitude: location.latitude,
+            store_tel1: this.state.storeInfo.store_tel1,
+            store_tel2: this.state.storeInfo.store_tel2
+          },
+          useLocation: false
+        })
+      }
+    }
+    
+
+    if (this.state.pageKind & (this.state.pageKind  == "4")) {
+      // 店铺管理
+      console.log("店铺管理页面")
+      this.state.adminInfo = Taro.getStorageSync(`admin_info`);
+      this.state.storeInfo = Taro.getStorageSync(`store_info`);
+      this.state.permission = Taro.getStorageSync(`permission`);
       this.setState({
-        storeInfo: {
-          store_name: this.state.storeInfo.store_name,
-          store_position: location.name,
-          store_address: location.address,
-          store_longitude: location.longitude,
-          store_latitude: location.latitude,
-          store_tel1: this.state.storeInfo.store_tel1,
-          store_tel2: this.state.storeInfo.store_tel2
-        }
+        pageKind:pageKind,
+        imgFile: [{url: base+this.state.storeInfo.store_logo}],
+        imgUploadIcon: false
+      })
+      let uploadData = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        store_id: this.state.storeInfo.store_id,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs().unix() + 1000)*2
+      }
+      let _this = this;
+      test_get_storeAdmin(uploadData).then(function(res) {
+        console.log(res.data)
+        Taro.setStorage({
+          key: "store_info",
+          data: res.data.data.storeInfo
+        })
+        _this.setState({
+          adminList: res.data.data.adminList,
+          storeInfo: res.data.data.storeInfo,
+          infoLoading: false
+        })
       })
     }
   }
@@ -173,73 +263,39 @@ export default class Formpage extends Component {
 
   handleChange (type, value) {
     if (type == 'adminStoreInfo_name') {
+      this.state.adminStoreInfo.name = value;
       this.setState({
-        adminStoreInfo:{
-          name: value, 
-          idCard: this.state.adminStoreInfo.idCard, 
-          phone: this.state.adminStoreInfo.phone}
+        adminStoreInfo:this.state.adminStoreInfo
       })
     } else if (type == 'adminStoreInfo_idCard') {
+      this.state.adminStoreInfo.idCard = value;
       this.setState({
-        adminStoreInfo:{
-          name: this.state.adminStoreInfo.name, 
-          idCard: value, 
-          phone: this.state.adminStoreInfo.phone}
+        adminStoreInfo:this.state.adminStoreInfo
       })
     } else if (type == 'adminStoreInfo_phone') {
+      this.state.adminStoreInfo.phone = value;
       this.setState({
-        adminStoreInfo:{
-          name: this.state.adminStoreInfo.name, 
-          idCard: this.state.adminStoreInfo.idCard, 
-          phone: value}
+        adminStoreInfo:this.state.adminStoreInfo
       })
     } else if (type == 'storeInfo_store_name') {
+      this.state.storeInfo.store_name = value;
       this.setState({
-        storeInfo: {
-          store_name: value,
-          store_position: this.state.storeInfo.store_position,
-          store_address: this.state.storeInfo.store_address,
-          store_longitude: this.state.storeInfo.store_longitude,
-          store_latitude: this.state.storeInfo.store_latitude,
-          store_tel1: this.state.storeInfo.store_tel1,
-          store_tel2: this.state.storeInfo.store_tel2
-        }
+        storeInfo: this.state.storeInfo
       })
     } else if (type == 'storeInfo_store_address') {
+      this.state.storeInfo.store_address = value;
       this.setState({
-        storeInfo: {
-          store_name: this.state.storeInfo.store_name,
-          store_position: this.state.storeInfo.store_position,
-          store_address: value,
-          store_longitude: this.state.storeInfo.store_longitude,
-          store_latitude: this.state.storeInfo.store_latitude,
-          store_tel1: this.state.storeInfo.store_tel1,
-          store_tel2: this.state.storeInfo.store_tel2
-        }
+        storeInfo: this.state.storeInfo
       })
     } else if (type == 'storeInfo_store_tel1') {
+      this.state.storeInfo.store_tel1 = value;
       this.setState({
-        storeInfo: {
-          store_name: this.state.storeInfo.store_name,
-          store_position: this.state.storeInfo.store_position,
-          store_address: this.state.storeInfo.store_address,
-          store_longitude: this.state.storeInfo.store_longitude,
-          store_latitude: this.state.storeInfo.store_latitude,
-          store_tel1: value,
-          store_tel2: this.state.storeInfo.store_tel2
-        }
+        storeInfo: this.state.storeInfo
       })
     } else if (type == 'storeInfo_store_tel2') {
+      this.state.storeInfo.store_tel2 = value;
       this.setState({
-        storeInfo: {
-          store_name: this.state.storeInfo.store_name,
-          store_position: this.state.storeInfo.store_position,
-          store_address: this.state.storeInfo.store_address,
-          store_longitude: this.state.storeInfo.store_longitude,
-          store_latitude: this.state.storeInfo.store_latitude,
-          store_tel1: this.state.storeInfo.store_tel1,
-          store_tel2: value
-        }
+        storeInfo: this.state.storeInfo
       })
     } else if (type == 'playInfo_play_intro') {
       var temp = value;
@@ -411,6 +467,7 @@ export default class Formpage extends Component {
   }
 
   handleSelectPos () {
+    this.state.useLocation = true;
     let _this = this;
     wx.getSetting({
       success(res) {
@@ -546,6 +603,120 @@ export default class Formpage extends Component {
         })
       }
     })*/
+  }
+
+  handleModifyStoreInfo() {
+    Taro.navigateTo({
+      url: 'index?page=5'
+    })
+  }
+
+  SaveStoreInfo() {
+    console.log(this.state.imgFile);
+    console.log(base+this.state.storeInfo.store_logo)
+    if (this.state.imgFile[0].url !== (base+this.state.storeInfo.store_logo)) {
+      if (this.state.imgFile[0].file.size > 600000) {
+        console.log("Img size is over 600KB")
+      } else if (this.state.storeInfo.store_name.length == 0) {
+        console.log("Store name length is 0")
+      } else if (this.state.storeInfo.store_latitude == 0 | this.state.storeInfo.store_longitude == 0) {
+        console.log("Store position did not set")
+      } else if (this.state.storeInfo.store_address.length == 0) {
+        console.log("Store position did not set")
+      } else if (this.state.storeInfo.store_position.length == 0) {
+        console.log("Store address did not set")
+      } else if (this.state.storeInfo.store_tel1.length <8) {
+        console.log("telephone number length is wrong")
+      } else {
+        var spark = new SparkMD5()
+        var imgMD5;
+        var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
+        spark.appendBinary(imgFile);
+        imgMD5 = spark.end();
+        
+        let _this = this;
+        Taro.uploadFile({
+          url: base+'/test/saveStoreWithImg', //仅为示例，非真实的接口地址
+          filePath: this.state.imgFile[0].file.path,
+          name: 'file',
+          formData: {
+            'store_id': this.state.storeInfo.store_id,
+            'store_name': this.state.storeInfo.store_name,
+            'store_position': this.state.storeInfo.store_position,
+            'store_address': this.state.storeInfo.store_address,
+            'store_latitude': this.state.storeInfo.store_latitude,
+            'store_longitude': this.state.storeInfo.store_longitude,
+            'store_tel': this.state.storeInfo.store_tel1,
+            'store_tel2': this.state.storeInfo.store_tel2,
+            'imgMD5': imgMD5,
+            'adminId': this.state.adminInfo.adminId,
+            'sessionId': this.state.adminInfo.sessionId,
+            'appId': wx.getAccountInfoSync().miniProgram.appId,
+            'token': (dayjs().unix() + 1000 ) * 2
+          },
+          success (res){
+            const receiveData = JSON.parse(res.data);
+            console.log(receiveData)
+            _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+            _this.state.storeInfo = receiveData.data.storeInfo;
+            Taro.setStorage({
+              key: `admin_info`,
+              data: _this.state.adminInfo
+            })
+            Taro.setStorage({
+              key: `store_info`,
+              data: _this.state.storeInfo
+            })
+            Taro.navigateBack()
+          }
+        })
+      }
+    } else {
+      console.log("the img is same")
+      if (this.state.storeInfo.store_name.length == 0) {
+        console.log("Store name length is 0")
+      } else if (this.state.storeInfo.store_latitude == 0 | this.state.storeInfo.store_longitude == 0) {
+        console.log("Store position did not set")
+      } else if (this.state.storeInfo.store_address.length == 0) {
+        console.log("Store position did not set")
+      } else if (this.state.storeInfo.store_position.length == 0) {
+        console.log("Store address did not set")
+      } else if (this.state.storeInfo.store_tel1.length <8) {
+        console.log("telephone number length is wrong")
+      } else {
+        let formData = {
+          'store_id': this.state.storeInfo.store_id,
+          'store_name': this.state.storeInfo.store_name,
+          'store_position': this.state.storeInfo.store_position,
+          'store_address': this.state.storeInfo.store_address,
+          'store_latitude': this.state.storeInfo.store_latitude,
+          'store_longitude': this.state.storeInfo.store_longitude,
+          'store_tel': this.state.storeInfo.store_tel1,
+          'store_tel2': this.state.storeInfo.store_tel2,
+          'adminId': this.state.adminInfo.adminId,
+          'sessionId': this.state.adminInfo.sessionId,
+          'appId': wx.getAccountInfoSync().miniProgram.appId,
+          'token': (dayjs().unix() + 1000 ) * 2
+        }
+        
+        let _this = this;
+
+        test_save_storeInfo(formData).then(function(res) {
+          console.log(res.data)
+          _this.state.adminInfo.sessionId = res.data.data.sessionId;
+          _this.state.storeInfo = res.data.data.storeInfo;
+          Taro.setStorage({
+            key: `admin_info`,
+            data: _this.state.adminInfo
+          })
+          Taro.setStorage({
+            key: `store_info`,
+            data: _this.state.storeInfo
+          })
+          Taro.navigateBack()
+        })
+      }
+    }
   }
 
   render () {
@@ -1024,6 +1195,265 @@ export default class Formpage extends Component {
           </View>
         )
       }
+    } else if (this.state.pageKind == "4") {
+      if (this.state.infoLoading == false){
+        formContent.push(
+          <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+            <View style='height:20rpx;'></View>
+            <View style='width:100%;'>
+              <text style='font-size:20px;font-weight:530;margin-left:5%;'>店铺信息</text>
+              <text style='font-size:13px;font-weight:530;margin-left:5%;color:#FCA62F;text-decoration:underline;margin-left:350rpx;' onClick={this.handleModifyStoreInfo.bind(this)}>修改</text>
+            </View>
+            <View style='height:150rpx;width:90%;margin-left:5.5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:70%;'>店铺头像</text>
+              <image style='height:150rpx;width:150rpx;' src={this.state.imgFile[0].url }></image>
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>店铺名称</text>
+              <AtInput
+                editable={false}
+                name='value3'
+                title=''
+                type='text'
+                placeholderStyle='font-size:13px;'
+                placeholder='需与门店名称一致'
+                value={this.state.storeInfo.store_name}
+                onChange={this.handleChange.bind(this, 'storeInfo_store_name')}
+                className='storeInfo-input-css'
+                required
+              />
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>店铺地区</text>
+              <AtInput
+                editable={false}
+                name='value4'
+                title=''
+                type='text'
+                placeholderStyle='font-size:13px;'
+                placeholder='点击图标选择地址'
+                value={this.state.storeInfo.store_position}
+                onChange={this.handleChange.bind(this, 'storeInfo_store_position')}
+                className='storeInfo-input-css'
+              />
+              <image src={mapIcon} style='height:80rpx;width:80rpx;' ></image>
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>详细门牌号</text>
+              <AtInput
+                editable={false}
+                name='value5'
+                title=''
+                type='text'
+                placeholderStyle='font-size:13px;'
+                placeholder='详细地址，例1层101室'
+                value={this.state.storeInfo.store_address}
+                onChange={this.handleChange.bind(this, 'storeInfo_store_address')}
+                className='storeInfo-input-css'
+                required
+                adjustPosition
+              />
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>客服电话1</text>
+              <AtInput
+                editable={false}
+                name='value6'
+                title=''
+                type='phone'
+                placeholderStyle='font-size:13px;'
+                placeholder='如有区号，请在区号后加“-”'
+                value={this.state.storeInfo.store_tel1}
+                onChange={this.handleChange.bind(this, 'storeInfo_store_tel1')}
+                className='storeInfo-input-css'
+                required
+                adjustPosition
+              />
+            </View>
+
+            <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:0px;display:flex;align-items:center;justify-content:flex-start;'>
+              <text style='font-size:15px;width:150rpx;'>客服电话2</text>
+              <AtInput
+                editable={false}
+                name='value7'
+                title=''
+                type='phone'
+                placeholderStyle='font-size:13px;'
+                placeholder='如有区号，请在区号后加“-”'
+                value={this.state.storeInfo.store_tel2}
+                onChange={this.handleChange.bind(this, 'storeInfo_store_tel2')}
+                className='storeInfo-input-css'
+                required
+                adjustPosition
+              />
+            </View>
+          </View>
+        )
+
+        let adminContent = [];
+
+        this.state.adminList.map((item, itemIdx)=> {
+          if (item.adminStore_permission == 1){
+            adminContent.unshift(
+              <View style='height:90rpx;width:90%;margin-left:5%;margin-top:50rpx;border: 0px solid #97979755;border-bottom-width:0px;display:flex;align-items:flex-start;;justify-content:flex-start;'>
+                <text style='font-size:13px;width:150rpx;font-weight:550;'>店长</text>
+                <View style='height:90rpx;width:400rpx;margin-left:10rpx;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
+                  <text style='font-size:13px;font-weight:530;'>{item.admin_nickName}</text>
+                  <text style='font-size:11px;color:#797979;margin-top:10rpx'>手机号 {item.adminStore_phone}</text>
+                </View>
+              </View>
+            )
+          } else {
+            adminContent.push(
+              <View style='height:90rpx;width:90%;margin-left:5%;padding-top:10rpx;border: 0px solid #97979755;border-top-width:1.5px;display:flex;align-items:flex-start;;justify-content:flex-start;'>
+                <View style='height:90rpx;width:150rpx;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
+                  <text style='font-size:13px;font-weight:550;'>管理员</text>
+                  <View style={{visibility:`${item.adminStore_verify==1? `hidden`:`visible`}`}}>
+                    <AtIcon value='alert-circle' size='12' color='#F00'></AtIcon>
+                    <text style='font-size:10px;color:#797979;'>身份待确认</text>
+                  </View>
+                </View>
+                
+                <View style='height:90rpx;width:400rpx;margin-left:10rpx;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
+                  <text style='font-size:13px;font-weight:530;'>{item.admin_nickName}</text>
+                  <text style='font-size:11px;color:#797979;margin-top:10rpx'>手机号 {item.adminStore_phone}</text>
+                </View>
+
+                <image style='height:50rpx;width:50rpx;margin-top:20rpx;' src={editorIcon}></image>
+              </View>
+            )
+          }
+        })
+
+        formContent.push(
+          <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+            <View style='height:20rpx;'></View>
+            <View style='width:100%;'>
+              <text style='font-size:20px;font-weight:530;margin-left:5%;'>店铺管理员</text>
+              <text style='font-size:13px;font-weight:530;margin-left:5%;color:#FCA62F;text-decoration:underline;margin-left:250rpx;'>添加管理员</text>
+            </View>
+            {adminContent}
+          </View>
+        )
+      } else {
+        formContent.push(
+          <View style={{height:`100vh`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-start`}}>
+            <image src={bk} style='width:100vw;height:100vh;position:absolute;size:100%;z-index:-1;'></image>
+            <View><AtActivityIndicator mode='center' size={64} content='Loading...' className='load'></AtActivityIndicator></View>
+          </View>
+        )
+      }
+    } else if (this.state.pageKind == "5") {
+      // 编辑店铺信息
+      formContent.push(
+        <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+          <View style='height:20rpx;'></View>
+          <text style='font-size:20px;font-weight:530;margin-left:5%;'>店铺信息</text>
+          <View style='height:150rpx;width:90%;margin-left:5.5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:70%;'>店铺头像</text>
+            <View style='height:100%;width:150rpx;'>
+              <AtImagePicker
+                length={1}
+                files={this.state.imgFile}
+                onChange={this.onImgChange.bind(this)}
+                mode='scaleToFill'
+                count={1}
+                showAddBtn={this.state.imgUploadIcon}
+              />
+            </View>
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>店铺名称</text>
+            <AtInput
+              name='value3'
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='需与门店名称一致'
+              value={this.state.storeInfo.store_name}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_name')}
+              className='storeInfo-input-css'
+              required
+            />
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>店铺地区</text>
+            <AtInput
+              editable={false}
+              name='value4'
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='点击图标选择地址'
+              value={this.state.storeInfo.store_position}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_position')}
+              className='storeInfo-input-css'
+            />
+            <image src={mapIcon} style='height:80rpx;width:80rpx;' onClick={this.handleSelectPos.bind(this)}></image>
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>详细门牌号</text>
+            <AtInput
+              name='value5'
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='详细地址，例1层101室'
+              value={this.state.storeInfo.store_address}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_address')}
+              className='storeInfo-input-css'
+              required
+              adjustPosition
+            />
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>客服电话1</text>
+            <AtInput
+              name='value6'
+              title=''
+              type='phone'
+              placeholderStyle='font-size:13px;'
+              placeholder='如有区号，请在区号后加“-”'
+              value={this.state.storeInfo.store_tel1}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_tel1')}
+              className='storeInfo-input-css'
+              required
+              adjustPosition
+            />
+          </View>
+
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>客服电话2</text>
+            <AtInput
+              name='value7'
+              title=''
+              type='phone'
+              placeholderStyle='font-size:13px;'
+              placeholder='如有区号，请在区号后加“-”'
+              value={this.state.storeInfo.store_tel2}
+              onChange={this.handleChange.bind(this, 'storeInfo_store_tel2')}
+              className='storeInfo-input-css'
+              required
+              adjustPosition
+            />
+          </View>
+
+
+          <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.SaveStoreInfo.bind(this)}>保存店铺信息</AtButton></View>
+        </View>
+      )
+    } else if (this.state.pageKind == "6") {
+      // 增加管理人员信息
+    } else if (this.state.pageKind == "7") {
+      // 修改管理员信息信息
     }
 
     return (

@@ -147,7 +147,7 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
 
       var _this = this;
 
-      Object(_service_api__WEBPACK_IMPORTED_MODULE_24__[/* test_get_queues */ "b"])(this.state.storeInfo.store_id).then(function (res) {
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_24__[/* test_get_queues */ "d"])(this.state.storeInfo.store_id).then(function (res) {
         console.log(res.data.data.play_data);
         res.data.data.play_data.map(function (item, itemIdx) {
           if (_this3.isInStorage("play_id_".concat(item.play_id))) {
@@ -175,6 +175,13 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
     value: function handleClick(value) {
       this.setState({
         current: value
+      });
+    }
+  }, {
+    key: "handleClickStore",
+    value: function handleClickStore() {
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.navigateTo({
+        url: '../formPage/index?page=4'
       });
     }
   }, {
@@ -582,6 +589,7 @@ var Storemainpage = /*#__PURE__*/function (_Component) {
               },
               children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
                 style: "display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;",
+                onClick: this.handleClickStore.bind(this),
                 children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
                   style: "background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;",
                   children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_26__["jsx"])("image", {

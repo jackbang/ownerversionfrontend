@@ -16,7 +16,7 @@ import bk from '../../img/background2.jpg'
 import moreIcon from '../../img/moreIcon.svg'
 
 import {base} from '../../service/config'
-import {test_total_plays_search, test_store_plays_search, test_delete_plays_search} from '../../service/api'
+import {test_total_plays_search, test_store_plays_search, test_delete_plays_search, test_add_play} from '../../service/api'
 
 export default class Playsearchpage extends Component {
 
@@ -81,8 +81,25 @@ export default class Playsearchpage extends Component {
     this.searchTotalPlays();
   }
 
-  handleCreateQueue (){
-    
+  handleAddPlayToStore (id){
+    console.log(`Add ${id} to store`)
+    let uploadData = {
+      adminId: this.state.adminInfo.adminId,
+      sessionId: this.state.adminInfo.sessionId,
+      play_id: id,
+      store_id: this.state.storeInfo.store_id,
+      appId: wx.getAccountInfoSync().miniProgram.appId,
+      token: (dayjs().unix() + 1000)*2
+    }
+    let _this = this;
+    test_add_play(uploadData).then(function(res) {
+      console.log(res.data)
+      _this.state.adminInfo.sessionId = res.data.data.sessionId;
+      Taro.setStorage({
+        key: "admin_info",
+        data: _this.state.adminInfo
+      })
+    })
   }
 
   onScrollToUpper() {}
@@ -189,6 +206,7 @@ export default class Playsearchpage extends Component {
     if (this.state.current == 0){
       this.state.totalStatus.page = 1;
       this.setState({
+        showPop:0,
         listLoading: true,
         totalPlays:[]
       })
@@ -196,6 +214,7 @@ export default class Playsearchpage extends Component {
     } else {
       this.state.storeStatus.page = 1;
       this.setState({
+        showPop:0,
         listLoading: true,
         storePlays:[]
       })
@@ -373,7 +392,7 @@ export default class Playsearchpage extends Component {
                   </View>
                   <View className='at-row' style='width:20vw' /*第二列是用来放按钮 */>
                     {/* Button  激活与不激活 具体看taroui中的文档*/}
-                    <AtButton type='primary' circle='true' className='join-button' onClick={this.handleCreateQueue.bind(this)}>添加</AtButton>
+                    <AtButton type='primary' circle='true' className='join-button' onClick={this.handleAddPlayToStore.bind(this, item.play_id)}>添加</AtButton>
                   </View>
                 </View>
                 <View className='at-col play-label-position-info'>

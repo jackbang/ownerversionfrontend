@@ -2,6 +2,7 @@
 @import "~taro-ui/dist/style/components/flex.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
 @import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/input.scss";
 
 .join-platform-button{
     align-items: center;
@@ -20,6 +21,17 @@
     font-size: 40px;
     border: 0PX none;
     background-color: #04BE02;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.open-store-button{
+    align-items: center;
+    width:70%;
+    font-size: 34px;
+    border: 0PX none;
+    background-color: #FCA62F;
     &.at-button--disabled {
         background-color: #A5A5A5;
     }

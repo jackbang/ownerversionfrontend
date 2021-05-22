@@ -36,3 +36,28 @@ export const test_upload_play = (play_data) => {
     let url = '/test/uploadPlay'
     return request.post(url, play_data, 'application/json')
 }
+
+export const test_add_play = (body) => {
+    let url = `/test/store/add`
+    return request.get(url, body)
+}
+
+export const test_get_storeAdmin = (body) => {
+    let url = `/test/store/admins`
+    return request.get(url, body)
+}
+
+export const test_save_storeInfo = (body) => {
+    let url = `/test/saveStoreWithoutImg`
+    return request.post(url, body, 'application/json')
+}
+
+export const test_get_phonenum_info = (phone_data) => {
+    let url = '/test/getPhoneNum'
+    return request.post(url, phone_data, 'application/json')
+}
+
+export const test_get_store_list = (body) => {
+    let url = `/test/admin/stores`
+    return request.get(url, body)
+}

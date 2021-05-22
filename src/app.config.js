@@ -1,15 +1,11 @@
 export default {
   pages: [
-    'pages/playSearchPage/playSearchPage',
-    'pages/storeMainPage/storeMainPage',
     'pages/index/index',
+    'pages/storeMainPage/storeMainPage',
     'pages/formPage/index',
-    
+    'pages/playSearchPage/playSearchPage',
     'pages/queueManagePage/index',
     'pages/queueInfoPage/index',
-    
-    
-    
   ],
   window: {
     navigationStyle: "custom",
