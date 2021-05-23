@@ -1,8 +1,11 @@
 import Taro from '@tarojs/taro'
 import { Component } from 'react'
 import { View, ScrollView } from '@tarojs/components'
-import { AtButton, AtTabs, AtTabsPane, AtActivityIndicator, AtIcon } from 'taro-ui'
+import { AtButton, AtTabs, AtTabsPane, AtActivityIndicator, AtIcon, AtNavBar } from 'taro-ui'
 import './storeMainPage.scss'
+
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
 
 import bk from '../../img/image-13.png'
 import storebk from '../../img/storeinfobk.png'
@@ -21,7 +24,7 @@ import emptyPic from '../../img/empty.svg'
 import certIcon from '../../img/certification.svg'
 
 
-import { test_get_queues } from '../../service/api'
+import { test_get_queues, test_get_lockedqueues, test_lock_queue } from '../../service/api'
 import { base } from '../../service/config'
 
 export default class Storemainpage extends Component {
@@ -34,7 +37,9 @@ export default class Storemainpage extends Component {
       storeInfo:{},
       permission:0,
       queueList: [],
+      lockedQueueList: [],
       queueListIdx: [],
+      tabLoading: true,
       infoLoading: true
     }
   }
@@ -71,6 +76,10 @@ export default class Storemainpage extends Component {
   componentWillUnmount () { }
 
   componentDidShow () { 
+    this.setState({
+      storeInfo:Taro.getStorageSync('store_info')
+    })
+
     let _this = this;
     test_get_queues(this.state.storeInfo.store_id).then((res) => {
       console.log(res.data.data.play_data);
@@ -84,6 +93,27 @@ export default class Storemainpage extends Component {
       _this.setState({
         queueList: res.data.data.queue_data,
         queueListIdx: res.data.data.queue_num,
+        tabLoading: false,
+        infoLoading: false
+      })
+    })
+
+    _this = this;
+    let body = {
+      showDays: 1
+    }
+    test_get_lockedqueues(this.state.storeInfo.store_id, body).then((res) => {
+      console.log(res.data.data.play_data);
+      res.data.data.play_data.map((item, itemIdx) => {
+        if (this.isInStorage(`play_id_${item.play_id}`)){
+          console.log('the play is in cache')
+        } else {
+          Taro.setStorage({key:`play_id_${item.play_id}`, data:item})
+        }
+      })
+      _this.setState({
+        lockedQueueList: res.data.data.queue_data,
+        tabLoading: false,
         infoLoading: false
       })
     })
@@ -91,7 +121,53 @@ export default class Storemainpage extends Component {
 
   componentDidHide () { }
 
+  handleNavBack() {
+    Taro.navigateBack()
+  }
+
   handleClick (value) {
+    this.setState({
+      tabLoading: true
+    })
+    if (value == 0) {
+      let _this = this;
+      test_get_queues(this.state.storeInfo.store_id).then((res) => {
+        console.log(res.data.data.play_data);
+        res.data.data.play_data.map((item, itemIdx) => {
+          if (this.isInStorage(`play_id_${item.play_id}`)){
+            console.log('the play is in cache')
+          } else {
+            Taro.setStorage({key:`play_id_${item.play_id}`, data:item})
+          }
+        })
+        _this.setState({
+          queueList: res.data.data.queue_data,
+          queueListIdx: res.data.data.queue_num,
+          tabLoading: false,
+          infoLoading: false
+        })
+      })
+    } else if (value == 1) {
+      let _this = this;
+      let body = {
+        showDays: 1
+      }
+      test_get_lockedqueues(this.state.storeInfo.store_id, body).then((res) => {
+        console.log(res.data.data.play_data);
+        res.data.data.play_data.map((item, itemIdx) => {
+          if (this.isInStorage(`play_id_${item.play_id}`)){
+            console.log('the play is in cache')
+          } else {
+            Taro.setStorage({key:`play_id_${item.play_id}`, data:item})
+          }
+        })
+        _this.setState({
+          lockedQueueList: res.data.data.queue_data,
+          tabLoading: false,
+          infoLoading: false
+        })
+      })
+    }
     this.setState({
       current: value
     })
@@ -101,12 +177,53 @@ export default class Storemainpage extends Component {
     Taro.navigateTo({url: '../formPage/index?page=4'})
   }
 
+  handleClickPlay() {
+    Taro.navigateTo({
+      url: '../playSearchPage/playSearchPage'
+    })
+  }
+
   onScrollToUpper() {}
 
   // or 使用箭头函数
   // onScrollToUpper = () => {}
   onScroll(e){
     //console.log(e.detail)
+  }
+
+  lockTheQueue(id) {
+    let theQueue = this.state.queueList[id];
+    let _this = this;
+    console.log(theQueue);
+    wx.showModal({
+      title: '锁定车队',
+      content: `确定锁定 ${theQueue.queue_end_time.slice(0,10)+" "+theQueue.queue_end_time.slice(11,-3)} 人数为${theQueue.queue_current_num}人的车队吗？`,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let body = {
+            adminId: _this.state.adminInfo.adminId,
+            sessionId: _this.state.adminInfo.sessionId,
+            store_id: _this.state.storeInfo.store_id,
+            queue_id: theQueue.queue_id,
+            appId: wx.getAccountInfoSync().miniProgram.appId,
+            token: (dayjs().unix() + 1000 ) * 2
+          };
+          test_lock_queue(body).then((result) => {
+            if (result.data.code == 1){
+              _this.state.queueList[id].queue_status = 1;
+              _this.setState({
+                queueList: _this.state.queueList
+              })
+            } else {
+              console.log(result.data.data)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
 
   render () {
@@ -139,9 +256,9 @@ export default class Storemainpage extends Component {
         <image src={emptyPic} style='width:675rpx;'></image>
       )
     } else {
-      this.state.queueList.map((item, itemIdx) => {
+      this.state.lockedQueueList.map((item, itemIdx) => {
         let temp_play_info = Taro.getStorageSync(`play_id_${item.play_id}`);
-
+        console.log(temp_play_info)
         // male famale display
         let male_female_display = [];
         if (temp_play_info.play_male_num == 999 | temp_play_info.play_female_num == 999) {
@@ -160,15 +277,75 @@ export default class Storemainpage extends Component {
             </View>
           )
         }
-
-        if (item.queue_status == 1) {
-          // 将item加入锁局中
+        if (this.state.tabLoading == false ) {
           lockedQueueInfo.push(
             <View className='at-row queue-tab-info' >
               <image src={tabbk} mode='widthFix' style='width:675rpx;z-index:-1;position:absolute;'></image>
-              {/*  每个tab上信息显示 */}
+  
               <View className='at-row play-pic-position-info' style='width:21vw'>
-                <image className='play-pic-info' src={base+temp_play_info.play_pic}>
+                <image className='play-pic-info' src={base+temp_play_info.play_img}>
+                <text className='play-pic-label-info'>{temp_play_info.play_labels[0]}</text>
+                </image>
+              </View>
+              <View className='at-col play-intro-info'>
+                <View className='at-col play-name-position-info'>{temp_play_info.play_name}</View>
+                <View className='at-row'>
+                  <View className='at-col'>
+                    <View className='at-row' style='font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;'><text decode="{{true}}">{item.queue_end_time.slice(0,10)+" "+item.queue_end_time.slice(11,-3)}</text></View>
+                  </View>
+                </View>
+                <View className='at-col' style='margin-top:10%;'>
+                  <text style='font-size:24rpx;font-weight:550;'>房间：默认</text>
+                </View>
+              </View>
+              <View className='at-row' style='width:20vw;display:flex;align-items:center;'>
+  
+                <image src={closedQueue} style='height:160rpx;width:160rpx;'></image>
+              </View>
+            </View>
+          )
+        } else {
+          lockedQueueInfo.push(
+            <View className='storeMainPage' style={{height:`300rpx`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-start`}}>
+              <View><AtActivityIndicator mode='center' size={64} content='Loading...' className='load'></AtActivityIndicator></View>
+            </View>
+          )
+        }
+
+        
+      })
+
+      this.state.queueList.map((item, itemIdx) => {
+        let temp_play_info = Taro.getStorageSync(`play_id_${item.play_id}`);
+        console.log(temp_play_info)
+        // male famale display
+        let male_female_display = [];
+        if (temp_play_info.play_male_num == 999 | temp_play_info.play_female_num == 999) {
+          male_female_display = [];
+        } else {
+          male_female_display.push(
+            <View className='play-male-position-info'>
+              <image className='gender-icon-info' src={malePic}></image>
+              <text>{item.queue_current_male_num}/{temp_play_info.play_male_num}</text>
+            </View>
+          )
+          male_female_display.push(
+            <View className='play-female-position-info'>
+              <image className='gender-icon-info' src={femalePic}></image>
+              <text>{item.queue_current_female_num}/{temp_play_info.play_female_num}</text>
+            </View>
+          )
+        }
+        
+
+          // 将item加入锁局中
+          /*
+          lockedQueueInfo.push(
+            <View className='at-row queue-tab-info' >
+              <image src={tabbk} mode='widthFix' style='width:675rpx;z-index:-1;position:absolute;'></image>
+
+              <View className='at-row play-pic-position-info' style='width:21vw'>
+                <image className='play-pic-info' src={base+temp_play_info.play_img}>
                 <text className='play-pic-label-info'>{temp_play_info.play_labels[0]}</text>
                 </image>
               </View>
@@ -184,12 +361,13 @@ export default class Storemainpage extends Component {
                 </View>
               </View>
               <View className='at-row' style='width:20vw;display:flex;align-items:center;'>
-                {/* Button */}
+
                 <image src={closedQueue} style='height:160rpx;width:160rpx;'></image>
               </View>
             </View>
           )
-        } else {
+          */
+        if (this.state.tabLoading == false ) {
           if (temp_play_info.play_headcount == item.queue_current_num){
             queuesInfo.push(
               <View className='at-row queue-tab-info' >
@@ -197,7 +375,7 @@ export default class Storemainpage extends Component {
                 {/*  每个tab上信息显示 */}
                 <text style='background-color:rgba(252, 95, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;'>已拼满</text>
                 <View className='at-row play-pic-position-info' style='width:21vw'>
-                  <image className='play-pic-info' src={base+temp_play_info.play_pic}>
+                  <image className='play-pic-info' src={base+temp_play_info.play_img}>
                   <text className='play-pic-label-info'>{temp_play_info.play_labels[0]}</text>
                   </image>
                 </View>
@@ -205,7 +383,7 @@ export default class Storemainpage extends Component {
                   <View className='at-col play-name-position-info'>{temp_play_info.play_name}</View>
                   <View className='at-row'>
                     <View className='at-col'>
-                      <View className='at-row play-time-position-info'><text decode="{{true}}">{item.queue_end_time}</text></View>
+                      <View className='at-row play-time-position-info'><text decode="{{true}}">{item.queue_end_time.slice(0,10)+" "+item.queue_end_time.slice(11,-3)}</text></View>
                       <View className='at-row play-headcount-position-info'>
                         <View className='play-headcount-info'><text decode="{{true}}">人数：{item.queue_current_num}/{temp_play_info.play_headcount}</text></View>
                         {male_female_display}
@@ -213,7 +391,7 @@ export default class Storemainpage extends Component {
                     </View>
                     <View className='at-row' style='width:20vw;margin-right:20rpx;'>
                       {/* Button */}
-                      <AtButton type='primary' circle='true' className='confirm-button' onClick={console.log("邀请好友")}>确认锁局</AtButton>
+                      <AtButton type='primary' circle='true' className='confirm-button' disabled={item.queue_status==1? true:false} onClick={this.lockTheQueue.bind(this, itemIdx)}>确认锁局</AtButton>
                     </View>
                   </View>
                   <View className='at-col' style='margin-top:2%;'>
@@ -229,7 +407,7 @@ export default class Storemainpage extends Component {
                 {/*  每个tab上信息显示 */}
                 <text style='background-color:rgba(252, 166, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;'>未拼满</text>
                 <View className='at-row play-pic-position-info' style='width:21vw'>
-                  <image className='play-pic-info' src={base+temp_play_info.play_pic}>
+                  <image className='play-pic-info' src={base+temp_play_info.play_img}>
                   <text className='play-pic-label-info'>{temp_play_info.play_labels[0]}</text>
                   </image>
                 </View>
@@ -237,7 +415,7 @@ export default class Storemainpage extends Component {
                   <View className='at-col play-name-position-info'>{temp_play_info.play_name}</View>
                   <View className='at-row'>
                     <View className='at-col'>
-                      <View className='at-row play-time-position-info'><text decode="{{true}}">{item.queue_end_time}</text></View>
+                      <View className='at-row play-time-position-info'><text decode="{{true}}">{item.queue_end_time.slice(0,10)+" "+item.queue_end_time.slice(11,-3)}</text></View>
                       <View className='at-row play-headcount-position-info'>
                         <View className='play-headcount-info'><text decode="{{true}}">人数：{item.queue_current_num}/{temp_play_info.play_headcount}</text></View>
                         {male_female_display}
@@ -245,7 +423,7 @@ export default class Storemainpage extends Component {
                     </View>
                     <View className='at-row' style='width:20vw;margin-right:20rpx;'>
                       {/* Button */}
-                      <AtButton type='primary' circle='true' className='confirm-button' onClick={console.log("邀请好友")}>确认锁局</AtButton>
+                      <AtButton type='primary' circle='true' className='confirm-button' disabled={item.queue_status==1? true:false} onClick={this.lockTheQueue.bind(this, itemIdx)}>确认锁局</AtButton>
                     </View>
                   </View>
                   <View className='at-col' style='margin-top:2%;'>
@@ -255,8 +433,16 @@ export default class Storemainpage extends Component {
               </View>
             )
           }
+        } else {
+          queuesInfo.push(
+            <View className='storeMainPage' style={{height:`300rpx`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-start`}}>
+              <View><AtActivityIndicator mode='center' size={64} content='Loading...' className='load'></AtActivityIndicator></View>
+            </View>
+          )
         }
       })
+      
+
       if (lockedQueueInfo.length == 0){
         lockedQueueInfo.push(
           <image src={emptyPic} style='width:675rpx;'></image>
@@ -281,8 +467,12 @@ export default class Storemainpage extends Component {
       return (
         <View className='storeMainPage' style={{height:`100vh`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-start`}}>
           <image src={bk} style='width:100vw;height:100vh;position:absolute;size:100%;z-index:-1;'></image>
-          <View style={{paddingTop:`${top_height_rpx+20}rpx`, height:`50rpx`}}>
-            <text style='color:#FEFFFF;font-size:18px;'>首页</text>
+          <View style={{paddingTop:`${top_height_rpx}rpx`, height:`70rpx`, width:`100vw`}}>
+            <AtNavBar className='nav-bar-info'
+              onClickLeftIcon={this.handleNavBack.bind(this)}
+              color='#ffff'
+              leftIconType='chevron-left'
+            ><View style='color:#fff;font-size:18px'>首页</View></AtNavBar>
           </View>
             
           <View style='padding-top:20rpx;height:150rpx;width:100vw;'>
@@ -334,7 +524,7 @@ export default class Storemainpage extends Component {
   
               <View style='width:40rpx;'></View>
   
-              <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;'>
+              <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;' onClick={this.handleClickPlay.bind(this)}>
                 <View style='background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;'>
                   <image src={playIcon} style='height:30px;width:30px;'></image>
                 </View>

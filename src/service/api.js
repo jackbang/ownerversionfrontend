@@ -13,8 +13,13 @@ export const test_send_sms = (admin_data) => {
 }
 
 export const test_get_queues = (store_id) => {
-    let url = `/test/stores/${store_id}/queues/`
+    let url = `/test/stores/${store_id}/unlockedQueues/`
     return request.get(url, '')
+}
+
+export const test_get_lockedqueues = (store_id, body) => {
+    let url = `/test/stores/${store_id}/lockedQueues/`
+    return request.get(url, body)
 }
 
 export const test_total_plays_search = (body, params) => {
@@ -59,5 +64,25 @@ export const test_get_phonenum_info = (phone_data) => {
 
 export const test_get_store_list = (body) => {
     let url = `/test/admin/stores`
+    return request.get(url, body)
+}
+
+export const test_verify_store = (body) => {
+    let url = `/test/store/verify`
+    return request.get(url, body)
+}
+
+export const test_add_admin = (body) => {
+    let url = `/test/admin/add`
+    return request.get(url, body)
+}
+
+export const test_delete_admin = (body) => {
+    let url = `/test/admin/delete`
+    return request.get(url, body)
+}
+
+export const test_lock_queue = (body) => {
+    let url = `/test/queue/lock`
     return request.get(url, body)
 }

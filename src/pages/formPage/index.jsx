@@ -16,7 +16,7 @@ import mapIcon from '../../img/mapIcon.svg'
 import confirmIcon from '../../img/confirmIcon.svg'
 import editorIcon from '../../img/editorIcon.svg'
 
-import {test_send_sms, test_upload_play, test_get_storeAdmin, test_save_storeInfo} from '../../service/api'
+import {test_send_sms, test_upload_play, test_get_storeAdmin, test_save_storeInfo, test_add_admin, test_delete_admin} from '../../service/api'
 import { base, map_KEY } from '../../service/config'
 import {encrypt} from '../../utils/aes'
 
@@ -58,6 +58,7 @@ export default class Formpage extends Component {
       countDownNum: 0,
       pageKind:4,
       imgFile:[],
+      newAdminPhone: '',
       useLocation: false,
       imgUploadIcon: true,
       infoLoading: true
@@ -76,6 +77,13 @@ export default class Formpage extends Component {
       let tempAdminStoreInfo = Taro.getStorageSync('adminStoreInfo');
       if(tempAdminStoreInfo){
         this.state.adminStoreInfo = tempAdminStoreInfo
+      }
+      if(this.state.adminInfo.phoneNumber) {
+        console.log(this.state.adminInfo.phoneNumber)
+        this.state.adminStoreInfo.phone = this.state.adminInfo.phoneNumber
+        this.setState({
+          adminStoreInfo: this.state.adminStoreInfo
+        })
       }
       console.log('phone Numbers')
       this.setState({
@@ -148,6 +156,11 @@ export default class Formpage extends Component {
       })
     } else if (pageKind == "6") {
       // 添加管理员页面
+      console.log("添加管理员页面")
+      this.state.storeInfo = Taro.getStorageSync(`store_info`);
+      this.setState({
+        pageKind:pageKind
+      })
     } else if (pageKind == "7") {
       // 编辑管理员信息页面
     }
@@ -158,34 +171,29 @@ export default class Formpage extends Component {
   }
 
   componentDidShow () { 
+
     if (this.state.useLocation == true) {
       console.log('use location')
       const location = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
       if (location) {
+        this.state.storeInfo.store_address = location.address;
+        this.state.storeInfo.store_position = location.name;
+        this.state.storeInfo.store_longitude = location.longitude;
+        this.state.storeInfo.store_latitude = location.latitude;
         this.setState({
-          storeInfo: {
-            store_name: this.state.storeInfo.store_name,
-            store_position: location.name,
-            store_address: location.address,
-            store_longitude: location.longitude,
-            store_latitude: location.latitude,
-            store_tel1: this.state.storeInfo.store_tel1,
-            store_tel2: this.state.storeInfo.store_tel2
-          },
+          storeInfo: this.state.storeInfo,
           useLocation: false
         })
       }
     }
     
-
-    if (this.state.pageKind & (this.state.pageKind  == "4")) {
+    if ((this.state.pageKind) && (this.state.pageKind  == "4")) {
       // 店铺管理
       console.log("店铺管理页面")
       this.state.adminInfo = Taro.getStorageSync(`admin_info`);
       this.state.storeInfo = Taro.getStorageSync(`store_info`);
       this.state.permission = Taro.getStorageSync(`permission`);
       this.setState({
-        pageKind:pageKind,
         imgFile: [{url: base+this.state.storeInfo.store_logo}],
         imgUploadIcon: false
       })
@@ -196,6 +204,7 @@ export default class Formpage extends Component {
         appId: wx.getAccountInfoSync().miniProgram.appId,
         token: (dayjs().unix() + 1000)*2
       }
+      console.log(this.state)
       let _this = this;
       test_get_storeAdmin(uploadData).then(function(res) {
         console.log(res.data)
@@ -257,6 +266,9 @@ export default class Formpage extends Component {
   
 
   handleNavBack() { 
+    if (this.state.pageKind == 5) {
+      this.state.pageKind = 4
+    }
     Taro.removeStorage({key:'adminStoreInfo'});
     Taro.navigateBack();
   }
@@ -313,25 +325,25 @@ export default class Formpage extends Component {
       this.state.playPrice = Number(value);
     } else if (type == 'playInfo_play_antigender') {
       this.state.playInfo.play_antigender = value.detail.value;
+    } else if (type == 'newAdminPhone') {
+      this.state.newAdminPhone = value;
     }
   return value
   }
 
   handleNextStep () { 
     if (this.state.pageKind == "0"){
-      var input_code = this.state.validate_code[0]*100000+this.state.validate_code[1]*10000+this.state.validate_code[2]*1000+this.state.validate_code[3]*100+this.state.validate_code[4]*10+this.state.validate_code[5]*1
-      console.log(this.state.validate_code)
-      console.log(input_code)
-      console.log(this.state.server_validate_code)
+      //var input_code = this.state.validate_code[0]*100000+this.state.validate_code[1]*10000+this.state.validate_code[2]*1000+this.state.validate_code[3]*100+this.state.validate_code[4]*10+this.state.validate_code[5]*1
+      //console.log(this.state.validate_code)
+      //console.log(input_code)
+      //console.log(this.state.server_validate_code)
       if (this.state.adminStoreInfo.name.length == 0) {
         console.log('name length is 0')
       } else if (this.state.adminStoreInfo.idCard.length !== 18) {
         console.log('id card length is not 18')
       } else if (this.state.adminStoreInfo.phone.length !== 11) {
         console.log('phone num length is not 11')
-      } else if (this.state.server_validate_code != input_code) {
-        console.log('valid code is wrong')
-      } else {
+      }  else {
         Taro.setStorage({key:'adminStoreInfo', data:this.state.adminStoreInfo})
         this.setState({
           pageKind:1
@@ -667,6 +679,9 @@ export default class Formpage extends Component {
               key: `store_info`,
               data: _this.state.storeInfo
             })
+            if (_this.state.pageKind == 5) {
+              _this.state.pageKind = 4
+            }
             Taro.navigateBack()
           }
         })
@@ -713,9 +728,70 @@ export default class Formpage extends Component {
             key: `store_info`,
             data: _this.state.storeInfo
           })
+          if (_this.state.pageKind == 5) {
+            _this.state.pageKind = 4
+          }
           Taro.navigateBack()
         })
       }
+    }
+  }
+
+  addAdmin() {
+    Taro.navigateTo({
+      url: 'index?page=6'
+    })
+  }
+
+  deleteAdmin(id) {
+    let temp = this.state.adminList[id]
+    console.log(temp)
+    let body = {
+      adminId: this.state.adminInfo.adminId,
+      sessionId: this.state.adminInfo.sessionId,
+      store_id: this.state.storeInfo.store_id,
+      adminStore_id: temp.adminStore_id,
+      appId: wx.getAccountInfoSync().miniProgram.appId,
+      token: (dayjs().unix() + 1000 ) * 2
+    }
+    let _this = this;
+    test_delete_admin(body).then(function(res) {
+      console.log(res.data)
+      if (res.data.code == 1) {
+        console.log('delete successed')
+        _this.state.adminList.splice(id,1)
+        _this.setState({
+          adminList:_this.state.adminList
+        })
+      } else {
+        console.log(res.data.data)
+      }
+    })
+  }
+
+  SaveNewAdminInfo() {
+    let storeInfo = Taro.getStorageSync('store_info')
+    let adminInfo = Taro.getStorageSync('admin_info')
+    if ( this.state.newAdminPhone.length!==11){
+      console.log('Phone number error')
+    } else if ( this.state.newAdminPhone == adminInfo.phoneNumber) {
+      console.log('Dont Allow Add Store Owner')
+    } else {
+      let body = {
+        adminId: adminInfo.adminId,
+        sessionId: adminInfo.sessionId,
+        store_id: storeInfo.store_id,
+        phone: this.state.newAdminPhone,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs().unix() + 1000 ) * 2
+      }
+      test_add_admin(body).then(function(res){
+        if (res.data.code == 1){
+          Taro.navigateBack()
+        } else {
+          console.log(res.data.data)
+        }
+      })
     }
   }
 
@@ -789,6 +865,7 @@ export default class Formpage extends Component {
 
           <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
             <AtInput
+              editable={false}
               name='value2'
               title='手机号'
               type='phone'
@@ -801,7 +878,7 @@ export default class Formpage extends Component {
           <View style='width:80%;height:20rpx;margin-left:10%;'></View>
         </View>
       )
-
+      
       let reSendSMS = [];
       console.log(this.state.countDownNum)
       reSendSMS.push(
@@ -811,8 +888,9 @@ export default class Formpage extends Component {
       )
 
       formContent.push(
-        <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+        <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
           <View style='height:20rpx;'></View>
+          {/*
           <text style='font-size:20px;font-weight:530;margin-left:5%;'>短信验证</text>
           <View style='width:100%;'>
             <text style='font-size:14px;color:#A5A5A5;margin-left:5%;margin-top:5rpx;'>验证码发送至</text>
@@ -892,10 +970,12 @@ export default class Formpage extends Component {
             />
 
           </View>
+          */}
 
           <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.handleNextStep.bind(this)}>下一步</AtButton></View>
         </View>
       )
+      
     } else if (this.state.pageKind == "1"){
       
       stepsBar.push(
@@ -1297,6 +1377,7 @@ export default class Formpage extends Component {
         let adminContent = [];
 
         this.state.adminList.map((item, itemIdx)=> {
+          console.log(this.state.permission)
           if (item.adminStore_permission == 1){
             adminContent.unshift(
               <View style='height:90rpx;width:90%;margin-left:5%;margin-top:50rpx;border: 0px solid #97979755;border-bottom-width:0px;display:flex;align-items:flex-start;;justify-content:flex-start;'>
@@ -1323,7 +1404,7 @@ export default class Formpage extends Component {
                   <text style='font-size:11px;color:#797979;margin-top:10rpx'>手机号 {item.adminStore_phone}</text>
                 </View>
 
-                <image style='height:50rpx;width:50rpx;margin-top:20rpx;' src={editorIcon}></image>
+                <image style={this.state.permission==1? 'height:50rpx;width:50rpx;margin-top:20rpx;':'visibility:hidden;height:50rpx;width:50rpx;margin-top:20rpx;'} src={editorIcon} onClick={this.deleteAdmin.bind(this, itemIdx)}></image>
               </View>
             )
           }
@@ -1334,7 +1415,10 @@ export default class Formpage extends Component {
             <View style='height:20rpx;'></View>
             <View style='width:100%;'>
               <text style='font-size:20px;font-weight:530;margin-left:5%;'>店铺管理员</text>
-              <text style='font-size:13px;font-weight:530;margin-left:5%;color:#FCA62F;text-decoration:underline;margin-left:250rpx;'>添加管理员</text>
+              <text 
+                style={this.state.permission==1? 'font-size:13px;font-weight:530;margin-left:5%;color:#FCA62F;text-decoration:underline;margin-left:250rpx;':'visibility:hidden;'}
+                onClick={this.addAdmin.bind(this)}
+              >添加管理员</text>
             </View>
             {adminContent}
           </View>
@@ -1452,9 +1536,27 @@ export default class Formpage extends Component {
       )
     } else if (this.state.pageKind == "6") {
       // 增加管理人员信息
-    } else if (this.state.pageKind == "7") {
-      // 修改管理员信息信息
-    }
+      formContent.push(
+        <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+          <View style='height:20rpx;'></View>
+          <text style='font-size:20px;font-weight:530;margin-left:5%;'>添加管理员</text>
+          <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
+            <text style='font-size:15px;width:150rpx;'>手机号</text>
+            <AtInput
+              title=''
+              type='text'
+              placeholderStyle='font-size:13px;'
+              placeholder='需与管理员微信绑定手机号一致'
+              value={this.state.newAdminPhone}
+              onChange={this.handleChange.bind(this, 'newAdminPhone')}
+              className='storeInfo-input-css'
+              required
+            />
+          </View>
+          <View style='width:80%;height:130rpx;margin-left:10%;'><AtButton type='primary' circle='true' className='confirm-button' onClick={this.SaveNewAdminInfo.bind(this)}>添加管理员</AtButton></View>
+        </View>
+      )
+    } 
 
     return (
       <View className='formPage' style={{height:`100vh`, display:`flex`, flexDirection:`column`}}>

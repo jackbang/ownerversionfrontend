@@ -9,7 +9,7 @@ import 'dayjs/locale/zh-cn'
 
 import bk from '../../img/image-13.png'
 
-import {test_wechat_login, test_get_phonenum_info, test_send_sms, test_get_store_list} from '../../service/api'
+import {test_wechat_login, test_get_phonenum_info, test_send_sms, test_get_store_list, test_verify_store} from '../../service/api'
 import {base} from '../../service/config'
 
 export default class Index extends Component {
@@ -32,12 +32,25 @@ export default class Index extends Component {
     }
   }
 
-  componentWillMount () { }
+  componentWillMount () {
+
+  }
+
+  componentDidMount() {
+    
+  }
 
   componentWillUnmount () { }
 
   componentDidShow () { 
+  
     console.log('reShow')
+    console.log(this.state)
+    this.state.adminInfo = Taro.getStorageSync('admin_info');
+
+    if (this.state.pageKind == 3) {
+      this.getStoreList(this);
+    }
   }
 
   componentDidHide () { }
@@ -177,9 +190,11 @@ export default class Index extends Component {
 
     } else {
       this.state.adminInfo['phoneNumber'] = '';
+      /*
       this.setState({
         pageKind: 2
-      })
+      })*/
+
     }
   }
 
@@ -221,9 +236,6 @@ export default class Index extends Component {
         Taro.setStorage({
           key: 'admin_info',
           data: _this.state.adminInfo
-        })
-        _this.setState({
-          pageKind: 3
         })
       })
       console.log(this.state.server_validate_code)
@@ -278,6 +290,69 @@ export default class Index extends Component {
 
   openStore(){
     console.log('open the store')
+    console.log(this.state.storeList[this.state.selectStoreId])
+    let temp = this.state.storeList[this.state.selectStoreId]
+    let storeInfo = {
+      store_address: temp.store_address,
+      store_deposit: temp.store_deposit,
+      store_id: temp.store_id,
+      store_info: temp.store_info,
+      store_latitude: temp.store_latitude,
+      store_logo: temp.store_logo,
+      store_longitude: temp.store_longitude,
+      store_name: temp.store_name,
+      store_position: temp.store_position,
+      store_status: temp.store_status,
+      store_tel1: temp.store_tel1,
+      store_tel2: temp.store_tel2
+    }
+    let permission = temp.adminStore_permission
+    Taro.setStorage({
+      key:'store_info',
+      data: storeInfo
+    })
+    Taro.setStorage({
+      key:'permission',
+      data:permission
+    })
+    if (temp.adminStore_verify == 1) {
+      Taro.navigateTo({
+        url: '../storeMainPage/storeMainPage'
+      })
+    } else {
+      console.log('did not verify')
+      let verify_data = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        adminStore_id: temp.adminStore_id,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs().unix() + 1000 ) * 2
+      }
+      let _this = this;
+      test_verify_store(verify_data).then(function(res){
+        if (res.data.code == 1) {
+          Taro.navigateTo({
+            url: '../storeMainPage/storeMainPage'
+          })
+        } else {
+          console.log('验证失败')
+          _this.setState({
+            pageKind: 0
+          })
+        }
+      })
+    }
+  }
+
+  createStore() {
+    Taro.setStorage({
+      key:'admin_info',
+      data: this.state.adminInfo
+    })
+    Taro.navigateTo({
+      url: '../formPage/index?page=0'
+    })
+    console.log('create the store')
   }
 
   render () {
@@ -416,23 +491,23 @@ export default class Index extends Component {
 
       let storeTabs = [];
 
-      this.state.storeList.map((item) => {
+      this.state.storeList.map((item, itemIdx) => {
         storeTabs.push(
           <View style={{
             height:`100rpx`,
             width:`500rpx`,
             marginLeft:`50rpx`,
-            border: `1px solid ${this.state.selectStoreId == item.adminStore_id? '#FCA62F': '#A5A5A5'}`,
+            border: `1.5px solid ${this.state.selectStoreId == itemIdx? '#FCA62F': '#A5A5A5'}`,
             borderRadius:`10rpx`,
             marginTop: `20rpx`,
-            display: `flex`}} onClick={this.handleClickStoreTab.bind(this, item.adminStore_id)}>
+            display: `flex`}} onClick={this.handleClickStoreTab.bind(this, itemIdx)}>
             <image src={base+item.store_logo} style='height:80rpx;width:80rpx;margin-left:10rpx;margin-top:10rpx;'></image>
             <View style='height:100rpx;width:280rpx;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;margin-left:20rpx;'>
               <text style='font-size:14px;font-weight:530;overflow:hidden;textOverflow:ellipsis;whiteSpace:nowrap;width:280rpx;'>{item.store_name}</text>
               <text style={{fontSize:`12px`, color:`${item.adminStore_verify==1? '#A5A5A5':'#FF0101'}`, overflow:`hidden`, textOverflow:`ellipsis`, whiteSpace:`nowrap`, width:`280rpx`}}>{item.adminStore_verify==1? item.store_position:'未验证'}</text>
             </View>
             <View style='margin-left:50rpx;margin-top:25rpx;'>
-              <AtIcon value='check-circle' size='20' color={this.state.selectStoreId == item.adminStore_id? '#FCA62F': '#A5A5A5'} ></AtIcon>
+              <AtIcon value='check-circle' size='20' color={this.state.selectStoreId == itemIdx? '#FCA62F': '#A5A5A5'} ></AtIcon>
             </View>
           </View>
         )
@@ -448,7 +523,7 @@ export default class Index extends Component {
             {storeTabs}
             </View>
             <AtButton type='primary' circle='true' className='open-store-button' onClick={this.openStore.bind(this)}>进入店铺</AtButton>
-            <text style='font-size:14px;color:#FCA62F;width:100%;text-align:center;text-decoration:underline;'>入驻分店</text>
+            <text style='font-size:14px;color:#FCA62F;width:100%;text-align:center;text-decoration:underline;' onClick={this.createStore.bind(this)}>入驻分店</text>
           </View>
           <View style='height:20vh;'></View>  
         </View>

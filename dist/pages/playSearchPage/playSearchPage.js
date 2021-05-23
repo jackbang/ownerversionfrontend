@@ -154,7 +154,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
 
       var _this = this;
 
-      Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_add_play */ "a"])(uploadData).then(function (res) {
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_add_play */ "b"])(uploadData).then(function (res) {
         console.log(res.data);
         _this.state.adminInfo.sessionId = res.data.data.sessionId;
         _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
@@ -211,7 +211,9 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleNavBack",
-    value: function handleNavBack() {}
+    value: function handleNavBack() {
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateBack();
+    }
   }, {
     key: "searchTotalPlays",
     value: function searchTotalPlays() {
@@ -234,7 +236,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
 
         var _this = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_total_plays_search */ "j"])(cert_data, "title=".concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_total_plays_search */ "n"])(cert_data, "title=".concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
           console.log(res.data);
 
           _this.setState({
@@ -253,7 +255,7 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
 
         var _this3 = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_store_plays_search */ "i"])(cert_data, "store_id=".concat(store_id, "&title=").concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_store_plays_search */ "m"])(cert_data, "store_id=".concat(store_id, "&title=").concat(title, "&hd=").concat(hd, "&type1=").concat(type1, "&type2=").concat(type2, "&type3=").concat(type3, "&page=").concat(page)).then(function (res) {
           console.log(res.data);
 
           _this3.setState({
@@ -360,17 +362,17 @@ var Playsearchpage = /*#__PURE__*/function (_Component) {
               appId: wx.getAccountInfoSync().miniProgram.appId,
               token: (dayjs__WEBPACK_IMPORTED_MODULE_10___default()().unix() + 1000) * 2
             };
-            Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_delete_plays_search */ "b"])(uploadData).then(function (res) {
-              console.log(res.data);
+            Object(_service_api__WEBPACK_IMPORTED_MODULE_19__[/* test_delete_plays_search */ "d"])(uploadData).then(function (result) {
+              console.log(result.data);
 
-              if (res.data.code == 1) {
+              if (result.data.code == 1) {
                 _this.state.storePlays.splice(Idx, 1);
 
                 _this.setState({
                   storePlays: _this.state.storePlays
                 });
               } else {
-                console.log("".concat(res.data.data));
+                console.log(result.data.data);
               }
             });
           } else if (res.cancel) {

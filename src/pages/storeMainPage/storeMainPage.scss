@@ -5,6 +5,16 @@
 @import "~taro-ui/dist/style/components/button.scss";
 @import "~taro-ui/dist/style/components/activity-indicator.scss";
 @import '~taro-ui/dist/style/components/loading.scss';
+@import "~taro-ui/dist/style/components/nav-bar.scss";
+
+.nav-bar-info {
+    &.at-nav-bar {
+        background-color: rgba(255, 255, 255, 0);
+    }
+    .at-icon {
+        color: #fff;
+    }
+}
 
 .load {
     .at-loading__ring{

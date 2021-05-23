@@ -137,23 +137,28 @@ module.exports = __webpack_require__.p + "img/scoreActive.png";
 /*!****************************!*\
   !*** ./src/service/api.js ***!
   \****************************/
-/*! exports provided: test_wechat_login, test_send_sms, test_get_queues, test_total_plays_search, test_store_plays_search, test_delete_plays_search, test_upload_play, test_add_play, test_get_storeAdmin, test_save_storeInfo, test_get_phonenum_info, test_get_store_list */
-/*! exports used: test_add_play, test_delete_plays_search, test_get_phonenum_info, test_get_queues, test_get_storeAdmin, test_get_store_list, test_save_storeInfo, test_send_sms, test_store_plays_search, test_total_plays_search, test_upload_play, test_wechat_login */
+/*! exports provided: test_wechat_login, test_send_sms, test_get_queues, test_get_lockedqueues, test_total_plays_search, test_store_plays_search, test_delete_plays_search, test_upload_play, test_add_play, test_get_storeAdmin, test_save_storeInfo, test_get_phonenum_info, test_get_store_list, test_verify_store, test_add_admin, test_delete_admin, test_lock_queue */
+/*! exports used: test_add_admin, test_add_play, test_delete_admin, test_delete_plays_search, test_get_lockedqueues, test_get_phonenum_info, test_get_queues, test_get_storeAdmin, test_get_store_list, test_lock_queue, test_save_storeInfo, test_send_sms, test_store_plays_search, test_total_plays_search, test_upload_play, test_verify_store, test_wechat_login */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return test_wechat_login; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return test_send_sms; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return test_get_queues; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return test_total_plays_search; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return test_store_plays_search; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return test_delete_plays_search; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return test_upload_play; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test_add_play; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return test_get_storeAdmin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return test_save_storeInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return test_get_phonenum_info; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return test_get_store_list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return test_wechat_login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return test_send_sms; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return test_get_queues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return test_get_lockedqueues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return test_total_plays_search; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return test_store_plays_search; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return test_delete_plays_search; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return test_upload_play; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return test_add_play; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return test_get_storeAdmin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return test_save_storeInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return test_get_phonenum_info; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return test_get_store_list; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return test_verify_store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return test_add_admin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return test_delete_admin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return test_lock_queue; });
 /* harmony import */ var _tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! _@tarojs_taro@3.2.1@@tarojs/taro */ "./node_modules/_@tarojs_taro@3.2.1@@tarojs/taro/index.js");
 /* harmony import */ var _tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro_3_2_1_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request */ "./src/service/request.js");
@@ -169,8 +174,12 @@ var test_send_sms = function test_send_sms(admin_data) {
   return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].post(url, admin_data, 'application/json');
 };
 var test_get_queues = function test_get_queues(store_id) {
-  var url = "/test/stores/".concat(store_id, "/queues/");
+  var url = "/test/stores/".concat(store_id, "/unlockedQueues/");
   return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, '');
+};
+var test_get_lockedqueues = function test_get_lockedqueues(store_id, body) {
+  var url = "/test/stores/".concat(store_id, "/lockedQueues/");
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
 };
 var test_total_plays_search = function test_total_plays_search(body, params) {
   var url = "/test/total/search?" + params;
@@ -206,6 +215,22 @@ var test_get_phonenum_info = function test_get_phonenum_info(phone_data) {
 };
 var test_get_store_list = function test_get_store_list(body) {
   var url = "/test/admin/stores";
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
+};
+var test_verify_store = function test_verify_store(body) {
+  var url = "/test/store/verify";
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
+};
+var test_add_admin = function test_add_admin(body) {
+  var url = "/test/admin/add";
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
+};
+var test_delete_admin = function test_delete_admin(body) {
+  var url = "/test/admin/delete";
+  return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
+};
+var test_lock_queue = function test_lock_queue(body) {
+  var url = "/test/queue/lock";
   return _request__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].get(url, body);
 };
 

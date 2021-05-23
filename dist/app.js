@@ -366,7 +366,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var config = {"pages":["pages/storeMainPage/storeMainPage","pages/formPage/index","pages/playSearchPage/playSearchPage","pages/index/index","pages/queueManagePage/index","pages/queueInfoPage/index"],"window":{"navigationStyle":"custom","backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"},"plugins":{"chooseLocation":{"version":"1.0.6","provider":"wx76a9a06e5b4e693e"}},"permission":{"scope.userLocation":{"desc":"你的位置信息将用于小程序定位"}}};
+var config = {"pages":["pages/index/index","pages/storeMainPage/storeMainPage","pages/formPage/index","pages/playSearchPage/playSearchPage","pages/queueManagePage/index","pages/queueInfoPage/index"],"window":{"navigationStyle":"custom","backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"},"plugins":{"chooseLocation":{"version":"1.0.6","provider":"wx76a9a06e5b4e693e"}},"permission":{"scope.userLocation":{"desc":"你的位置信息将用于小程序定位"}}};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["window"].__taroAppConfig = config
 var inst = App(Object(_tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["createReactApp"])(_node_modules_babel_loader_8_0_6_babel_loader_lib_index_js_app_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], react__WEBPACK_IMPORTED_MODULE_3__, react_dom__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], config))
 

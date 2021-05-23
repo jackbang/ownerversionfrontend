@@ -1860,6 +1860,281 @@
   -webkit-animation-delay: -0.15s;
           animation-delay: -0.15s;
 }
+/**
+ * Default variables
+ */
+/**
+ * Mixes a color with white. It's different from lighten()
+ *
+ * @param {color} $color
+ * @param {number (percentage)} $percent [The amout of white to be mixed in]
+ * @return {color}
+ *
+ * @example
+ *   .element {
+ *     background-color: tint(#6ecaa6 , 40%);
+ *   }
+ *
+ *   // CSS Output
+ *   .element {
+ *     background-color: #a8dfc9;
+ *   }
+ */
+/* The Color of O2Team Brand */
+/* Color */
+/* Color Palette */
+/* Text Color */
+/* Link */
+/* 背景色 */
+/* 边框颜色 */
+/* 图标颜色 */
+/* Border Radius */
+/* 透明度 */
+/* Font */
+/* Line Height */
+/* 水平间距 */
+/* 垂直间距 */
+/* 图标尺寸 */
+/* z-index */
+/* timing function */
+/**
+* CSS cubic-bezier timing functions
+* http://bourbon.io/docs/#timing-functions
+*/
+/**
+ * 组件变量
+ */
+/* Accordion */
+/* Activity Indicator */
+/* Avatar */
+/* Badge */
+/* Button */
+/* Float Button */
+/* Calendar */
+/* Card */
+/* Checkbox */
+/* Countdown */
+/* Curtain */
+/* Divider */
+/* Drawer */
+/* FloatLayout */
+/* Grid */
+/* ImagePicker */
+/* Indexes */
+/* InputNumber */
+/* Input */
+/* List */
+/* LoadMore */
+/* Loading */
+/* Message */
+/* Modal */
+/* NavBar */
+/* NoticeBar */
+/* Pagination */
+/* Progress */
+/* Radio */
+/* Range */
+/* Rate */
+/* SearchBar */
+/* SegmentedControl */
+/* Slider */
+/* Steps */
+/* SwipeAction */
+/* Switch */
+/* TabBar */
+/* Tabs */
+/* Tag */
+/* Textarea */
+/* Timeline */
+/**
+ * Mixins
+ */
+/* library */
+/**
+ * 元素居中定位
+ */
+/**
+ * @example scss
+ *
+ * .element {
+ *   @include clearfix;
+ * }
+ *
+ * // CSS Output
+ * .element::after {
+ *   clear: both;
+ *   content: '';
+ *   display: block;
+ * }
+ */
+/**
+ * 通用的遮罩
+ */
+/**
+ * Mixes a color with black. It's different from darken()
+ *
+ * @param {color} $color
+ * @param {number (percentage)} $percent [The amount of black to be mixed in]
+ * @return {color}
+ *
+ * @example
+ *   .element {
+ *     background-color: shade(#ffbb52, 60%);
+ *   }
+ *
+ *   // CSS Output
+ *   .element {
+ *     background-color: #664a20;
+ *   }
+ */
+/**
+ * Mixes a color with white. It's different from lighten()
+ *
+ * @param {color} $color
+ * @param {number (percentage)} $percent [The amout of white to be mixed in]
+ * @return {color}
+ *
+ * @example
+ *   .element {
+ *     background-color: tint(#6ecaa6 , 40%);
+ *   }
+ *
+ *   // CSS Output
+ *   .element {
+ *     background-color: #a8dfc9;
+ *   }
+ */
+/* Flex Item */
+/**
+ * 默认主题下 $color-border-light
+ */
+/**
+ * 点击态
+ */
+/**
+ * 禁止态
+ */
+/**
+ * 设置placeholder 颜色
+ */
+/**
+ * 默认主题下 $color-border-light
+ */
+.at-nav-bar {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  background-color: #FFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  /* elements */
+  /* modifiers */
+}
+.at-nav-bar__left-view {
+  -webkit-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  padding: 9PX 5PX;
+  height: 100%;
+  color: #6190E8;
+  font-size: 18PX;
+  text-align: left;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.at-nav-bar__left-view:active {
+  background-color: #F0F0F0;
+}
+.at-nav-bar__left-view .at-icon {
+  font-size: 48rpx;
+}
+.at-nav-bar__right-view {
+  -webkit-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  height: 100%;
+  color: #6190E8;
+  text-align: right;
+  overflow: hidden;
+}
+.at-nav-bar__title {
+  -webkit-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+  color: #333;
+  font-size: 18PX;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.at-nav-bar__text {
+  display: inline-block;
+  padding-left: 5PX;
+  height: 100%;
+  font-size: 16PX;
+  vertical-align: middle;
+  line-height: 1;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.at-nav-bar__container {
+  display: inline-block;
+  padding: 9PX 5PX;
+  width: 50%;
+  height: 100%;
+  font-size: 18PX;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.at-nav-bar__container:active {
+  background-color: #F0F0F0;
+}
+.at-nav-bar__container .at-icon {
+  font-size: 48rpx;
+}
+.at-nav-bar__container--hide {
+  display: inline-block;
+  visibility: hidden;
+}
+.at-nav-bar--no-border::after {
+  border-bottom-width: 0;
+}
+.at-nav-bar--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 800;
+}
+.nav-bar-info.at-nav-bar {
+  background-color: rgba(255, 255, 255, 0);
+}
+.nav-bar-info .at-icon {
+  color: #fff;
+}
 .load .at-loading__ring {
   border-width: 2PX;
 }

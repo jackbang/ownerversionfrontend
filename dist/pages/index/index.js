@@ -148,12 +148,21 @@ var Index = /*#__PURE__*/function (_Component) {
     key: "componentWillMount",
     value: function componentWillMount() {}
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {}
   }, {
     key: "componentDidShow",
     value: function componentDidShow() {
       console.log('reShow');
+      console.log(this.state);
+      this.state.adminInfo = _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.getStorageSync('admin_info');
+
+      if (this.state.pageKind == 3) {
+        this.getStoreList(this);
+      }
     }
   }, {
     key: "componentDidHide",
@@ -168,7 +177,7 @@ var Index = /*#__PURE__*/function (_Component) {
         appId: wx.getAccountInfoSync().miniProgram.appId,
         token: (dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() + 1000) * 2
       };
-      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_get_store_list */ "f"])(upload_data).then(function (res) {
+      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_get_store_list */ "i"])(upload_data).then(function (res) {
         console.log(res.data.data);
         that.state.storeList = res.data.data;
 
@@ -216,7 +225,7 @@ var Index = /*#__PURE__*/function (_Component) {
                         }
                       };
                       console.log(adminInfo);
-                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_wechat_login */ "l"])(adminInfo).then(function (result) {
+                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_wechat_login */ "q"])(adminInfo).then(function (result) {
                         console.log(result.data);
                         _this3.state.adminInfo = adminInfo.adminInfo;
                         _this3.state.adminInfo['sessionId'] = result.data.data.sessionId;
@@ -300,7 +309,7 @@ var Index = /*#__PURE__*/function (_Component) {
                       };
                       console.log(phoneNumInfo);
                       var temp_storeList;
-                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_get_phonenum_info */ "c"])(phoneNumInfo).then(function (res) {
+                      Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_get_phonenum_info */ "f"])(phoneNumInfo).then(function (res) {
                         console.log(res.data.data);
                         _this.state.adminInfo['phoneNumber'] = res.data.data.phoneNumber;
                         _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
@@ -323,9 +332,10 @@ var Index = /*#__PURE__*/function (_Component) {
                   });
                 } else {
                   this.state.adminInfo['phoneNumber'] = '';
+                  /*
                   this.setState({
                     pageKind: 2
-                  });
+                  })*/
                 }
 
               case 1:
@@ -380,17 +390,13 @@ var Index = /*#__PURE__*/function (_Component) {
       } else {
         var _this = this;
 
-        Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_send_sms */ "h"])(admin_data).then(function (res) {
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_send_sms */ "l"])(admin_data).then(function (res) {
           var validCode = res.data.data.token - 1000 >> 1;
           _this.state.server_validate_code = validCode;
           _this.state.adminInfo.sessionId = res.data.data.sessionId;
           _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
             key: 'admin_info',
             data: _this.state.adminInfo
-          });
-
-          _this.setState({
-            pageKind: 3
           });
         });
         console.log(this.state.server_validate_code);
@@ -458,6 +464,74 @@ var Index = /*#__PURE__*/function (_Component) {
     key: "openStore",
     value: function openStore() {
       console.log('open the store');
+      console.log(this.state.storeList[this.state.selectStoreId]);
+      var temp = this.state.storeList[this.state.selectStoreId];
+      var storeInfo = {
+        store_address: temp.store_address,
+        store_deposit: temp.store_deposit,
+        store_id: temp.store_id,
+        store_info: temp.store_info,
+        store_latitude: temp.store_latitude,
+        store_logo: temp.store_logo,
+        store_longitude: temp.store_longitude,
+        store_name: temp.store_name,
+        store_position: temp.store_position,
+        store_status: temp.store_status,
+        store_tel1: temp.store_tel1,
+        store_tel2: temp.store_tel2
+      };
+      var permission = temp.adminStore_permission;
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+        key: 'store_info',
+        data: storeInfo
+      });
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+        key: 'permission',
+        data: permission
+      });
+
+      if (temp.adminStore_verify == 1) {
+        _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
+          url: '../storeMainPage/storeMainPage'
+        });
+      } else {
+        console.log('did not verify');
+        var verify_data = {
+          adminId: this.state.adminInfo.adminId,
+          sessionId: this.state.adminInfo.sessionId,
+          adminStore_id: temp.adminStore_id,
+          appId: wx.getAccountInfoSync().miniProgram.appId,
+          token: (dayjs__WEBPACK_IMPORTED_MODULE_11___default()().unix() + 1000) * 2
+        };
+
+        var _this = this;
+
+        Object(_service_api__WEBPACK_IMPORTED_MODULE_14__[/* test_verify_store */ "p"])(verify_data).then(function (res) {
+          if (res.data.code == 1) {
+            _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
+              url: '../storeMainPage/storeMainPage'
+            });
+          } else {
+            console.log('验证失败');
+
+            _this.setState({
+              pageKind: 0
+            });
+          }
+        });
+      }
+    }
+  }, {
+    key: "createStore",
+    value: function createStore() {
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.setStorage({
+        key: 'admin_info',
+        data: this.state.adminInfo
+      });
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
+        url: '../formPage/index?page=0'
+      });
+      console.log('create the store');
     }
   }, {
     key: "render",
@@ -630,18 +704,18 @@ var Index = /*#__PURE__*/function (_Component) {
         });
       } else if (this.state.pageKind == 3) {
         var storeTabs = [];
-        this.state.storeList.map(function (item) {
+        this.state.storeList.map(function (item, itemIdx) {
           storeTabs.push( /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
             style: {
               height: "100rpx",
               width: "500rpx",
               marginLeft: "50rpx",
-              border: "1px solid ".concat(_this5.state.selectStoreId == item.adminStore_id ? '#FCA62F' : '#A5A5A5'),
+              border: "1.5px solid ".concat(_this5.state.selectStoreId == itemIdx ? '#FCA62F' : '#A5A5A5'),
               borderRadius: "10rpx",
               marginTop: "20rpx",
               display: "flex"
             },
-            onClick: _this5.handleClickStoreTab.bind(_this5, item.adminStore_id),
+            onClick: _this5.handleClickStoreTab.bind(_this5, itemIdx),
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("image", {
               src: _service_config__WEBPACK_IMPORTED_MODULE_15__[/* base */ "a"] + item.store_logo,
               style: "height:80rpx;width:80rpx;margin-left:10rpx;margin-top:10rpx;"
@@ -666,7 +740,7 @@ var Index = /*#__PURE__*/function (_Component) {
               children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_9__[/* AtIcon */ "c"], {
                 value: "check-circle",
                 size: "20",
-                color: _this5.state.selectStoreId == item.adminStore_id ? '#FCA62F' : '#A5A5A5'
+                color: _this5.state.selectStoreId == itemIdx ? '#FCA62F' : '#A5A5A5'
               })
             })]
           }));
@@ -700,6 +774,7 @@ var Index = /*#__PURE__*/function (_Component) {
               children: "\u8FDB\u5165\u5E97\u94FA"
             }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])("text", {
               style: "font-size:14px;color:#FCA62F;width:100%;text-align:center;text-decoration:underline;",
+              onClick: this.createStore.bind(this),
               children: "\u5165\u9A7B\u5206\u5E97"
             })]
           }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {

@@ -144,7 +144,7 @@ export default class Playsearchpage extends Component {
   }
 
   handleNavBack(){
-    
+    Taro.navigateBack()
   }
 
   searchTotalPlays () {
@@ -253,11 +253,13 @@ export default class Playsearchpage extends Component {
   handleClick (value) {
     console.log(this.state.totalScrollTop)
     console.log(this.state.storeScrollTop)
+
     this.setState({
       current: value,
       storeScrollTop: this.state.storeScrollTop+0.000000001,
       totalScrollTop: this.state.totalScrollTop+0.000000001
     })
+
   }
 
   handleClickCover () {
@@ -290,15 +292,15 @@ export default class Playsearchpage extends Component {
             appId: wx.getAccountInfoSync().miniProgram.appId,
             token: (dayjs().unix() + 1000)*2
           }
-          test_delete_plays_search(uploadData).then(function(res){
-            console.log(res.data)
-            if (res.data.code == 1){
+          test_delete_plays_search(uploadData).then(function(result){
+            console.log(result.data)
+            if (result.data.code == 1){
               _this.state.storePlays.splice(Idx,1);
               _this.setState({
                 storePlays:_this.state.storePlays
               })
             } else {
-              console.log(`${res.data.data}`)
+              console.log(result.data.data)
             }
           })
         } else if (res.cancel) {
@@ -513,25 +515,25 @@ export default class Playsearchpage extends Component {
               onClick={this.handleClick.bind(this)}>
             
 
-              <AtTabsPane current={this.state.current} index={0}>
-                <image src={bk} style='width:100vw;height:100vh;position:absolute;'></image>
-                <View className='at-col' style='height:150rpx;background-color:#FFFEFFFF;' /* 这里是*/></View>
-                <ScrollView
-                className='scrollviewY'
-                scrollY
-                scrollWithAnimation
-                show-scrollbar='false'
-                scrollTop={this.state.totalScrollTop}
-                style={scrollStyleY}
-                lowerThreshold={Threshold}
-                upperThreshold={Threshold}
-                onScrollToUpper={this.onScrollToUpperY.bind(this)} // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
-                onScrollToLower={this.onScrollToLowerYTotal.bind(this)}
-                onScroll={this.onScrollY.bind(this)}
-                >
-                {totalPlayTabs}
+            <AtTabsPane current={this.state.current} index={0}>
+              <image src={bk} style='width:100vw;height:100vh;position:absolute;'></image>
+              <View className='at-col' style='height:150rpx;background-color:#FFFEFFFF;' /* 这里是*/></View>
+              <ScrollView
+              className='scrollviewY'
+              scrollY
+              scrollWithAnimation
+              show-scrollbar='false'
+              scrollTop={this.state.totalScrollTop}
+              style={scrollStyleY}
+              lowerThreshold={Threshold}
+              upperThreshold={Threshold}
+              onScrollToUpper={this.onScrollToUpperY.bind(this)} // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
+              onScrollToLower={this.onScrollToLowerYTotal.bind(this)}
+              onScroll={this.onScrollY.bind(this)}
+              >
+              {totalPlayTabs}
 
-                <View className='at-row tab-blank'></View> {/*切记，每个AtTabsPane最下面要加一小条空白，否则阴影部分显示不全，会很难看 */}
+              <View className='at-row tab-blank'></View> {/*切记，每个AtTabsPane最下面要加一小条空白，否则阴影部分显示不全，会很难看 */}
 
               </ScrollView>
             </AtTabsPane>
