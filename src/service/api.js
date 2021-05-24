@@ -86,3 +86,23 @@ export const test_lock_queue = (body) => {
     let url = `/test/queue/lock`
     return request.get(url, body)
 }
+
+export const test_get_players = (body) => {
+    let url = `/test/queue/getPlayers`
+    return request.get(url, body)
+}
+
+export const test_add_players = (body) => {
+    let url = `/test/queue/addPlayers`
+    return request.get(url, body)
+}
+
+export const test_pop_players = (body) => {
+    let url = `/test/queue/popPlayers`
+    return request.get(url, body)
+}
+
+export const test_delete_queue = (body) => {
+    let url = `/test/queue/delete`
+    return request.get(url, body)
+}

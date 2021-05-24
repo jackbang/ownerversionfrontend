@@ -144,6 +144,7 @@ export default class Playsearchpage extends Component {
   }
 
   handleNavBack(){
+    this.state.showPop = 0;
     Taro.navigateBack()
   }
 
@@ -468,7 +469,7 @@ export default class Playsearchpage extends Component {
               {/*这里实现一个气泡组件*/}
               <View style='position:absolute;right:50rpx;margin-top:20rpx;display:flex;flex-direction:column;align-items:flex-end;'>
                 <image src={moreIcon} style='height:40rpx;width:40rpx;transform:rotate(90deg);' onClick={this.handleMoreOptions.bind(this, item.play_id)}></image>
-                <View className='popover' style={{visibility:`${this.state.showPop==item.play_id? 'visible':'hidden'}`, zIndex:99}}>
+                <View className='popover' style={{visibility:`${this.state.showPop==item.play_id? 'visible':'hidden'}`}}>
                   <View style='color:#000000;font-size:12px;' onClick={this.handleModifyPlay.bind(this, item.play_id)}>编辑 </View>
                   <View style='height:1rpx;width:80%;border:0px solid #00000050;border-bottom-width:1rpx;'></View>
                   <View style='color:#000000;font-size:12px;' onClick={this.handleDeletePlay.bind(this, item.play_id, itemIdx)}>删除 </View>
@@ -538,13 +539,11 @@ export default class Playsearchpage extends Component {
               </ScrollView>
             </AtTabsPane>
 
-            <AtTabsPane current={this.state.current} index={1}>
-              <View style={{
+            <AtTabsPane current={this.state.current} index={1}><View style={{
                 position:`absolute`,
                 height:`100vh`,
                 width:`100vw`,
                 background:`#00000000`,
-                zIndex:`98`,
                 visibility:`${this.state.showPop==0? 'hidden':'visible'}`
                 }} 
                 onClick={this.handleClickCover.bind(this)}>
