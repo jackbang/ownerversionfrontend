@@ -8,7 +8,7 @@ import 'dayjs/locale/zh-cn'
 
 import './index.scss'
 
-import bk from '../../img/image-13.png'
+import bk from '../../img/image-13.jpg'
 import tabbk from '../../img/queueinfobk.png'
 import storePic from '../../img/image-10.png'
 import femalePic from '../../img/female.png'
@@ -244,6 +244,22 @@ export default class Queueinfopage extends Component {
     }
   }
 
+  manageLockedQueue (id) {
+    console.log('click tab')
+    if (this.state.clickButton == true) {
+      console.log('click button')
+    } else {
+      Taro.setStorage({
+        key: 'queue_info',
+        data: this.state.lockedQueueList[id]
+      })
+  
+      Taro.navigateTo({
+        url: '../queueManagePage/index'
+      })
+    }
+  }
+
   handleNavBack() {
     Taro.navigateBack()
   }
@@ -436,7 +452,7 @@ export default class Queueinfopage extends Component {
         this.state.lockedQueueList.map((item, itemIdx)=> {
           let temp_play = Taro.getStorageSync(`play_id_${item.play_id}`)
           lockedQueueTabs.push(
-            <View className='at-row queue-tab-info' >
+            <View className='at-row queue-tab-info' onClick={this.manageLockedQueue.bind(this, itemIdx)}>
               <image src={tabbk} mode='widthFix' style='width:675rpx;z-index:-1;position:absolute;'></image>
               {/*  每个tab上信息显示 */}
               <View className='at-row play-pic-position-info' style='width:21vw'>

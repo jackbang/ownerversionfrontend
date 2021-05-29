@@ -8,15 +8,13 @@ import 'dayjs/locale/zh-cn'
 
 import './index.scss'
 
-
-import emptyPic from '../../img/play_pic_2.jpg'
 import scoreActive from '../../img/scoreActive.png'
 import scoreDeactive from '../../img/scoreDeactive.png'
 import playerAva from '../../img/member.png'
 import maleIcon from '../../img/male.png'
 import femaleIcon from '../../img/female.png'
 
-import { test_lock_queue, test_get_players, test_add_players, test_pop_players, test_delete_queue } from '../../service/api'
+import { test_lock_queue, test_get_players, test_add_players, test_pop_players, test_delete_queue, test_delock_queue } from '../../service/api'
 import { base } from '../../service/config'
 
 export default class Queuemanagepage extends Component {
@@ -138,26 +136,55 @@ export default class Queuemanagepage extends Component {
   }
 
   removePlayer(id) {
-    let body = {
-      adminId: this.state.adminInfo.adminId,
-      sessionId: this.state.adminInfo.sessionId,
-      queue_id: this.state.queueInfo.queue_id,
-      player_id: id,
-      appId: wx.getAccountInfoSync().miniProgram.appId,
-      token: (dayjs().unix() + 1000 ) * 2
-    };
-    let _this = this;
-    test_pop_players(body).then((res)=>{
-      console.log(res.data)
-      if (res.data.code == 1) {
-        _this.setState({
-          playerList: res.data.data,
-          infoLoading: false
-        })
-      } else {
-        console.log(res.data.data)
-      }
-    })
+    if (this.state.playerList.length == 1) {
+      let theQueue = this.state.queueInfo;
+      let _this = this;
+      wx.showModal({
+        content: '车队仅剩1人，移除玩家将解散车队。',
+        success (res) {
+          if (res.confirm) {
+            let body = {
+              adminId: _this.state.adminInfo.adminId,
+              sessionId: _this.state.adminInfo.sessionId,
+              store_id: _this.state.storeInfo.store_id,
+              queue_id: theQueue.queue_id,
+              appId: wx.getAccountInfoSync().miniProgram.appId,
+              token: (dayjs().unix() + 1000 ) * 2
+            };
+            test_lock_queue(body).then((result) => {
+              if (result.data.code == 1){
+                Taro.navigateBack()
+              } else {
+                console.log(result.data.data)
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else {
+      let body = {
+        adminId: this.state.adminInfo.adminId,
+        sessionId: this.state.adminInfo.sessionId,
+        queue_id: this.state.queueInfo.queue_id,
+        player_id: id,
+        appId: wx.getAccountInfoSync().miniProgram.appId,
+        token: (dayjs().unix() + 1000 ) * 2
+      };
+      let _this = this;
+      test_pop_players(body).then((res)=>{
+        console.log(res.data)
+        if (res.data.code == 1) {
+          _this.setState({
+            playerList: res.data.data,
+            infoLoading: false
+          })
+        } else {
+          console.log(res.data.data)
+        }
+      })
+    }
   }
 
   lockTheQueue() {
@@ -179,6 +206,38 @@ export default class Queuemanagepage extends Component {
             token: (dayjs().unix() + 1000 ) * 2
           };
           test_lock_queue(body).then((result) => {
+            if (result.data.code == 1){
+              Taro.navigateBack()
+            } else {
+              console.log(result.data.data)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
+
+  deLockTheQueue() {
+    let theQueue = this.state.queueInfo;
+    let _this = this;
+    console.log(theQueue);
+    wx.showModal({
+      title: '锁定车队',
+      content: `确定解锁 ${theQueue.queue_end_time.slice(0,10)+" "+theQueue.queue_end_time.slice(11,-3)} 人数为${theQueue.queue_current_num}人的车队吗？`,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let body = {
+            adminId: _this.state.adminInfo.adminId,
+            sessionId: _this.state.adminInfo.sessionId,
+            store_id: _this.state.storeInfo.store_id,
+            queue_id: theQueue.queue_id,
+            appId: wx.getAccountInfoSync().miniProgram.appId,
+            token: (dayjs().unix() + 1000 ) * 2
+          };
+          test_delock_queue(body).then((result) => {
             if (result.data.code == 1){
               Taro.navigateBack()
             } else {
@@ -234,6 +293,8 @@ export default class Queuemanagepage extends Component {
   }
 
   render () {
+
+    let isBefore = dayjs(this.state.queueInfo.queue_end_time).isBefore(dayjs());
 
     var top_height = wx.getSystemInfoSync().statusBarHeight;
     var system_width = wx.getSystemInfoSync().screenWidth/3;
@@ -328,7 +389,7 @@ export default class Queuemanagepage extends Component {
               </View>
               <text style='font-size:10px;text-decoration:underline;'>{item.player_tel}</text>
             </View>
-            <View style='width:120rpx;position:absolute;margin-right:7%;right:0;'><AtButton type='primary' circle='true' className='remove-player-but' onClick={this.removePlayer.bind(this, item.player_id)}>移除车队</AtButton></View>
+            <View style='width:120rpx;position:absolute;margin-right:7%;right:0;'><AtButton type='primary' circle='true' className='remove-player-but' onClick={this.removePlayer.bind(this, item.player_id)} disabled={this.state.queueInfo.queue_status==1? true:false}>移除车队</AtButton></View>
           </View>
         )
       })
@@ -339,6 +400,19 @@ export default class Queuemanagepage extends Component {
           <text className='play-label-info'>{item}</text>
         )
       })
+
+      let score_list = [];
+      for (let index = 0; index < 5; index++) {
+        if (index < this.state.playInfo.play_score) {
+          score_list.push(
+            <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-0px;'></image>
+          )
+        } else {
+          score_list.push(
+            <image src={scoreDeactive} className='play-score-pic-info' style='position:relative;left:-0px;'></image>
+          )
+        }
+      }
       return (
         <View className='queueManagePage'>
 
@@ -368,14 +442,12 @@ export default class Queuemanagepage extends Component {
                       </image>
                   </View>
                   <View className='at-col' /*这里写的是StoreInfo 文字部分*/> 
-                    <View className='play-name-position-info'>{this.state.playInfo.play_name}</View>
+                    <View className='play-name-position-info'>
+                      <text style='text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{this.state.playInfo.play_name}</text>
+                    </View>
                     <View className='play-score-position-info'>难度
                       <View style='display:flex;align-items:flex-end;padding-left:3%;position:relative;bottom:0%'>
-                        <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-0px;'></image>
-                        <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-3px;'></image>
-                        <image src={scoreActive} className='play-score-pic-info' style='position:relative;left:-6px;'></image>
-                        <image src={scoreDeactive} className='play-score-pic-info' style='position:relative;left:-9px;'></image>
-                        <image src={scoreDeactive} className='play-score-pic-info' style='position:relative;left:-12px;'></image>
+                        {score_list}
                       </View>
                     </View>
                     <View className='play-headcount-position-info'>{this.state.playInfo.play_headcount}人本
@@ -410,7 +482,7 @@ export default class Queuemanagepage extends Component {
                     <View style='display:flex;width:100%;margin-left:5%;align-items:center;'>
                       <text style='font-size:14px;'>车队成员</text>
                       <text style='font-size:10px;'>（{this.state.playerList.length}/{this.state.playInfo.play_headcount}）</text>
-                      <View style='width:50rpx;position:absolute;margin-right:10%;right:0;'><AtButton type='primary' circle='true' className='add-player-but' onClick={this.handleAddPlayer.bind(this)}>添加</AtButton></View>
+                      <View style='width:50rpx;position:absolute;margin-right:10%;right:0;'><AtButton type='primary' circle='true' className='add-player-but' onClick={this.handleAddPlayer.bind(this)} disabled={this.state.queueInfo.queue_status==1? true:false}>添加</AtButton></View>
                     </View>
                     <View style='height:10rpx;margin-left:5%;margin-right:5%;border:0px solid #97979755;border-bottom-width:1px;margin-bottom:20rpx;'></View>
                     
@@ -422,11 +494,17 @@ export default class Queuemanagepage extends Component {
 
                 </View>
               </ScrollView>
-              <View className='at-row' style='position:fixed;bottom:0;height:150rpx;padding-top:2%;background-color:#fff'>
-                <AtButton type='second' circle='true' className='invite-friends-button' onClick={this.deleteTheQueue.bind(this)}>解散该局</AtButton>
-                <AtButton type='primary' circle='true' className='join-queue-button' onClick={this.lockTheQueue.bind(this)}>确认锁局</AtButton>
+              {((this.state.queueInfo.queue_status==1)&isBefore)? 
+              <View className='at-row' style='position:fixed;bottom:0;height:150rpx;width:100vw;padding-top:2%;background:#F9F9F9;'>
               </View>
+              :
+              <View className='at-row' style='position:fixed;bottom:0;height:150rpx;padding-top:2%;background-color:#fff'>
+                <AtButton type='second' circle='true' className='invite-friends-button' onClick={this.deleteTheQueue.bind(this)} >解散该局</AtButton>
+                <AtButton type='primary' circle='true' className='join-queue-button' onClick={this.state.queueInfo.queue_status==1? this.deLockTheQueue.bind(this):this.lockTheQueue.bind(this)} >{this.state.queueInfo.queue_status==1? '解除锁定':'确认锁局'}</AtButton>
+              </View>
+              }
           </View>
+          {this.state.showPlayerAdder==true? 
           <View style={{
             visibility: this.state.showPlayerAdder==true?'visible':'hidden', 
             height: `100vh`,
@@ -445,7 +523,7 @@ export default class Queuemanagepage extends Component {
                 <AtButton type='primary' circle='true' className='add-player-confirm-button' onClick={this.handleConfirm.bind(this)}>确定</AtButton>
               </View>
             </View>
-          </View>
+          </View>:null}
         </View>
       )
     }

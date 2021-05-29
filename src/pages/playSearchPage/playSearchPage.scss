@@ -20,7 +20,7 @@
         width:50%;
         height: 60rpx;
         font-size: 34px;
-        color: #686965;
+        color:#FEFFFF;
         padding: 10px 0px;
         font-weight: 520;
     }
@@ -46,7 +46,7 @@
 }
 
 .JoinQueueSelectInfo{
-    background-image: url(../../img/image-6.png);
+    background-image: url(../../img/image-13.jpg);
     background-size: 100%;
 }
 
@@ -109,6 +109,69 @@
         background-color: #FCA62F;
     }
 }
+
+.tag-label-button-info{
+    
+    &.at-tag{
+        padding: 0 15px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 28px;
+        border: 1px solid #979797;
+        background-color: #00000000;
+        margin-right: 50rpx;
+        margin-bottom: 20rpx;
+    }
+
+    &.at-tag--active{
+        border: 1px solid #FCA62F;
+        background-color: #FCA62F;
+    }
+}
+
+.tag-label-display-info{
+    
+    &.at-tag{
+        padding: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 28px;
+        background-color: #D8D8D8;
+        margin-right: 20rpx;
+        margin-top: 5rpx;
+        margin-bottom: 5rpx;
+    }
+
+    &.at-tag--active{
+        border: 1px solid #FCA62F;
+        background-color: #FCA62F;
+    }
+}
+
+.label-reset-button{
+    align-items: center;
+    height: 60%;
+    width: 300rpx;
+    font-size: 32px;
+    border: 1PX solid #FCA62F;
+    background-color: #FCA62F00;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.label-confirm-button{
+    align-items: center;
+    height: 60%;
+    width: 300rpx;
+    font-size: 32px;
+    border: 0PX none;
+    background-color: #FCA62F;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
 
 .scrollviewY{
     background: #FFFEFFFF;
@@ -173,6 +236,7 @@
 
 .play-name-position-info{
     height: 60px;
+    width:360rpx;
     font-size: 36px;
     font-weight:bold;
     display:flex;
@@ -263,6 +327,18 @@
     font-size: 28px;
     border: 0PX none;
     background-color: #FA6B53FF;
+    &.at-button--disabled {
+        background-color: #A5A5A5;
+    }
+}
+
+.create-new-play {
+    align-items: center;
+    height: 80%;
+    width: 80%;
+    font-size: 28px;
+    border: 0PX none;
+    background-color: #FCA62F;
     &.at-button--disabled {
         background-color: #A5A5A5;
     }

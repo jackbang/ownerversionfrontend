@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { Component } from 'react'
-import { View, Input, Switch} from '@tarojs/components'
+import { View, Input, Switch, ScrollView} from '@tarojs/components'
 import { AtButton, AtNavBar, AtInput, AtImagePicker, AtActivityIndicator, AtTextarea, AtIcon } from 'taro-ui'
 import './index.scss'
 
@@ -11,10 +11,10 @@ import SparkMD5 from 'spark-md5'
 
 import CryptoJS from 'crypto-js'
 
-import bk from '../../img/image-13.png'
+import bk from '../../img/image-13.jpg'
 import mapIcon from '../../img/mapIcon.svg'
 import confirmIcon from '../../img/confirmIcon.svg'
-import editorIcon from '../../img/editorIcon.svg'
+import editorIcon from '../../img/deleteIcon.svg'
 
 import {test_send_sms, test_upload_play, test_get_storeAdmin, test_save_storeInfo, test_add_admin, test_delete_admin} from '../../service/api'
 import { base, map_KEY } from '../../service/config'
@@ -102,15 +102,39 @@ export default class Formpage extends Component {
     } else if (pageKind == "3") {
       // 编辑剧本
       let playId = pages_option.play_id;
-      this.state.playInfo = Taro.getStorageSync(`play_id_${playId}`);
-      this.setState({
-        pageKind:pageKind,
-        storeInfo: Taro.getStorageSync('store_info'),
-        adminInfo: Taro.getStorageSync('admin_info'),
-        imgFile: [{url: base+this.state.playInfo.play_img}],
-        imgUploadIcon: false,
-        infoLoading: false
-      })
+      if (playId == 0) {
+        this.state.playInfo = {
+          play_labels:[],
+          play_id:0, 
+          play_name:"",
+          play_headcount:0,
+          play_male_num:0,
+          play_female_num:0,
+          play_score:0,
+          play_intro:"",
+          play_img:"",
+          play_antigender:false,
+          play_duration:0
+        }
+        this.setState({
+          pageKind:pageKind,
+          storeInfo: Taro.getStorageSync('store_info'),
+          adminInfo: Taro.getStorageSync('admin_info'),
+          imgFile: [],
+          imgUploadIcon: true,
+          infoLoading: false
+        })
+      } else {
+        this.state.playInfo = Taro.getStorageSync(`play_id_${playId}`);
+        this.setState({
+          pageKind:pageKind,
+          storeInfo: Taro.getStorageSync('store_info'),
+          adminInfo: Taro.getStorageSync('admin_info'),
+          imgFile: [{url: base+this.state.playInfo.play_img}],
+          imgUploadIcon: false,
+          infoLoading: false
+        })
+      }
     } else if (pageKind == "4") {
       // 店铺管理
       console.log("店铺管理页面")
@@ -356,6 +380,8 @@ export default class Formpage extends Component {
           console.log("Img size is over 600KB")
         } else if (this.state.storeInfo.store_name.length == 0) {
           console.log("Store name length is 0")
+        } else if (this.state.storeInfo.store_name.length > 15) {
+          console.log("Store name length is more than 15")
         } else if (this.state.storeInfo.store_latitude == 0 | this.state.storeInfo.store_longitude == 0) {
           console.log("Store position did not set")
         } else if (this.state.storeInfo.store_address.length == 0) {
@@ -364,7 +390,9 @@ export default class Formpage extends Component {
           console.log("Store address did not set")
         } else if (this.state.storeInfo.store_tel1.length <8) {
           console.log("telephone number length is wrong")
-        } else {
+        } else if (isNaN(this.state.storeInfo.store_tel1.split('-')[0])) {
+          console.log("telephone number is not number")
+        }else {
           var spark = new SparkMD5()
           var imgMD5;
           var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
@@ -540,56 +568,99 @@ export default class Formpage extends Component {
 
   handleUploadPlay () {
     console.log('upload play')
+    if (this.state.playInfo.play_name.length == 0) {
+      console.log("Play name length is 0")
+    } else if (this.state.playInfo.play_name.length > 15) {
+      console.log("Play name length is more than 15")
+    } else {
     
-    /*
-    var spark = new SparkMD5()
-    var ClientImgMD5, ServerImgMD5;
-    var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].url, 'binary');
-    spark.appendBinary(imgFile);
-    ClientImgMD5 = spark.end();
+      if (this.state.imgFile[0].url == base+this.state.playInfo.play_img){
+        console.log('the imgs are same')
+        let temp_play = Taro.getStorageSync(`play_id_${this.state.playInfo.play_id}`)
+        console.log(temp_play)
+        console.log(this.state.playInfo)
+        var ClientPlayMD5 = SparkMD5.hash(JSON.stringify(this.state.playInfo));
+        var ServerPlayMD5 = SparkMD5.hash(JSON.stringify(temp_play));
+        if (ClientPlayMD5 == ServerPlayMD5) {
+          console.log('nothing modified')
+        } else {
+          console.log(ClientPlayMD5)
+          console.log(ServerPlayMD5)
+          let upload_data = {
+            adminId: this.state.adminInfo.adminId,
+            sessionId: this.state.adminInfo.sessionId,
+            store_id: this.state.storeInfo.store_id,
+            play_info: this.state.playInfo,
+            price: this.state.playPrice,
+            appId: wx.getAccountInfoSync().miniProgram.appId,
+            token: (dayjs().unix() + 1000 ) * 2
+          }
 
-    spark = new SparkMD5()
-    imgFile = wx.getFileSystemManager().readFileSync(base+this.state.playInfo.play_img, 'binary');
-    spark.appendBinary(imgFile);
-    ServerImgMD5 = spark.end();
-    */
-    if (this.state.imgFile[0].url == base+this.state.playInfo.play_img){
-      console.log('the imgs are same')
-      let temp_play = Taro.getStorageSync(`play_id_${this.state.playInfo.play_id}`)
-      console.log(temp_play)
-      console.log(this.state.playInfo)
-      var ClientPlayMD5 = SparkMD5.hash(JSON.stringify(this.state.playInfo));
-      var ServerPlayMD5 = SparkMD5.hash(JSON.stringify(temp_play));
-      if (ClientPlayMD5 == ServerPlayMD5) {
-        console.log('nothing modified')
-      } else {
-        console.log(ClientPlayMD5)
-        console.log(ServerPlayMD5)
-        let upload_data = {
-          adminId: this.state.adminInfo.adminId,
-          sessionId: this.state.adminInfo.sessionId,
-          store_id: this.state.storeInfo.store_id,
-          play_info: this.state.playInfo,
-          price: this.state.playPrice,
-          appId: wx.getAccountInfoSync().miniProgram.appId,
-          token: (dayjs().unix() + 1000 ) * 2
+          let _this = this;
+          test_upload_play(upload_data).then(function(res){
+            console.log(res.data)
+            if (res.data.code == 1) {
+              Taro.removeStorage({key:`play_id_${_this.state.playInfo.play_id}`})
+              _this.setState({
+                playInfo:res.data.data
+              })
+              Taro.navigateBack()
+            } else {
+              console.log(res.data.data)
+            }
+          })
         }
+      } else {
+        console.log('the imgs are not same')
 
+        var spark = new SparkMD5()
+        var imgMD5;
+        var imgFile = wx.getFileSystemManager().readFileSync(this.state.imgFile[0].file.path, 'binary');
+        spark.appendBinary(imgFile);
+        imgMD5 = spark.end();
         let _this = this;
-        test_upload_play(upload_data).then(function(res){
-          console.log(res.data)
-          if (res.data.code == 1) {
-            Taro.removeStorage({key:`play_id_${_this.state.playInfo.play_id}`})
-            _this.setState({
-              playInfo:res.data.data
-            })
+        Taro.uploadFile({
+          url: base+'/test/uploadPlayWithImg', //仅为示例，非真实的接口地址
+          filePath: this.state.imgFile[0].file.path,
+          name: 'file',
+          formData: {
+            'imgMD5': imgMD5,
+            'play_id': this.state.playInfo.play_id,
+            'play_name': this.state.playInfo.play_name,
+            'play_headcount': this.state.playInfo.play_headcount,
+            'play_male_num': this.state.playInfo.play_male_num,
+            'play_female_num': this.state.playInfo.play_female_num,
+            'play_score': this.state.playInfo.play_score,
+            'play_intro': this.state.playInfo.play_intro,
+            'play_duration': this.state.playInfo.play_duration,
+            'play_antigender': this.state.playInfo.play_antigender==true? 1:0,
+            'play_labels': this.state.playInfo.play_labels,
+            'store_id': this.state.storeInfo.store_id,
+            'price': this.state.playPrice,
+            'adminId': this.state.adminInfo.adminId,
+            'sessionId': this.state.adminInfo.sessionId,
+            'appId': wx.getAccountInfoSync().miniProgram.appId,
+            'token': (dayjs().unix() + 1000 ) * 2
+          },
+          success (res){
+            const receiveData = JSON.parse(res.data);
+            console.log(receiveData)
+            if (receiveData.code == 1) {
+              Taro.removeStorage({key:`play_id_${_this.state.playInfo.play_id}`})
+              _this.state.adminInfo.sessionId = receiveData.data.sessionId;
+              _this.state.playInfo = receiveData.data.playInfo;
+              Taro.setStorage({
+                key: `admin_info`,
+                data: _this.state.adminInfo
+              })
+              Taro.navigateBack()
+            } else {
+              console.log(receiveData.data)
+            }
           }
         })
       }
-    } else {
-      console.log('the imgs are not same')
     }
-    
     /*
     Taro.uploadFile({
       url: base+'/test/uploadPlay', //仅为示例，非真实的接口地址
@@ -631,6 +702,8 @@ export default class Formpage extends Component {
         console.log("Img size is over 600KB")
       } else if (this.state.storeInfo.store_name.length == 0) {
         console.log("Store name length is 0")
+      } else if (this.state.storeInfo.store_name.length > 15) {
+        console.log("Store name length is more than 15")
       } else if (this.state.storeInfo.store_latitude == 0 | this.state.storeInfo.store_longitude == 0) {
         console.log("Store position did not set")
       } else if (this.state.storeInfo.store_address.length == 0) {
@@ -639,6 +712,8 @@ export default class Formpage extends Component {
         console.log("Store address did not set")
       } else if (this.state.storeInfo.store_tel1.length <8) {
         console.log("telephone number length is wrong")
+      } else if (isNaN(this.state.storeInfo.store_tel1.split('-')[0])) {
+        console.log("telephone number is not number")
       } else {
         var spark = new SparkMD5()
         var imgMD5;
@@ -690,6 +765,8 @@ export default class Formpage extends Component {
       console.log("the img is same")
       if (this.state.storeInfo.store_name.length == 0) {
         console.log("Store name length is 0")
+      } else if (this.state.storeInfo.store_name.length > 15) {
+        console.log("Store name length is more than 15")
       } else if (this.state.storeInfo.store_latitude == 0 | this.state.storeInfo.store_longitude == 0) {
         console.log("Store position did not set")
       } else if (this.state.storeInfo.store_address.length == 0) {
@@ -698,6 +775,8 @@ export default class Formpage extends Component {
         console.log("Store address did not set")
       } else if (this.state.storeInfo.store_tel1.length <8) {
         console.log("telephone number length is wrong")
+      } else if (isNaN(this.state.storeInfo.store_tel1.split('-')[0])) {
+        console.log("telephone number is not number")
       } else {
         let formData = {
           'store_id': this.state.storeInfo.store_id,
@@ -776,7 +855,9 @@ export default class Formpage extends Component {
       console.log('Phone number error')
     } else if ( this.state.newAdminPhone == adminInfo.phoneNumber) {
       console.log('Dont Allow Add Store Owner')
-    } else {
+    } else if ( isNaN(this.state.newAdminPhone)) {
+      console.log('Phone number is not number')
+    }else {
       let body = {
         adminId: adminInfo.adminId,
         sessionId: adminInfo.sessionId,
@@ -795,6 +876,14 @@ export default class Formpage extends Component {
     }
   }
 
+  onScrollToUpper() {}
+
+  // or 使用箭头函数
+  // onScrollToUpper = () => {}
+  onScroll(e){
+    //console.log(e.detail)
+  }
+
   render () {
 
     var top_height = wx.getSystemInfoSync().statusBarHeight;
@@ -806,6 +895,12 @@ export default class Formpage extends Component {
     var screenHeight_rpx = 750*(screenHeight/screenWidth);
     var windowHeight_rpx = 750*(windowHeight/screenWidth);
     var top_height_rpx = 750*(top_height/screenWidth);
+
+    const scrollTop = 0
+    const Threshold = 20
+    var scrollStyle = {
+      height: `400rpx;`
+    }
 
     let stepsBar = [];
     let formContent = [];
@@ -847,6 +942,7 @@ export default class Formpage extends Component {
               placeholder='修改'
               value={this.state.adminStoreInfo.name}
               onChange={this.handleChange.bind(this, 'adminStoreInfo_name')}
+              cursor={this.state.adminStoreInfo.name.length}
               className='name-input-css'
             />
           </View>
@@ -859,6 +955,7 @@ export default class Formpage extends Component {
               placeholder='修改'
               value={this.state.adminStoreInfo.idCard}
               onChange={this.handleChange.bind(this, 'adminStoreInfo_idCard')}
+              cursor={this.state.adminStoreInfo.idCard.length}
               className='name-input-css'
             />
           </View>
@@ -1029,6 +1126,7 @@ export default class Formpage extends Component {
               placeholder='需与门店名称一致'
               value={this.state.storeInfo.store_name}
               onChange={this.handleChange.bind(this, 'storeInfo_store_name')}
+              cursor={this.state.storeInfo.store_name.length}
               className='storeInfo-input-css'
               required
             />
@@ -1045,6 +1143,7 @@ export default class Formpage extends Component {
               placeholder='点击图标选择地址'
               value={this.state.storeInfo.store_position}
               onChange={this.handleChange.bind(this, 'storeInfo_store_position')}
+              cursor={this.state.storeInfo.store_position.length}
               className='storeInfo-input-css'
             />
             <image src={mapIcon} style='height:80rpx;width:80rpx;' onClick={this.handleSelectPos.bind(this)}></image>
@@ -1060,6 +1159,7 @@ export default class Formpage extends Component {
               placeholder='详细地址，例1层101室'
               value={this.state.storeInfo.store_address}
               onChange={this.handleChange.bind(this, 'storeInfo_store_address')}
+              cursor={this.state.storeInfo.store_address.length}
               className='storeInfo-input-css'
               required
               adjustPosition
@@ -1071,11 +1171,12 @@ export default class Formpage extends Component {
             <AtInput
               name='value6'
               title=''
-              type='phone'
+              type='text'
               placeholderStyle='font-size:13px;'
               placeholder='如有区号，请在区号后加“-”'
               value={this.state.storeInfo.store_tel1}
               onChange={this.handleChange.bind(this, 'storeInfo_store_tel1')}
+              cursor={this.state.storeInfo.store_tel1.length}
               className='storeInfo-input-css'
               required
               adjustPosition
@@ -1087,11 +1188,12 @@ export default class Formpage extends Component {
             <AtInput
               name='value7'
               title=''
-              type='phone'
+              type='text'
               placeholderStyle='font-size:13px;'
               placeholder='如有区号，请在区号后加“-”'
               value={this.state.storeInfo.store_tel2}
               onChange={this.handleChange.bind(this, 'storeInfo_store_tel2')}
+              cursor={this.state.storeInfo.store_tel2.length}
               className='storeInfo-input-css'
               required
               adjustPosition
@@ -1198,7 +1300,7 @@ export default class Formpage extends Component {
                 type='number'
                 placeholderStyle='font-size:11px;'
                 placeholder='男性角色人数'
-                value={this.state.playInfo.play_male_num}
+                value={this.state.playInfo.play_male_num==999? '':this.state.playInfo.play_male_num}
                 onChange={this.handleChange.bind(this, 'playInfo_play_male_num')}
                 className='playInfo-num-input-css'
                 required
@@ -1213,7 +1315,7 @@ export default class Formpage extends Component {
                 type='number'
                 placeholderStyle='font-size:11px;'
                 placeholder='女性角色人数'
-                value={this.state.playInfo.play_female_num}
+                value={this.state.playInfo.play_female_num==999? '':this.state.playInfo.play_female_num}
                 onChange={this.handleChange.bind(this, 'playInfo_play_female_num')}
                 className='playInfo-num-input-css'
                 required
@@ -1286,7 +1388,7 @@ export default class Formpage extends Component {
             </View>
             <View style='height:150rpx;width:90%;margin-left:5.5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
               <text style='font-size:15px;width:70%;'>店铺头像</text>
-              <image style='height:150rpx;width:150rpx;' src={this.state.imgFile[0].url }></image>
+              <image style='height:120rpx;width:120rpx;border-radius:10rpx;' src={this.state.imgFile[0].url }></image>
             </View>
 
             <View style='height:75rpx;width:90%;margin-left:5%;margin-top:10rpx;border: 0px solid #97979755;border-bottom-width:1.5px;display:flex;align-items:center;justify-content:flex-start;'>
@@ -1344,11 +1446,12 @@ export default class Formpage extends Component {
                 editable={false}
                 name='value6'
                 title=''
-                type='phone'
+                type='text'
                 placeholderStyle='font-size:13px;'
                 placeholder='如有区号，请在区号后加“-”'
                 value={this.state.storeInfo.store_tel1}
                 onChange={this.handleChange.bind(this, 'storeInfo_store_tel1')}
+                cursor={this.state.storeInfo.store_tel1.length}
                 className='storeInfo-input-css'
                 required
                 adjustPosition
@@ -1361,11 +1464,12 @@ export default class Formpage extends Component {
                 editable={false}
                 name='value7'
                 title=''
-                type='phone'
+                type='text'
                 placeholderStyle='font-size:13px;'
                 placeholder='如有区号，请在区号后加“-”'
                 value={this.state.storeInfo.store_tel2}
                 onChange={this.handleChange.bind(this, 'storeInfo_store_tel2')}
+                cursor={this.state.storeInfo.store_tel2.length}
                 className='storeInfo-input-css'
                 required
                 adjustPosition
@@ -1380,10 +1484,10 @@ export default class Formpage extends Component {
           console.log(this.state.permission)
           if (item.adminStore_permission == 1){
             adminContent.unshift(
-              <View style='height:90rpx;width:90%;margin-left:5%;margin-top:50rpx;border: 0px solid #97979755;border-bottom-width:0px;display:flex;align-items:flex-start;;justify-content:flex-start;'>
+              <View style='height:90rpx;width:90%;margin-left:5%;border: 0px solid #97979755;border-bottom-width:0px;display:flex;align-items:flex-start;;justify-content:flex-start;'>
                 <text style='font-size:13px;width:150rpx;font-weight:550;'>店长</text>
                 <View style='height:90rpx;width:400rpx;margin-left:10rpx;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
-                  <text style='font-size:13px;font-weight:530;'>{item.admin_nickName}</text>
+                  <text style='font-size:13px;font-weight:530;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{item.admin_nickName}</text>
                   <text style='font-size:11px;color:#797979;margin-top:10rpx'>手机号 {item.adminStore_phone}</text>
                 </View>
               </View>
@@ -1400,27 +1504,40 @@ export default class Formpage extends Component {
                 </View>
                 
                 <View style='height:90rpx;width:400rpx;margin-left:10rpx;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;'>
-                  <text style='font-size:13px;font-weight:530;'>{item.admin_nickName}</text>
+                  <text style='font-size:13px;font-weight:530;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{item.admin_nickName}</text>
                   <text style='font-size:11px;color:#797979;margin-top:10rpx'>手机号 {item.adminStore_phone}</text>
                 </View>
 
-                <image style={this.state.permission==1? 'height:50rpx;width:50rpx;margin-top:20rpx;':'visibility:hidden;height:50rpx;width:50rpx;margin-top:20rpx;'} src={editorIcon} onClick={this.deleteAdmin.bind(this, itemIdx)}></image>
+                <image style={this.state.permission==1? 'height:40rpx;width:40rpx;margin-top:20rpx;':'visibility:hidden;height:50rpx;width:50rpx;margin-top:20rpx;'} src={editorIcon} onClick={this.deleteAdmin.bind(this, itemIdx)}></image>
               </View>
             )
           }
         })
 
         formContent.push(
-          <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+          <View style='height:450rpx;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
             <View style='height:20rpx;'></View>
-            <View style='width:100%;'>
+            <View style='width:100%;margin-bottom:50rpx;'>
               <text style='font-size:20px;font-weight:530;margin-left:5%;'>店铺管理员</text>
               <text 
                 style={this.state.permission==1? 'font-size:13px;font-weight:530;margin-left:5%;color:#FCA62F;text-decoration:underline;margin-left:250rpx;':'visibility:hidden;'}
                 onClick={this.addAdmin.bind(this)}
               >添加管理员</text>
             </View>
-            {adminContent}
+            <ScrollView
+              className='scrollview'
+              scrollY
+              scrollWithAnimation
+              show-scrollbar='false'
+              scrollTop={scrollTop}
+              style={scrollStyle}
+              lowerThreshold={Threshold}
+              upperThreshold={Threshold}
+              onScrollToUpper={this.onScrollToUpper.bind(this)} // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
+              onScroll={this.onScroll}
+              >
+              {adminContent}
+            </ScrollView>
           </View>
         )
       } else {
@@ -1461,6 +1578,7 @@ export default class Formpage extends Component {
               placeholder='需与门店名称一致'
               value={this.state.storeInfo.store_name}
               onChange={this.handleChange.bind(this, 'storeInfo_store_name')}
+              cursor={this.state.storeInfo.store_name.length}
               className='storeInfo-input-css'
               required
             />
@@ -1492,6 +1610,7 @@ export default class Formpage extends Component {
               placeholder='详细地址，例1层101室'
               value={this.state.storeInfo.store_address}
               onChange={this.handleChange.bind(this, 'storeInfo_store_address')}
+              cursor={this.state.storeInfo.store_address.length}
               className='storeInfo-input-css'
               required
               adjustPosition
@@ -1503,11 +1622,12 @@ export default class Formpage extends Component {
             <AtInput
               name='value6'
               title=''
-              type='phone'
+              type='text'
               placeholderStyle='font-size:13px;'
               placeholder='如有区号，请在区号后加“-”'
               value={this.state.storeInfo.store_tel1}
               onChange={this.handleChange.bind(this, 'storeInfo_store_tel1')}
+              cursor={this.state.storeInfo.store_tel1.length}
               className='storeInfo-input-css'
               required
               adjustPosition
@@ -1519,11 +1639,12 @@ export default class Formpage extends Component {
             <AtInput
               name='value7'
               title=''
-              type='phone'
+              type='text'
               placeholderStyle='font-size:13px;'
               placeholder='如有区号，请在区号后加“-”'
               value={this.state.storeInfo.store_tel2}
               onChange={this.handleChange.bind(this, 'storeInfo_store_tel2')}
+              cursor={this.state.storeInfo.store_tel2.length}
               className='storeInfo-input-css'
               required
               adjustPosition

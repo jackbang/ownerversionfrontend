@@ -1,15 +1,17 @@
 import Taro from '@tarojs/taro'
 import { Component } from 'react'
-import { View, Input } from '@tarojs/components'
+import { View, Input, ScrollView, Swiper, SwiperItem } from '@tarojs/components'
 import { AtButton, AtIcon } from 'taro-ui'
 import './index.scss'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 
-import bk from '../../img/image-13.png'
+import bk from '../../img/image-13.jpg'
+import fig1 from '../../img/1.png'
+import fig2 from '../../img/2.png'
 
-import {test_wechat_login, test_get_phonenum_info, test_send_sms, test_get_store_list, test_verify_store} from '../../service/api'
+import {test_wechat_login, test_get_phonenum_info, test_send_sms, test_get_store_list, test_verify_store } from '../../service/api'
 import {base} from '../../service/config'
 
 export default class Index extends Component {
@@ -190,10 +192,12 @@ export default class Index extends Component {
 
     } else {
       this.state.adminInfo['phoneNumber'] = '';
-      /*
-      this.setState({
-        pageKind: 2
-      })*/
+      wx.showToast({
+        title: '获取手机号失败',
+        icon: 'none',
+        duration: 1000,
+        mask: false
+      })
 
     }
   }
@@ -355,24 +359,85 @@ export default class Index extends Component {
     console.log('create the store')
   }
 
+  onScrollToUpper() {}
+
+  // or 使用箭头函数
+  // onScrollToUpper = () => {}
+  onScroll(e){
+    //console.log(e.detail)
+  }
+
   render () {
+
+    var top_height = wx.getSystemInfoSync().statusBarHeight;
+    var system_width = wx.getSystemInfoSync().screenWidth/3;
+
+    var screenHeight = wx.getSystemInfoSync().screenHeight;
+    var screenWidth = wx.getSystemInfoSync().screenWidth;
+    var windowHeight = wx.getSystemInfoSync().windowHeight;
+    var screenHeight_rpx = 750*(screenHeight/screenWidth);
+    var windowHeight_rpx = 750*(windowHeight/screenWidth);
+    var top_height_rpx = 750*(top_height/screenWidth);
+
+    const scrollTop = 0
+    const Threshold = 20
+    var scrollStyle = {
+      height: `42vh`
+    }
+
     let formContent = [];
     if (this.state.pageKind == 0) {
       return (
         <View className='index' style={{height:`100vh`, backgroundSize:`auto 100%`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-end`}}>
-          {/* 这里的背景后期需要去掉，用Swiper 来替代*/}
-          <image src={bk} style='width:100vw;height:100vh;position:absolute;'></image>
-          <AtButton type='primary' circle='true' className='join-platform-button' onClick={this.handleLogin.bind(this)}>登录</AtButton> 
-          <View style='padding-bottom: 45%;'></View>  
+          <Swiper
+            className='test-h'
+            indicatorColor='#999'
+            indicatorActiveColor='#333'
+            circular
+            indicatorDots
+            autoplay>
+            <SwiperItem>
+              <image src={fig1} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+            <SwiperItem>
+              <image src={fig2} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+            <SwiperItem>
+              <image src={base+'/media/3.png'} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+            <SwiperItem>
+              <image src={base+'/media/4.png'} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+          </Swiper>
+          <AtButton type='primary' className='join-platform-button' onClick={this.handleLogin.bind(this)}>立即体验</AtButton> 
+          <View style='padding-bottom: 15%;'></View>  
         </View>
       )
     } else if (this.state.pageKind == 1) {
       return (
         <View className='index' style={{height:`100vh`, backgroundSize:`auto 100%`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-end`}}>
-          {/* 这里的背景后期需要去掉，用Swiper 来替代*/}
-          <image src={bk} style='width:100vw;height:100vh;position:absolute;'></image>
-          <AtButton type='primary' circle='true' className='join-platform-button' onClick={this.showPhoneInput.bind(this)} openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>获取手机号</AtButton> 
-          <View style='padding-bottom: 45%;'></View>  
+          <Swiper
+            className='test-h'
+            indicatorColor='#999'
+            indicatorActiveColor='#333'
+            circular
+            indicatorDots
+            autoplay>
+            <SwiperItem>
+              <image src={fig1} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+            <SwiperItem>
+              <image src={fig2} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+            <SwiperItem>
+              <image src={base+'/media/3.png'} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+            <SwiperItem>
+              <image src={base+'/media/4.png'} style='height:100vh;width:100vw;'></image>
+            </SwiperItem>
+          </Swiper>
+          <AtButton type='primary' className='join-platform-button' onClick={this.showPhoneInput.bind(this)} openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>立即体验</AtButton> 
+          <View style='padding-bottom: 15%;'></View>  
         </View>
       )
     } else if (this.state.pageKind == 2) {
@@ -501,7 +566,7 @@ export default class Index extends Component {
             borderRadius:`10rpx`,
             marginTop: `20rpx`,
             display: `flex`}} onClick={this.handleClickStoreTab.bind(this, itemIdx)}>
-            <image src={base+item.store_logo} style='height:80rpx;width:80rpx;margin-left:10rpx;margin-top:10rpx;'></image>
+            <image src={base+item.store_logo} style='height:80rpx;width:80rpx;margin-left:10rpx;margin-top:10rpx;border-radius:10rpx;'></image>
             <View style='height:100rpx;width:280rpx;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;margin-left:20rpx;'>
               <text style='font-size:14px;font-weight:530;overflow:hidden;textOverflow:ellipsis;whiteSpace:nowrap;width:280rpx;'>{item.store_name}</text>
               <text style={{fontSize:`12px`, color:`${item.adminStore_verify==1? '#A5A5A5':'#FF0101'}`, overflow:`hidden`, textOverflow:`ellipsis`, whiteSpace:`nowrap`, width:`280rpx`}}>{item.adminStore_verify==1? item.store_position:'未验证'}</text>
@@ -517,10 +582,23 @@ export default class Index extends Component {
         <View className='index' style={{height:`100vh`, backgroundSize:`auto 100%`, display:`flex`, flexDirection:`column`,alignItems:`center`, justifyContent:`flex-end`}}>
           {/* 这里的背景后期需要去掉，用Swiper 来替代*/}
           <image src={bk} style='width:100vw;height:100vh;position:absolute;filter:brightness(50%);z-index:-1;'></image>
-          <View style='height:60vh;width:80%;border-radius:20px;background:#FEFFFF;display:flex;flex-direction:column;'>
+          <View style='height:61vh;width:80%;border-radius:20px;background:#FEFFFF;display:flex;flex-direction:column;'>
             <text style='font-size:20px;font-weight:550;margin-left:50rpx;margin-top:50rpx;margin-bottom:30rpx;'>您的店铺</text>
             <View style='height:44vh;'>
-            {storeTabs}
+              <ScrollView
+                className='scrollview'
+                scrollY
+                scrollWithAnimation
+                show-scrollbar='false'
+                scrollTop={scrollTop}
+                style={scrollStyle}
+                lowerThreshold={Threshold}
+                upperThreshold={Threshold}
+                onScrollToUpper={this.onScrollToUpper.bind(this)} // 使用箭头函数的时候 可以这样写 `onScrollToUpper={this.onScrollToUpper}`
+                onScroll={this.onScroll}
+                >
+                {storeTabs}
+              </ScrollView>
             </View>
             <AtButton type='primary' circle='true' className='open-store-button' onClick={this.openStore.bind(this)}>进入店铺</AtButton>
             <text style='font-size:14px;color:#FCA62F;width:100%;text-align:center;text-decoration:underline;' onClick={this.createStore.bind(this)}>入驻分店</text>

@@ -38,7 +38,7 @@ export const test_delete_plays_search = (body) => {
 }
 
 export const test_upload_play = (play_data) => {
-    let url = '/test/uploadPlay'
+    let url = '/test/uploadPlayWithoutImg'
     return request.post(url, play_data, 'application/json')
 }
 
@@ -87,22 +87,32 @@ export const test_lock_queue = (body) => {
     return request.get(url, body)
 }
 
+export const test_delock_queue = (body) => {
+    let url = `/test/queue/delock`
+    return request.get(url, body)
+}
+
 export const test_get_players = (body) => {
-    let url = `/test/queue/getPlayers`
+    let url = `/test/queue/players/get`
     return request.get(url, body)
 }
 
 export const test_add_players = (body) => {
-    let url = `/test/queue/addPlayers`
+    let url = `/test/queue/players/add`
     return request.get(url, body)
 }
 
 export const test_pop_players = (body) => {
-    let url = `/test/queue/popPlayers`
+    let url = `/test/queue/players/pop`
     return request.get(url, body)
 }
 
 export const test_delete_queue = (body) => {
     let url = `/test/queue/delete`
+    return request.get(url, body)
+}
+
+export const test_share_store = (body) => {
+    let url = `/test/store/share`
     return request.get(url, body)
 }

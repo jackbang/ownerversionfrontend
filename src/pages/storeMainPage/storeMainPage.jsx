@@ -7,7 +7,7 @@ import './storeMainPage.scss'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 
-import bk from '../../img/image-13.png'
+import bk from '../../img/image-13.jpg'
 import storebk from '../../img/storeinfobk.png'
 import certificationTab from '../../img/image-1.png'
 import storeIcon from '../../img/image.png'
@@ -24,7 +24,7 @@ import emptyPic from '../../img/empty.svg'
 import certIcon from '../../img/certification.svg'
 
 
-import { test_get_queues, test_get_lockedqueues, test_lock_queue } from '../../service/api'
+import { test_get_queues, test_get_lockedqueues, test_lock_queue, test_share_store} from '../../service/api'
 import { base } from '../../service/config'
 
 export default class Storemainpage extends Component {
@@ -39,6 +39,7 @@ export default class Storemainpage extends Component {
       queueList: [],
       lockedQueueList: [],
       queueListIdx: [],
+      clickButton:false,
       tabLoading: true,
       infoLoading: true
     }
@@ -198,6 +199,7 @@ export default class Storemainpage extends Component {
   }
 
   lockTheQueue(id) {
+    this.state.clickButton = true;
     let theQueue = this.state.queueList[id];
     let _this = this;
     console.log(theQueue);
@@ -219,16 +221,115 @@ export default class Storemainpage extends Component {
             if (result.data.code == 1){
               _this.state.queueList[id].queue_status = 1;
               _this.setState({
-                queueList: _this.state.queueList
+                queueList: _this.state.queueList,
+                clickButton: false
               })
             } else {
               console.log(result.data.data)
             }
           })
         } else if (res.cancel) {
+          _this.setState({
+            clickButton: false
+          })
           console.log('用户点击取消')
         }
       }
+    })
+  }
+
+  manageQueue (id) {
+    console.log('click tab')
+    if (this.state.clickButton == true) {
+      console.log('click button')
+    } else {
+      Taro.setStorage({
+        key: 'queue_info',
+        data: this.state.queueList[id]
+      })
+  
+      Taro.navigateTo({
+        url: '../queueManagePage/index'
+      })
+    }
+  }
+
+  manageLockedQueue (id) {
+    console.log('click tab')
+    if (this.state.clickButton == true) {
+      console.log('click button')
+    } else {
+      Taro.setStorage({
+        key: 'queue_info',
+        data: this.state.lockedQueueList[id]
+      })
+  
+      Taro.navigateTo({
+        url: '../queueManagePage/index'
+      })
+    }
+  }
+
+  handleShare() {
+    console.log('share the store')
+    let data = {
+      adminId: this.state.adminInfo.adminId,
+      sessionId: this.state.adminInfo.sessionId,
+      store_id: this.state.storeInfo.store_id,
+      appId: wx.getAccountInfoSync().miniProgram.appId,
+      token: (dayjs().unix() + 1000 ) * 2
+    }
+    test_share_store(data).then(function(result) {
+      console.log(result)
+      if (result.data.code == 1){
+        wx.getSetting({
+          success(res) {
+            if (!res.authSetting['scope.writePhotosAlbum']) {
+              wx.authorize({
+                scope: 'scope.writePhotosAlbum',
+                success () {
+                  // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+                }
+              })
+            }
+          }
+        })
+
+        wx.downloadFile({
+          url: base+result.data.data,     //仅为示例，并非真实的资源
+          success: function (rrr) {
+            wx.showToast({
+              title: '请等待...',
+              icon: 'none'
+            })
+            // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+            if (rrr.statusCode === 200) {
+              wx.saveImageToPhotosAlbum({
+                filePath: rrr.tempFilePath,
+                success(res) {
+                  wx.showToast({
+                    title: '已保存图片到相册！',
+                    icon: 'none'
+                  })
+                },
+                fail(res) {
+                  wx.showToast({
+                    title: '保存图片失败！',
+                    icon: 'none'
+                  })
+                }
+              })
+            }
+          }
+        })
+        
+      } else {
+        wx.showToast({
+          title: result.data.data,
+          icon: 'none'
+        })
+      }
+      
     })
   }
 
@@ -247,24 +348,29 @@ export default class Storemainpage extends Component {
     const scrollTop = 0
     const Threshold = 20
     var scrollStyle = {
-      height: `${windowHeight_rpx-top_height_rpx-20-170-50-20-170-80-180-80}rpx`
+      height: `${windowHeight_rpx-top_height_rpx-20-170-50-170-180-80}rpx`
     }
 
     let queuesInfo = [];
     let lockedQueueInfo = [];
 
-    if (this.state.queueList.length == 0) {
+    if (this.state.queueList.length == 0 && this.state.lockedQueueList.length==0) {
       queuesInfo.push(
-        <image src={emptyPic} style='width:675rpx;'></image>
+        <View style='display:flex;flex-direction:column;align-items:center;'>
+          <image src={emptyPic} style='width:675rpx;'></image>
+          <text style='color:#A5A5A5;'>这里空空如也~</text>
+        </View>
       )
 
       lockedQueueInfo.push(
-        <image src={emptyPic} style='width:675rpx;'></image>
+        <View style='display:flex;flex-direction:column;align-items:center;'>
+          <image src={emptyPic} style='width:675rpx;'></image>
+          <text style='color:#A5A5A5;'>这里空空如也~</text>
+        </View>
       )
     } else {
       this.state.lockedQueueList.map((item, itemIdx) => {
         let temp_play_info = Taro.getStorageSync(`play_id_${item.play_id}`);
-        console.log(temp_play_info)
         // male famale display
         let male_female_display = [];
         if (temp_play_info.play_male_num == 999 | temp_play_info.play_female_num == 999) {
@@ -285,7 +391,7 @@ export default class Storemainpage extends Component {
         }
         if (this.state.tabLoading == false ) {
           lockedQueueInfo.push(
-            <View className='at-row queue-tab-info' >
+            <View className='at-row queue-tab-info' onClick={this.manageLockedQueue.bind(this, itemIdx)}>
               <image src={tabbk} mode='widthFix' style='width:675rpx;z-index:-1;position:absolute;'></image>
   
               <View className='at-row play-pic-position-info' style='width:21vw'>
@@ -294,7 +400,9 @@ export default class Storemainpage extends Component {
                 </image>
               </View>
               <View className='at-col play-intro-info'>
-                <View className='at-col play-name-position-info'>{temp_play_info.play_name}</View>
+                <View className='at-col play-name-position-info'>
+                  <text style='text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{temp_play_info.play_name}</text>
+                </View>
                 <View className='at-row'>
                   <View className='at-col'>
                     <View className='at-row' style='font-size:26rpx;font-weight:550;height:70rpx;display:flex;align-items:flex-end;'><text decode="{{true}}">{item.queue_end_time.slice(0,10)+" "+item.queue_end_time.slice(11,-3)}</text></View>
@@ -306,7 +414,7 @@ export default class Storemainpage extends Component {
               </View>
               <View className='at-row' style='width:20vw;display:flex;align-items:center;'>
   
-                <image src={closedQueue} style='height:160rpx;width:160rpx;'></image>
+                <image src={closedQueue} style='height:120rpx;width:120rpx;'></image>
               </View>
             </View>
           )
@@ -376,7 +484,7 @@ export default class Storemainpage extends Component {
         if (this.state.tabLoading == false ) {
           if (temp_play_info.play_headcount == item.queue_current_num){
             queuesInfo.push(
-              <View className='at-row queue-tab-info' >
+              <View className='at-row queue-tab-info' onClick={this.manageQueue.bind(this, itemIdx)}>
                 <image src={tabbk} mode='widthFix' style='width:675rpx;z-index:-1;position:absolute;'></image>
                 {/*  每个tab上信息显示 */}
                 <text style='background-color:rgba(252, 95, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;'>已拼满</text>
@@ -386,7 +494,9 @@ export default class Storemainpage extends Component {
                   </image>
                 </View>
                 <View className='at-col play-intro-info'>
-                  <View className='at-col play-name-position-info'>{temp_play_info.play_name}</View>
+                  <View className='at-col play-name-position-info'>
+                    <text style='text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{temp_play_info.play_name}</text>
+                  </View>
                   <View className='at-row'>
                     <View className='at-col'>
                       <View className='at-row play-time-position-info'><text decode="{{true}}">{item.queue_end_time.slice(0,10)+" "+item.queue_end_time.slice(11,-3)}</text></View>
@@ -408,7 +518,7 @@ export default class Storemainpage extends Component {
             )
           } else {
             queuesInfo.push(
-              <View className='at-row queue-tab-info' >
+              <View className='at-row queue-tab-info' onClick={this.manageQueue.bind(this, itemIdx)}>
                 <image src={tabbk} mode='widthFix' style='width:675rpx;z-index:-1;position:absolute;'></image>
                 {/*  每个tab上信息显示 */}
                 <text style='background-color:rgba(252, 166, 47, 0.5);position:absolute;right:37.5rpx;;font-size:24rpx;padding:10rpx;border-radius:0 20rpx 0 20rpx;'>未拼满</text>
@@ -418,7 +528,9 @@ export default class Storemainpage extends Component {
                   </image>
                 </View>
                 <View className='at-col play-intro-info'>
-                  <View className='at-col play-name-position-info'>{temp_play_info.play_name}</View>
+                  <View className='at-col play-name-position-info'>
+                    <text style='text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{temp_play_info.play_name}</text>
+                  </View>
                   <View className='at-row'>
                     <View className='at-col'>
                       <View className='at-row play-time-position-info'><text decode="{{true}}">{item.queue_end_time.slice(0,10)+" "+item.queue_end_time.slice(11,-3)}</text></View>
@@ -451,12 +563,18 @@ export default class Storemainpage extends Component {
 
       if (lockedQueueInfo.length == 0){
         lockedQueueInfo.push(
-          <image src={emptyPic} style='width:675rpx;'></image>
+          <View style='display:flex;flex-direction:column;align-items:center;'>
+            <image src={emptyPic} style='width:675rpx;'></image>
+            <text style='color:#A5A5A5;'>这里空空如也~</text>
+          </View>
         )
       }
       if (queuesInfo.length == 0) {
         queuesInfo.push(
-          <image src={emptyPic} style='width:675rpx;'></image>
+          <View style='display:flex;flex-direction:column;align-items:center;'>
+            <image src={emptyPic} style='width:675rpx;'></image>
+            <text style='color:#A5A5A5;'>这里空空如也~</text>
+          </View>
         )
       }
     }
@@ -484,15 +602,15 @@ export default class Storemainpage extends Component {
           <View style='padding-top:20rpx;height:150rpx;width:100vw;'>
             <image mode='heightFix' src={storebk} style='height:300rpx;width:660rpx;position:relative;left:45rpx;'></image>
             <View style='height:200rpx;width:600rpx;position:relative;top:-260rpx;left:75rpx;display:flex;align-items:flex-start;justify-content:flex-start'>
-              <image src={base+this.state.storeInfo.store_logo} style='height:200rpx;width:200rpx;'></image>
+              <image src={base+this.state.storeInfo.store_logo} style='height:200rpx;width:200rpx;border-radius:20rpx;'></image>
               <View style='display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-left:20rpx;'>
                 <text style='height:50rpx;width:360rpx;font-size:36rpx;font-weight:600;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>{this.state.storeInfo.store_name}</text>
                 <View style='height:60rpx;display:flex;align-items:center;justify-content:flex-start;'>
                   <image src={certIcon} style='height:30rpx;width:30rpx;'></image>
-                  <text style='font-size:20rpx;margin-left:5rpx;background:rgba(139, 111, 73, 1);color: rgba(255, 255, 255, 1);padding: 3rpx 5rpx;'>待认证</text>
+                  <text style='font-size:20rpx;margin-left:5rpx;background:rgba(139, 111, 73, 1);color: rgba(255, 255, 255, 1);padding: 3rpx 5rpx;'>剧本杀店铺</text>
                 </View>
                 <text style='height:50rpx;width:360rpx;font-size:24rpx;font-weight:530;'>店铺ID：{this.state.storeInfo.store_id}</text>
-                <text style='height:50rpx;width:360rpx;font-size:24rpx;font-weight:530;'>管理员：{this.state.adminInfo.nickName}</text>
+                <text style='height:50rpx;width:360rpx;font-size:24rpx;font-weight:530;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;'>管理员：{this.state.adminInfo.nickName}</text>
               </View>
             </View>
           </View>
@@ -507,6 +625,7 @@ export default class Storemainpage extends Component {
             alignItems:`center`, 
             justifyContent:`flex-start`
             }}>
+            {/*
             <View style={{height:`80rpx`, width:`660rpx`, marginTop:`170rpx`}}>
               <image src={certificationTab} mode='widthFix' style='width:660rpx;position:absolute;'></image>
               <View style='height:80rpx;width:660rpx;position:relative;display:flex;align-items:center;justify-content:flex-start;'>
@@ -517,10 +636,10 @@ export default class Storemainpage extends Component {
                   <AtIcon value='chevron-right' size='24' color='#FCA62F'></AtIcon>
                 </View>
               </View>
-              
             </View>
+            */}
   
-            <View style={{height:`180rpx`, width:`660rpx`, display:`flex`, alignItems:`center`, justifyContent:`flex-start`, marginTop:`20rpx`}}>
+            <View style={{height:`180rpx`, width:`660rpx`, display:`flex`, alignItems:`center`, justifyContent:`flex-start`, marginTop:`170rpx`}}>
               <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;' onClick={this.handleClickStore.bind(this)}>
                 <View style='background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;'>
                   <image src={storeIcon} style='height:30px;width:30px;'></image>
@@ -557,7 +676,7 @@ export default class Storemainpage extends Component {
   
               <View style='width:40rpx;'></View>
   
-              <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;'>
+              <View style='display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;' onClick={this.handleShare.bind(this)}>
                 <View style='background:#FEEED9;height:100rpx;width:100rpx;display:flex;align-items:center;justify-content:center;border-radius:10px;'>
                   <image src={shareIcon} style='height:30px;width:30px;'></image>
                 </View>

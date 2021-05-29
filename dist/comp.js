@@ -1,1 +1,1 @@
-(wx["webpackJsonp"]=wx["webpackJsonp"]||[]).push([[6],[],[[304,0,1,2]]]);
+(wx["webpackJsonp"]=wx["webpackJsonp"]||[]).push([[6],[],[[308,0,1,2]]]);
