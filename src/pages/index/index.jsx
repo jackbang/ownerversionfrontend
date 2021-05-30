@@ -367,6 +367,29 @@ export default class Index extends Component {
     //console.log(e.detail)
   }
 
+  testLogin() {
+    let test_admin = {
+      nickName:"未知",
+      gender:0,
+      language:"zh_CN",
+      city:"",
+      province:"",
+      country:"China",
+      avatarUrl:"https://api.ecou.com.cn/media/test_logo.png",
+      sessionId:"",
+      adminId:1,
+      phoneNumber:"未知"
+    };
+    Taro.setStorage({
+      key: 'admin_info',
+      data: test_admin
+    })
+    this.getStoreList(this);
+    this.setState({
+      pageKind:3
+    })
+  }
+
   render () {
 
     var top_height = wx.getSystemInfoSync().statusBarHeight;
@@ -410,6 +433,7 @@ export default class Index extends Component {
             </SwiperItem>
           </Swiper>
           <AtButton type='primary' className='join-platform-button' onClick={this.handleLogin.bind(this)}>立即体验</AtButton> 
+          <text style='font-size:32rpx;position:absolute;bottom:50rpx;text-decoration:underline;' onClick={this.testLogin.bind(this)}>游客登录</text> 
           <View style='padding-bottom: 15%;'></View>  
         </View>
       )
@@ -436,7 +460,7 @@ export default class Index extends Component {
               <image src={base+'/media/4.png'} style='height:100vh;width:100vw;'></image>
             </SwiperItem>
           </Swiper>
-          <AtButton type='primary' className='join-platform-button' onClick={this.showPhoneInput.bind(this)} openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>立即体验</AtButton> 
+          <AtButton type='primary' className='join-platform-button' onClick={this.showPhoneInput.bind(this)} openType='getPhoneNumber' onGetPhoneNumber={this.getPhoneNumber.bind(this)}>立即体验</AtButton>
           <View style='padding-bottom: 15%;'></View>  
         </View>
       )

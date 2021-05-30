@@ -428,6 +428,12 @@ export default class Formpage extends Component {
             success (res){
               const receiveData = JSON.parse(res.data);
               console.log(receiveData)
+              _this.state.adminStoreInfo.name = '';
+              _this.state.adminStoreInfo.idCard = '';
+              Taro.setStorage({
+                key:'adminStoreInfo',
+                data: _this.state.adminStoreInfo
+              })
               _this.state.adminInfo.sessionId = receiveData.data.sessionId;
               _this.state.storeInfo = receiveData.data.storeInfo;
               Taro.setStorage({key:'store_info', data:_this.state.storeInfo});
@@ -1515,7 +1521,7 @@ export default class Formpage extends Component {
         })
 
         formContent.push(
-          <View style='height:450rpx;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
+          <View style='height:auto;width:100%;background:#FEFFFF;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;margin-top:30rpx;'>
             <View style='height:20rpx;'></View>
             <View style='width:100%;margin-bottom:50rpx;'>
               <text style='font-size:20px;font-weight:530;margin-left:5%;'>店铺管理员</text>
